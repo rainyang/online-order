@@ -1,0 +1,504 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link rel="stylesheet" href="__PUBLIC__/Index/css/pikaday.css">
+<script type="text/javascript" src="__PUBLIC__/Index/js/jquery-1.7.1.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Index/js/pikaday.js"></script>
+<script>
+	$(function(){
+		var picker = new Pikaday(
+		{
+			field: document.getElementById('datepicker'),
+			firstDay: 1,
+			minDate: new Date('2000-01-01'),
+			maxDate: new Date('2020-12-31'),
+			yearRange: [2000,2100],
+			target:document.getElementById('datepicker_in'),
+		});
+		
+		starShow();
+		detailStar();
+		
+		//输出星星结果
+		function starShow(){
+			$(".reviews_layer .star").each(function(index, element) {
+				var num = $(this).attr('num');
+				
+				for(var i=0; i<num; i++){
+					$(this).append("<span></span>");
+				}
+			});
+		}
+		//评级事件
+		function detailStar(){
+			$(".reviews_layer .star span").mouseover(function(e) {
+				var flag = $(this).parent(".star").attr("flag");
+				
+				if(eval(flag)){
+					var num = $(this).index();
+					
+					$(this).parent(".star").find("span").removeClass("gray");
+					for(var i=num+1; i<5; i++){
+						$(this).parent(".star").find("span:eq("+i+")").addClass("gray");
+					}
+					
+					$(this).parent(".star").attr("num",num+1)
+				}
+				
+			});
+		}
+		
+		$("#login_sumbit").click(function(){
+			var account = $('#account').val();
+			var password = $('#password').val();
+			if($.trim(account) == '' || $.trim(password) == ''){
+				$("#login_error").css("display","block").empty('').html('Please enter the account password.');
+				return false;		
+			}
+			var data = $('#login_form').serialize();
+			$.post("<?php echo U('Member/checkLogin');?>",data,function(rs){
+				if(rs.status == 0){
+					$("#login_error").css("display","block").empty('').html(rs.msg);
+					return false;	
+				}else{
+					window.location.reload();	
+				}
+			},'json')	
+		})
+	});
+	
+	$('#res_sumbit').click(function(){
+			var account = $('#res_account').val();
+			var password = $('#res_password').val();
+			if($.trim(account) == '' || $.trim(password) == ''){
+				$("#res_error").css("display","block").empty('').html('Please enter the account password.');
+				return false;
+			}
+			if($.trim(password).length < 6 || $.trim(password).length > 20){
+				$("#res_error").css("display","block").empty('').html('Password of 6-20 characters in length.');
+				return false;	
+			}
+			var data = $('#register').serialize();
+			$.post("<?php echo U('Member/register');?>",data,function(rs){
+				if(rs.status == 0){
+					$("#res_error").css("display","block").empty('').html(rs.msg);
+					return false;
+				}else{
+					window.location.href = "<?php echo U('Index/index');?>";	
+				}
+			},'json')
+		}) 
+</script>
+<style type="text/css">
+.user_error{
+	color:red;
+	text-align:left;
+	position:relative;
+	top:-20px;
+	left:70px;
+	display:none;	
+}
+.res_error{
+	color:red;
+	text-align:left;
+	position:relative;
+	top:-30px;
+	left:150px;
+	display:none;		
+}
+.forgot_error{
+	color:red;
+	position:relative;
+	left:-40px;
+	top:-10px;
+	display:none;	
+}
+</style>
+</head>
+
+<body>
+<!-- -------------------------------------------------------------------------------------------------------------------------------- -->
+  <div class="layer package_layer" style="width:500px;height:auto;margin-top:50px;">
+        <div class="title clearfix">
+            <p>Add Package</p>
+            <a href="#" class="close"></a>
+        </div>
+        <div class="context">
+            <div class="d1 clearfix">
+              
+              
+            </div>
+            <form id="addpack_form">
+            <input type="hidden" name="restaurant_id" id="additem_pack_resid" />
+             <input type="hidden" name="package_id" id="additem_packid" />
+
+          <div class="d2">
+            <div class="d2_title"></div>
+                <div class="list">
+                    <ul class="clearfix">
+                    
+                     
+                    </ul>
+              </div>
+          </div>
+         
+           <div class="d3" style="display:none;">
+                <span>Qty</span><input type="text" value="1" name="quantity" />
+           </div>
+          <div class="d4">
+            <div class="d4_title">SPECIAL INSTRUCTIONS</div>
+               <textarea rows="7" name="remark"></textarea>
+               <div style="color:red" class="additem_error"></div>
+        <div class="d4_submit">
+               </div>
+           </div>
+            </form>
+        </div>
+    </div>
+   <script type="text/javascript">
+      $("#addpackage_submit").live('click',function(){
+      var data = $("#addpack_form").serialize();//alert(data);return false;
+      $.post("<?php echo U('Order/shoppingcart');?>",data,function(rs){
+        if(rs.status == '0'){
+          $(".additem_error").html(rs.msg); 
+        }else{
+          window.location.reload(); 
+        }
+      },'json')
+    })
+   </script>
+
+<!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
+
+	<div class="layer detail_layer">
+        <div class="title clearfix">
+            <p>Add Item</p>
+            <a href="#" class="close"></a>
+        </div>
+        <div class="context">
+            <div class="d1 clearfix">
+              <div class="lt">
+                    <p class="p1"></p>
+                    <p class="p2"></p>
+                    <p class="p3"></p>
+                </div>
+              <img src="" />
+            </div>
+            <form id="additem_form">
+            <input type="hidden" name="restaurant_id" id="additem_resid" />
+             <input type="hidden" name="dishes_id" id="additem_disid" />
+            
+          <div class="d2">
+            <div class="d2_title">Choose a meat (Required)</div>
+                <div class="list">
+                    <ul class="clearfix">
+                    
+                     
+                    </ul>
+              </div>
+          </div>
+         
+           <div class="d3">
+                <span>Qty</span><input type="text" value="1" name="quantity" />
+           </div> 
+          <div class="d4">
+            <div class="d4_title">SPECIAL INSTRUCTIONS</div>
+               <textarea rows="7" name="remark"></textarea>
+               <div style="color:red" class="additem_error"></div>
+				<div class="d4_submit">
+               </div>
+           </div>
+            </form>
+        </div>
+    </div>
+   <script type="text/javascript">
+   		$("#additem_submit").live('click',function(){
+			var data = $("#additem_form").serialize();//console.log(data);return false;
+			$.post("<?php echo U('Order/shoppingcart');?>",data,function(rs){
+				if(rs.status == '0'){
+					$(".additem_error").html(rs.msg);	
+				}else{
+					window.location.reload();	
+				}
+			},'json')
+		})
+   </script>
+    <div class="layer  login_layer">
+        <div class="title clearfix">
+            <p>Sign In</p>
+            <a href="#" class="close"></a>
+        </div>
+        
+        <div class="context">
+        <form id="login_form">
+          <table width="200" border="0">
+              <tr>
+                <td height="60" align="right" valign="top" class="t1">EMAIL</td>
+                <td valign="top"><input type="text" name="account" id="account" /><a href="#"> Legal & Privacy</a></td>
+            </tr>
+              <tr>
+                <td height="60" align="right" class="t1" valign="top">PASSWORD</td>
+                <td valign="top"><input type="password" name="password" id="password" /><a class="fgt" href="#"> Forgot your password?</a></td>
+            </tr>
+          </table>
+         </form>
+          <div class="d1">
+           <h4 class="user_error" id="login_error"></h4>
+            <span>New here?</span>
+            <a href="#" id="login_sumbit">Sign In</a>
+          </div>
+      </div>
+    </div>
+    
+    <div class="layer  join_layer">
+        <div class="title clearfix">
+            <p>Join Us / Free Promote Your Restaurant </p>
+            <a href="#" class="close"></a>
+        </div>
+        
+        <div class="context">
+          <div class="d1">
+          	<input name="join" type="radio" value="" />
+          	<span>A：I want join McPos order online.</span>	
+          </div>
+          <div class="d1">
+          	<input name="join" type="radio" value="" />
+          	<span>B：I want free promote my restaurant.</span>
+          </div>
+          <div class="d2">
+            <a href="#">Next</a>
+          </div>
+      </div>
+    </div>
+     
+    <div class="layer  reviews_layer">
+        <div class="title clearfix">
+            <p>Reviews</p>
+            <a href="#" class="close"></a>
+        </div>
+        
+        <div class="context">
+          <div class="list">
+          	<p class="p1"></p>
+            <div num='0' flag=false class="star clearfix"></div>
+            <p class="p2"></p>
+          </div>
+          
+          <div class="list">
+          	<p class="p1"></p>
+            <div num='0' flag=false class="star clearfix"></div>
+            <p class="p2"></p>
+          </div>
+          <div class="form">
+          	<div class="form_title clearfix">
+            	<span>Yours Reviews</span>
+                <div num='5' flag=true class="star clearfix" id="star"></div>
+            </div>
+            <form id="review_form">
+            <input type="hidden" name="restaurant_id" id="restaurant_id"/>
+            <input type="hidden" name="member_id" id="member_id" value="<?php echo ($member_id); ?>"/>
+            <textarea name="title" id="title"></textarea>
+            <textarea name="content" id="content" rows="6"></textarea>
+            </form>
+          </div>
+         <div style="color:red" id="review_error"></div>
+          <div class="d1" id="revd1">
+         
+           <?php if(cookie("OrderOnlineAuth") == ""): ?><a href="javascript:;" style="color:#999;border:none;">Please login</a>
+           <?php else: ?>
+            <a href="#" id="add_review">Add</a><?php endif; ?>
+          </div>
+       </div>
+    </div>
+    <script type="text/javascript">
+    	$("#add_review").click(function(){
+			var title = $.trim($("#title").val());
+			var content = $.trim($("#content").val());
+			if(title = "" || content == ""){
+				$('#review_error').html('Can not be empty.');
+				return false;
+			}
+			var data = $("#review_form").serialize();
+			var star = $("#star").attr("num");
+			$.post('/index.php?s=Restaurant/addreview',data+"&star="+star,function(rs){
+				if(rs.status == '0'){
+					$('#review_error').html(rs.msg);
+				}else{
+					window.location.reload();
+				}
+			},'json')	
+		})
+   	</script>
+    <div class="layer create_layer">
+        <div class="title clearfix">
+            <p>Create your account here</p>
+            <a href="#" class="close"></a>
+        </div>
+        
+        <div class="context">
+        <form id="register">
+          <table width="100%" border="0">
+              <tr>
+                <td width="148" height="60" align="right" valign="top" class="t1">ENTER YOUR EMAIL</td>
+                <td width="227" valign="top"><input type="text" name="account" id="res_account" /><a href="#"> Legal & Privacy</a></td>
+            </tr>
+              <tr>
+                <td align="right" height="60" class="t1" valign="top">CREATE A PASSWORD</td>
+                <td valign="top"><input type="password" name="password" id="res_password"/></td>
+            </tr>
+          </table>
+          </form>
+          <div class="d1">
+           <h4 class="res_error" id="res_error"></h4>
+            <span>(It’s that easy)</span>
+            <a href="#" id="res_sumbit">Create My Account</a>
+          </div>
+      </div>
+    </div>
+
+    <div class="layer forgot_layer">
+        <div class="title clearfix">
+            <p>Forgot Your Password?</p>
+            <a href="#" class="close"></a>
+        </div>
+        
+        <div class="context">
+          <img src="__PUBLIC__/Index/images/face.gif" />
+          <p> Enter your email below and we'll immediately send you a link to get back into your account.</p>
+          <div class="d1"><span>EMAIL</span><input type="text" name="account" id="forgot_account" /></div>
+          <div class="d2">
+          	<h4 class="forgot_error" id="forgot_error">输入正确的邮箱地址</h4>
+            <a href="#" id="forgot_sumbit">Send Me</a>
+          </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+    	$('#forgot_sumbit').click(function(){
+			var account = $("#forgot_account").val();
+			$.post("<?php echo U('Member/forgotpassword');?>",{account:account},function(rs){
+				if(rs.status == 0){
+					$("#forgot_error").css("display","block").empty().html(rs.msg);	
+				}else{
+					alert(rs.msg);
+					window.location.reload();
+				}
+			},'json')
+		})
+    </script>
+    <div class="layer booking_layer">
+        <div class="title clearfix">
+            <p>Restaurant Booking</p>
+            <a href="#" class="close"></a>
+        </div>
+        
+        <div class="context">
+        <form id="book_form">
+        <input type="hidden" name="restaurant_id" id="bk_resid" />
+            <table width="100%" border="0">
+              <tr>
+                <td width="29%" align="right">First Name</td>
+                <td width="25%"><input class="line" type="text" name="fname" id="fname" /></td>
+                <td width="21%">Last Name</td>
+                <td width="25%"><input class="line" type="text" name="lname" id="lname"  /></td>
+              </tr>
+              <tr>
+                <td align="right">Moble Number</td>
+                <td colspan="3" align="left"><input class="line" style="width:200px;" type="text" name="tel" id="tel" /></td>
+              </tr>
+              <tr>
+                <td align="right">Date</td>
+                <td colspan="3" align="left"><input id="datepicker_in" readonly="readonly" style="width:104px; height:26px; border:1px solid #ddd;" type="text" name="date"  />
+                <img id="datepicker" src="__PUBLIC__/Index/images/date_ico.gif" width="16" height="14" /></td>
+              </tr>
+              <tr>
+                <td align="right">Hour</td>
+                <td colspan="3" align="left">
+                  <select name="hours" id="select">
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="00">00</option>
+                    
+                  </select>
+                  <select name="minute" id="select2">
+                     <option value="00">00</option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option><option value="60">60</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td align="right">People</td>
+                <td colspan="3" align="left">
+                	<input name="people" type="text" class="line" id="people" />
+                </td>
+              </tr>
+            </table>
+            </form>
+           <div style="color:red;" id="book_error"></div>
+            <div class="d1">
+             <?php if(cookie("OrderOnlineAuth") == ""): ?><a href="javascript:;" style="color:#999;border:none;">Please login</a>
+             <?php else: ?>
+                <a href="#" id="book_submit">Book</a><?php endif; ?>   
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+   		$("#book_submit").click(function(){
+			var fname = $.trim($("#fname").val());
+			var lname = $.trim($("#lname").val());
+			var tel = $.trim($("#tel").val());
+			var date  = $("#datepicker_in").val();
+			var people = $.trim($("#people").val());
+			if(fname == ""){
+				$("#book_error").html("First Name can not be empty.");
+				return false;		
+			}
+			if(lname == ""){
+				$("#book_error").html("Last Name can not be empty.");
+				return false;		
+			}
+			if(tel == ""){
+				$("#book_error").html("Moble Number can not be empty.");
+				return false;		
+			}
+			if(date == ""){
+				$("#book_error").html("Date can not be empty.");
+				return false;		
+			}
+			if(people == ""){
+				$("#book_error").html("people can not be empty.");
+				return false;		
+			}
+			var data = $("#book_form").serialize();
+			$.post("<?php echo U('Order/book');?>",data,function(rs){
+				if(rs.status == '0'){
+					$("#book_error").html(rs.msg);
+				}else{
+					window.location.reload();	
+				}
+			},'json')
+		})	 
+		
+   	</script>
+</body>
+</html>

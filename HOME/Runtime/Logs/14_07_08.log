@@ -1,0 +1,132 @@
+[ 2014-07-08T08:42:41+08:00 ] SQL: SHOW COLUMNS FROM on_restaurant_member [ RunTime:0.020794s ]
+[ 2014-07-08T08:42:41+08:00 ] SQL: SHOW COLUMNS FROM on_comment [ RunTime:0.012254s ]
+[ 2014-07-08T08:42:41+08:00 ] SQL: select a.id,a.logo,a.nickname,a.remark,b.delivery,b.minimum,b.parking from on_restaurant_member as a left join on_restaurant_details as b on a.id = b.restaurant_id where a.status = 1 order by create_time desc limit 16 [ RunTime:0.000545s ]
+[ 2014-07-08T08:42:41+08:00 ] NOTIC: [2] Invalid argument supplied for foreach() IndexAction.class.php 第 16 行.
+[ 2014-07-08T08:42:41+08:00 ] NOTIC: [2] Invalid argument supplied for foreach() IndexAction.class.php 第 19 行.
+[ 2014-07-08T08:42:41+08:00 ] NOTIC: [8] Undefined variable: list1 IndexAction.class.php 第 31 行.
+[ 2014-07-08T08:42:41+08:00 ] NOTIC: [8] Undefined variable: page IndexAction.class.php 第 32 行.
+[ 2014-07-08T08:42:56+08:00 ] NOTIC: [8] Undefined variable: member_id 50a80d95ab48e6914519aae87b5b2faf.php 第 303 行.
+[ 2014-07-08T08:42:56+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T08:42:56+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T08:46:42+08:00 ] SQL: SHOW COLUMNS FROM on_restaurant_member [ RunTime:0.006743s ]
+[ 2014-07-08T08:46:42+08:00 ] SQL: SHOW COLUMNS FROM on_comment [ RunTime:0.006516s ]
+[ 2014-07-08T08:46:42+08:00 ] SQL: select a.id,a.logo,a.nickname,a.remark,b.delivery,b.minimum,b.parking from on_restaurant_member as a left join on_restaurant_details as b on a.id = b.restaurant_id where a.status = 1 order by create_time desc limit 16 [ RunTime:0.000704s ]
+[ 2014-07-08T08:46:42+08:00 ] NOTIC: [2] Invalid argument supplied for foreach() IndexAction.class.php 第 16 行.
+[ 2014-07-08T08:46:42+08:00 ] NOTIC: [2] Invalid argument supplied for foreach() IndexAction.class.php 第 19 行.
+[ 2014-07-08T08:46:42+08:00 ] NOTIC: [8] Undefined variable: list1 IndexAction.class.php 第 31 行.
+[ 2014-07-08T08:46:42+08:00 ] NOTIC: [8] Undefined variable: page IndexAction.class.php 第 32 行.
+[ 2014-07-08T08:46:43+08:00 ] NOTIC: [8] Undefined variable: member_id 50a80d95ab48e6914519aae87b5b2faf.php 第 303 行.
+[ 2014-07-08T09:14:12+08:00 ] SQL: SHOW COLUMNS FROM on_restaurant_member [ RunTime:0.006236s ]
+[ 2014-07-08T09:14:12+08:00 ] SQL: SHOW COLUMNS FROM on_comment [ RunTime:0.006151s ]
+[ 2014-07-08T09:14:12+08:00 ] SQL: select a.id,a.logo,a.nickname,a.remark,b.delivery,b.minimum,b.parking from on_restaurant_member as a left join on_restaurant_details as b on a.id = b.restaurant_id where a.status = 1 order by create_time desc limit 16 [ RunTime:0.000498s ]
+[ 2014-07-08T09:14:12+08:00 ] NOTIC: [2] Invalid argument supplied for foreach() IndexAction.class.php 第 16 行.
+[ 2014-07-08T09:14:12+08:00 ] NOTIC: [2] Invalid argument supplied for foreach() IndexAction.class.php 第 19 行.
+[ 2014-07-08T09:14:12+08:00 ] NOTIC: [8] Undefined variable: list1 IndexAction.class.php 第 31 行.
+[ 2014-07-08T09:14:12+08:00 ] NOTIC: [8] Undefined variable: page IndexAction.class.php 第 32 行.
+[ 2014-07-08T09:14:13+08:00 ] NOTIC: [8] Undefined variable: member_id 50a80d95ab48e6914519aae87b5b2faf.php 第 303 行.
+[ 2014-07-08T09:14:57+08:00 ] SQL: SHOW COLUMNS FROM on_restaurant_member [ RunTime:0.005430s ]
+[ 2014-07-08T09:14:57+08:00 ] SQL: SHOW COLUMNS FROM on_comment [ RunTime:0.006761s ]
+[ 2014-07-08T09:14:57+08:00 ] SQL: select a.id,a.logo,a.nickname,a.remark,b.delivery,b.minimum,b.parking from on_restaurant_member as a left join on_restaurant_details as b on a.id = b.restaurant_id where a.status = 1 order by create_time desc limit 16 [ RunTime:0.000612s ]
+[ 2014-07-08T09:14:57+08:00 ] NOTIC: [2] Invalid argument supplied for foreach() IndexAction.class.php 第 16 行.
+[ 2014-07-08T09:14:57+08:00 ] NOTIC: [2] Invalid argument supplied for foreach() IndexAction.class.php 第 19 行.
+[ 2014-07-08T09:14:57+08:00 ] NOTIC: [8] Undefined variable: list1 IndexAction.class.php 第 31 行.
+[ 2014-07-08T09:14:57+08:00 ] NOTIC: [8] Undefined variable: page IndexAction.class.php 第 32 行.
+[ 2014-07-08T09:14:58+08:00 ] NOTIC: [8] Undefined variable: member_id 50a80d95ab48e6914519aae87b5b2faf.php 第 303 行.
+[ 2014-07-08T09:15:22+08:00 ] SQL: SHOW COLUMNS FROM on_restaurant_member [ RunTime:0.005550s ]
+[ 2014-07-08T09:15:22+08:00 ] SQL: SHOW COLUMNS FROM on_comment [ RunTime:0.003952s ]
+[ 2014-07-08T09:15:22+08:00 ] SQL: select a.id,a.logo,a.nickname,a.remark,b.delivery,b.minimum,b.parking from on_restaurant_member as a left join on_restaurant_details as b on a.id = b.restaurant_id where a.status = 1 order by create_time desc limit 16 [ RunTime:0.000528s ]
+[ 2014-07-08T09:15:22+08:00 ] NOTIC: [2] Invalid argument supplied for foreach() IndexAction.class.php 第 16 行.
+[ 2014-07-08T09:15:22+08:00 ] NOTIC: [2] Invalid argument supplied for foreach() IndexAction.class.php 第 19 行.
+[ 2014-07-08T09:15:22+08:00 ] NOTIC: [8] Undefined variable: list1 IndexAction.class.php 第 31 行.
+[ 2014-07-08T09:15:22+08:00 ] NOTIC: [8] Undefined variable: page IndexAction.class.php 第 32 行.
+[ 2014-07-08T09:15:23+08:00 ] NOTIC: [8] Undefined variable: member_id 50a80d95ab48e6914519aae87b5b2faf.php 第 303 行.
+[ 2014-07-08T09:15:44+08:00 ] SQL: SHOW COLUMNS FROM on_restaurant_member [ RunTime:0.005329s ]
+[ 2014-07-08T09:15:44+08:00 ] SQL: SHOW COLUMNS FROM on_comment [ RunTime:0.005045s ]
+[ 2014-07-08T09:15:44+08:00 ] SQL: select a.id,a.logo,a.nickname,a.remark,b.delivery,b.minimum,b.parking from on_restaurant_member as a left join on_restaurant_details as b on a.id = b.restaurant_id where a.status = 1 order by create_time desc limit 16 [ RunTime:0.000591s ]
+[ 2014-07-08T09:15:44+08:00 ] NOTIC: [2] Invalid argument supplied for foreach() IndexAction.class.php 第 16 行.
+[ 2014-07-08T09:15:44+08:00 ] NOTIC: [2] Invalid argument supplied for foreach() IndexAction.class.php 第 19 行.
+[ 2014-07-08T09:15:44+08:00 ] NOTIC: [8] Undefined variable: list1 IndexAction.class.php 第 31 行.
+[ 2014-07-08T09:15:44+08:00 ] NOTIC: [8] Undefined variable: page IndexAction.class.php 第 32 行.
+[ 2014-07-08T09:15:45+08:00 ] NOTIC: [8] Undefined variable: member_id 50a80d95ab48e6914519aae87b5b2faf.php 第 303 行.
+[ 2014-07-08T09:15:46+08:00 ] SQL: SHOW COLUMNS FROM on_restaurant_member [ RunTime:0.005202s ]
+[ 2014-07-08T09:15:46+08:00 ] SQL: SHOW COLUMNS FROM on_comment [ RunTime:0.005591s ]
+[ 2014-07-08T09:15:46+08:00 ] SQL: select a.id,a.logo,a.nickname,a.remark,b.delivery,b.minimum,b.parking from on_restaurant_member as a left join on_restaurant_details as b on a.id = b.restaurant_id where a.status = 1 order by create_time desc limit 16 [ RunTime:0.000618s ]
+[ 2014-07-08T09:15:46+08:00 ] NOTIC: [2] Invalid argument supplied for foreach() IndexAction.class.php 第 16 行.
+[ 2014-07-08T09:15:46+08:00 ] NOTIC: [2] Invalid argument supplied for foreach() IndexAction.class.php 第 19 行.
+[ 2014-07-08T09:15:46+08:00 ] NOTIC: [8] Undefined variable: list1 IndexAction.class.php 第 31 行.
+[ 2014-07-08T09:15:46+08:00 ] NOTIC: [8] Undefined variable: page IndexAction.class.php 第 32 行.
+[ 2014-07-08T09:15:47+08:00 ] NOTIC: [8] Undefined variable: member_id 50a80d95ab48e6914519aae87b5b2faf.php 第 303 行.
+[ 2014-07-08T09:48:39+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T10:12:12+08:00 ] ERR: (ThinkException) 无法加载模块__APP__
+[ 2014-07-08T10:12:12+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T10:12:12+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T10:12:13+08:00 ] ERR: (ThinkException) 无法加载模块__APP__
+[ 2014-07-08T10:12:34+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T10:12:36+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T10:15:28+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T10:19:20+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T10:19:26+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T10:23:28+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T10:29:27+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T10:29:34+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T10:31:22+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T10:32:08+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T11:06:19+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T11:07:02+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T11:09:06+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T16:44:36+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T16:44:39+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T16:44:48+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T16:44:52+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T16:45:00+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T16:45:05+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T16:45:11+08:00 ] ERR: (ThinkException) 无法加载模块Public
+[ 2014-07-08T16:45:11+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T16:45:14+08:00 ] ERR: (ThinkException) 无法加载模块Public
+[ 2014-07-08T16:45:14+08:00 ] ERR: (ThinkException) 无法加载模块Public
+[ 2014-07-08T16:45:14+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T16:45:18+08:00 ] ERR: (ThinkException) 无法加载模块css
+[ 2014-07-08T16:46:31+08:00 ] ERR: (ThinkException) 无法加载模块css
+[ 2014-07-08T16:47:44+08:00 ] ERR: (ThinkException) 无法加载模块css
+[ 2014-07-08T16:48:13+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T16:49:10+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T16:49:19+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T16:49:53+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T16:50:16+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T16:51:19+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T16:51:44+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T16:53:44+08:00 ] ERR: (ThinkException) 无法加载模块Public
+[ 2014-07-08T16:53:47+08:00 ] ERR: (ThinkException) 无法加载模块css
+[ 2014-07-08T16:54:09+08:00 ] ERR: (ThinkException) 无法加载模块css
+[ 2014-07-08T16:54:11+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T16:54:32+08:00 ] ERR: (ThinkException) 无法加载模块Public
+[ 2014-07-08T16:54:32+08:00 ] ERR: (ThinkException) 无法加载模块js
+[ 2014-07-08T16:54:32+08:00 ] ERR: (ThinkException) 无法加载模块js
+[ 2014-07-08T16:54:39+08:00 ] ERR: (ThinkException) 无法加载模块Public
+[ 2014-07-08T16:54:39+08:00 ] ERR: (ThinkException) 无法加载模块js
+[ 2014-07-08T16:54:39+08:00 ] ERR: (ThinkException) 无法加载模块js
+[ 2014-07-08T16:54:46+08:00 ] ERR: (ThinkException) 无法加载模块Public
+[ 2014-07-08T16:54:46+08:00 ] ERR: (ThinkException) 无法加载模块js
+[ 2014-07-08T16:54:46+08:00 ] ERR: (ThinkException) 无法加载模块js
+[ 2014-07-08T16:54:52+08:00 ] ERR: (ThinkException) 无法加载模块Public
+[ 2014-07-08T16:54:52+08:00 ] ERR: (ThinkException) 无法加载模块js
+[ 2014-07-08T16:54:52+08:00 ] ERR: (ThinkException) 无法加载模块js
+[ 2014-07-08T16:54:57+08:00 ] ERR: (ThinkException) 无法加载模块Public
+[ 2014-07-08T16:54:57+08:00 ] ERR: (ThinkException) 无法加载模块js
+[ 2014-07-08T16:54:57+08:00 ] ERR: (ThinkException) 无法加载模块js
+[ 2014-07-08T16:55:03+08:00 ] ERR: (ThinkException) 无法加载模块Public
+[ 2014-07-08T16:55:03+08:00 ] ERR: (ThinkException) 无法加载模块js
+[ 2014-07-08T16:55:03+08:00 ] ERR: (ThinkException) 无法加载模块js
+[ 2014-07-08T16:55:07+08:00 ] ERR: (ThinkException) 无法加载模块Public
+[ 2014-07-08T16:55:08+08:00 ] ERR: (ThinkException) 无法加载模块js
+[ 2014-07-08T16:55:08+08:00 ] ERR: (ThinkException) 无法加载模块js
+[ 2014-07-08T16:55:13+08:00 ] ERR: (ThinkException) 无法加载模块Public
+[ 2014-07-08T16:55:13+08:00 ] ERR: (ThinkException) 无法加载模块js
+[ 2014-07-08T16:55:13+08:00 ] ERR: (ThinkException) 无法加载模块js
+[ 2014-07-08T17:00:37+08:00 ] ERR: (ThinkException) 无法加载模块Public
+[ 2014-07-08T17:00:40+08:00 ] ERR: (ThinkException) 无法加载模块Public
+[ 2014-07-08T17:00:46+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T17:00:49+08:00 ] ERR: (ThinkException) 无法加载模块Public
+[ 2014-07-08T17:00:49+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-07-08T17:00:51+08:00 ] ERR: (ThinkException) 无法加载模块Public
+[ 2014-07-08T17:00:51+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico

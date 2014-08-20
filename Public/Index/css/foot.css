@@ -1,0 +1,29 @@
+.foot{ width:100%; background-color:#ededed; border-top:1px solid #dedddd;}
+.foot_in{ width:940px; margin:0 auto; padding:36px 0 90px 0;}
+.foot_in .dl{ float:left;}
+.foot_in .d1{ width:18%;}
+.foot_in .d2{ width:42%;}
+.foot_in .d3{ width:40%; }
+
+.foot_in .d1 p{ font-size:22px; color:#eb6100; padding-bottom:25px;}
+.foot_in .d1 a{ color:#5d5c5c; font-size:14px; text-decoration:underline; line-height:24px;}
+
+.foot_in .d2 p{ color:#686868;}
+.foot_in .d2 .p1{ font-size:18px;}
+.foot_in .d2 .p1 label{ color:#d95a01;}
+.foot_in .d2 .p2{ font-size:12px; padding-left:72px; font-weight:bold; padding-top:5px;}
+
+.foot_in .d2 .link{ padding-top:15px;}
+.foot_in .d2 .link img{ float:left; margin-top:25px;}
+.foot_in .d2 .link ul{ float:left; width:60%; padding-left:8%;}
+.foot_in .d2 .link ul li{ list-style-type:disc; color:#eb6100; line-height:30px;}
+.foot_in .d2 .link ul li a{ font-size:14px; color:#eb6100; border-bottom:#eb6100; font-weight:bold; text-decoration:underline;}
+
+.foot_in .d3 .ico{ padding-bottom:15px;}
+.foot_in .d3 .ico a{ margin-left:30px;}
+
+.foot_in .d3 p{ color:#5d5c5c; font-size:14px; line-height:24px;}
+.foot_in .d3 p label{ font-weight:bold;}
+
+.foot_in .d3 ul{ font-size:14px; width:90%; padding-left:10%;}
+.foot_in .d3 ul li{ line-height:24px; list-style-type:disc; color:#5d5c5c;}

@@ -1,0 +1,30 @@
+.banner{ width:100%; position:relative; height:311px; overflow:hidden;}
+.banner img{ width:100%; position:absolute; top:0;}
+
+.box{ width:100%; padding-bottom:22px; padding-top:20px; position:relative;}
+.box .title{ height:28px;  line-height:28px;}
+.box .title span{ color:#db1919; font-size:22px; float:left; padding-right:8px;}
+.box .title input{ float:left; margin:0; height:27px; font-size:14px; border:none; border-bottom:1px solid #d2d0d0; width:172px; color:#CCC; padding:0 8px;}
+.box .title a{ float:left; padding-left:5px;}
+
+.box .list{ width:100%;}
+.box .list ul{ width:100%; margin:0; padding:0;}
+.box .list ul li{ float:left; min-width:80px; text-align:center;}
+.box .list ul li a{ color:#000;}
+.box .list ul li p{ padding-top:7px;}
+
+.coupons{ border-bottom:1px solid #d2d0d0;}
+.coupons .list ul li{ padding:10px 30px 5px 7px; }
+.coupons .more{ padding:2px 28px; position:absolute; left:44%; bottom:-11px; font-size:18px; color:#000; background:#fff;}
+
+.reviews { padding-bottom:53px; height:472px; overflow:hidden;}
+.reviews .list{ padding-top:24px; position:absolute; top:48px;}
+.reviews .list ul li{ padding:0 0 10px 0; text-align:left;}
+.reviews .list ul li .lt{ float:left; padding-left:5px;}
+.reviews .list ul li .lt .p1{ color:#959595; font-weight:bold; padding:5px 0 10px 0;}
+.reviews .list ul li .lt p{ color:#a3a3a3; font-size:14px; font-weight:500; margin:0; padding:0;}
+
+.reviews .list ul li .rt{ float:right; padding-right:30px; width:310px;}
+.reviews .list ul li .rt p{ font-size:12px; color:#eb6100; font-weight:bold; padding-left:5px;}
+.reviews .list ul li .rt ul{ width:100%; margin:0; padding:0; padding:5px 0 0 20px;}
+.reviews .list ul li .rt ul li{ float:left; color:#959595; font-size:14px; padding:8px 0;}

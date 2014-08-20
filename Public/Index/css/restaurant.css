@@ -1,0 +1,40 @@
+.restaurant{ padding:0 0 80px 0; background:#fdefe5; margin-top:9px; position:relative;}
+.restaurant .restaurant_title{ width:100%; height:24px; position:relative; overflow:hidden;}
+.restaurant .restaurant_title span{ display:inline-block; height:100%; width:33%; background:#d2d2d2; float:left; text-align:center; line-height:24px;}
+.restaurant .restaurant_title .s2{ background:#f9d3b7; }
+.restaurant .restaurant_title .s3{ width:34%;}
+.restaurant .restaurant_title .s1 a{ color:#fff; font-size:14px; border-bottom:1px solid #fff; font-weight:bold;}
+.restaurant .restaurant_title .s2 a{ color:#eb6100; font-size:14px; border-bottom:1px solid #eb6100; font-weight:bold;}
+.restaurant .restaurant_title .s3 a{ color:#fff; font-size:14px; border-bottom:1px solid #fff; font-weight:bold;}
+
+.restaurant .restaurant_title label{ position:absolute; top:0;}
+.restaurant .restaurant_title .l1{ left:33%; height:100%; width:13px; background:url(../images/basic_atr.gif) 0 -48px no-repeat;}
+.restaurant .restaurant_title .l2{ left:66%; height:100%; width:13px; background:url(../images/basic_atr.gif) 0 0 no-repeat;}
+
+.restaurant .restaurant_lt{ float:left; width:54%; padding:55px 2% 0 4%;}
+.restaurant .restaurant_rt{ float:left; width:36%; padding:55px 2% 0 2%;}
+
+.restaurant .restaurant_lt .p1{ color:#000; font-size:18px; padding-bottom:35px;}
+.restaurant .restaurant_lt .p2{ color:#000; font-size:18px; padding:22px 0 35px 0;}
+
+.restaurant .restaurant_lt div{ padding-bottom:8px;}
+.restaurant .restaurant_lt div span p{ padding:10px 0;}
+.restaurant .restaurant_lt div span{ float:left; padding-right:15px; font-weight:bold; color:#000; padding-bottom:5px; }
+.restaurant .restaurant_lt div span label{ float:left; min-width:50px; padding-right:15px;}
+.restaurant .restaurant_lt div span select{ float:left;}
+
+.restaurant .restaurant_lt .d1 input{ margin-right:5px;}
+.restaurant .restaurant_lt .d2 input{ height:22px; width:138px; border:1px solid #eb6100;}
+.restaurant .restaurant_lt .d2 .s1{ padding-top:38px;}
+
+.restaurant .restaurant_lt .list{}
+.restaurant .restaurant_lt .list div{ padding-bottom:20px;}
+.restaurant .restaurant_lt .list p{ font-size:18px; color:#000; font-weight:bold; padding-bottom:5px;}
+.restaurant .restaurant_lt .list span{ float:left; font-weight:500;}
+.restaurant .restaurant_lt .list select{ float:left; margin-right:20px; border:1px solid #000; height:22px; color:#000; font-size:14px;}
+
+
+.restaurant .restaurant_rt p{ color:#ed721b; line-height:30px;}
+.restaurant .restaurant_rt .p1{ font-size:18px;}
+.restaurant .restaurant_rt .p2{ font-size:14px; font-weight:bold;}
+.restaurant .restaurant_rt .link{ position:absolute; right:3%; bottom:20px; color:#ed7019; font-size:18px; border-bottom:1px solid #ed7019;}

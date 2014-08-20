@@ -1,0 +1,219 @@
+[ 2014-06-27T10:16:55+08:00 ] SQL: SHOW COLUMNS FROM on_restaurant_member [ RunTime:0.049671s ]
+[ 2014-06-27T10:16:55+08:00 ] SQL: SHOW COLUMNS FROM on_comment [ RunTime:0.018213s ]
+[ 2014-06-27T10:16:55+08:00 ] SQL: select a.id,a.logo,a.nickname,a.remark,b.delivery,b.minimum,b.parking from on_restaurant_member as a left join on_restaurant_details as b on a.id = b.restaurant_id where a.status = 1 order by create_time desc limit 16 [ RunTime:0.000862s ]
+[ 2014-06-27T10:16:55+08:00 ] NOTIC: [2] Invalid argument supplied for foreach() IndexAction.class.php 第 16 行.
+[ 2014-06-27T10:16:55+08:00 ] NOTIC: [2] Invalid argument supplied for foreach() IndexAction.class.php 第 19 行.
+[ 2014-06-27T10:16:55+08:00 ] NOTIC: [8] Undefined variable: list1 IndexAction.class.php 第 31 行.
+[ 2014-06-27T10:16:55+08:00 ] NOTIC: [8] Undefined variable: page IndexAction.class.php 第 32 行.
+[ 2014-06-27T10:16:57+08:00 ] NOTIC: [8] Undefined variable: member_id 50a80d95ab48e6914519aae87b5b2faf.php 第 303 行.
+[ 2014-06-27T10:16:57+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-06-27T10:16:57+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-06-27T10:16:57+08:00 ] ERR: (ThinkException) 无法加载模块favicon.ico
+[ 2014-06-27T10:16:57+08:00 ] NOTIC: [8] Undefined variable: member_id 50a80d95ab48e6914519aae87b5b2faf.php 第 303 行.
+[ 2014-06-27T10:17:01+08:00 ] SQL: SHOW COLUMNS FROM on_restaurant_member [ RunTime:0.005459s ]
+[ 2014-06-27T10:17:01+08:00 ] SQL: SHOW COLUMNS FROM on_comment [ RunTime:0.005359s ]
+[ 2014-06-27T10:17:01+08:00 ] NOTIC: [8] Undefined variable: where DishesAction.class.php 第 107 行.
+[ 2014-06-27T10:17:01+08:00 ] SQL: SELECT * FROM `on_restaurant_member` ORDER BY create_time desc [ RunTime:0.000685s ]
+[ 2014-06-27T10:17:01+08:00 ] NOTIC: [8] Undefined variable: where DishesAction.class.php 第 108 行.
+[ 2014-06-27T10:17:01+08:00 ] SQL: SELECT COUNT(*) AS tp_count FROM `on_restaurant_member` ORDER BY create_time desc LIMIT 1  [ RunTime:0.000427s ]
+[ 2014-06-27T10:17:01+08:00 ] SQL: SELECT * FROM `on_comment` WHERE ( `restaurant_id` = '1' ) [ RunTime:0.000326s ]
+[ 2014-06-27T10:17:01+08:00 ] NOTIC: [2] Invalid argument supplied for foreach() DishesAction.class.php 第 112 行.
+[ 2014-06-27T10:17:01+08:00 ] NOTIC: [8] Undefined index: distance 9d604225e4579e330611e197605d731f.php 第 85 行.
+[ 2014-06-27T10:17:01+08:00 ] NOTIC: [8] Undefined variable:  9d604225e4579e330611e197605d731f.php 第 91 行.
+[ 2014-06-27T10:17:01+08:00 ] NOTIC: [8] Undefined variable: member_id 50a80d95ab48e6914519aae87b5b2faf.php 第 303 行.
+[ 2014-06-27T10:17:02+08:00 ] NOTIC: [8] Undefined index: resid DishesAction.class.php 第 8 行.
+[ 2014-06-27T10:17:02+08:00 ] SQL: SHOW COLUMNS FROM on_restaurant_member [ RunTime:0.006995s ]
+[ 2014-06-27T10:17:02+08:00 ] SQL: SHOW COLUMNS FROM on_comment [ RunTime:0.005661s ]
+[ 2014-06-27T10:17:02+08:00 ] SQL: SHOW COLUMNS FROM on_item [ RunTime:0.054398s ]
+[ 2014-06-27T10:17:02+08:00 ] SQL: SHOW COLUMNS FROM on_menugroup [ RunTime:0.045558s ]
+[ 2014-06-27T10:17:02+08:00 ] SQL: SHOW COLUMNS FROM on_restaurant_details [ RunTime:0.011398s ]
+[ 2014-06-27T10:17:03+08:00 ] SQL: SHOW COLUMNS FROM on_shopping_cart [ RunTime:0.041115s ]
+[ 2014-06-27T10:17:03+08:00 ] SQL: SHOW COLUMNS FROM on_packagelist [ RunTime:0.012286s ]
+[ 2014-06-27T10:17:03+08:00 ] SQL: SELECT * FROM `on_restaurant_member` WHERE ( `id` = '1' ) LIMIT 1  [ RunTime:0.000824s ]
+[ 2014-06-27T10:17:03+08:00 ] SQL: SELECT * FROM `on_comment` WHERE ( `restaurant_id` = '1' ) ORDER BY create_time desc LIMIT 1  [ RunTime:0.002839s ]
+[ 2014-06-27T10:17:03+08:00 ] SQL: SELECT COUNT(*) AS tp_count FROM `on_item` WHERE ( `restaurant_id` = '1' ) LIMIT 1  [ RunTime:0.000663s ]
+[ 2014-06-27T10:17:03+08:00 ] SQL: SELECT * FROM `on_restaurant_details` WHERE ( `restaurant_id` = '1' ) LIMIT 1  [ RunTime:0.002568s ]
+[ 2014-06-27T10:17:03+08:00 ] SQL: SELECT id,group_name FROM `on_menugroup` WHERE ( `restaurant_id` = '1' ) ORDER BY create_time desc [ RunTime:0.000497s ]
+[ 2014-06-27T10:17:03+08:00 ] SQL: SELECT * FROM `on_packagelist` WHERE ( `restaurant_id` = '1' ) ORDER BY create_time desc [ RunTime:0.000481s ]
+[ 2014-06-27T10:17:03+08:00 ] SQL: SELECT COUNT(*) AS tp_count FROM `on_packagelist` WHERE ( `restaurant_id` = '1' ) LIMIT 1  [ RunTime:0.000336s ]
+[ 2014-06-27T10:17:03+08:00 ] SQL: SELECT * FROM `on_item` WHERE ( `group_id` = '7' ) [ RunTime:0.000381s ]
+[ 2014-06-27T10:17:03+08:00 ] SQL: SELECT * FROM `on_item` WHERE ( `group_id` = '6' ) [ RunTime:0.000382s ]
+[ 2014-06-27T10:17:03+08:00 ] SQL: SELECT * FROM `on_item` WHERE ( `group_id` = '5' ) [ RunTime:0.000490s ]
+[ 2014-06-27T10:17:03+08:00 ] SQL: SELECT * FROM `on_item` WHERE ( `group_id` = '4' ) [ RunTime:0.000442s ]
+[ 2014-06-27T10:17:03+08:00 ] SQL: SELECT * FROM `on_item` WHERE ( `group_id` = '3' ) [ RunTime:0.000545s ]
+[ 2014-06-27T10:17:03+08:00 ] SQL: SELECT id,item_name,price,quantity FROM `on_shopping_cart` WHERE ( `member_id` = '' ) AND ( `status` = '0' ) ORDER BY id desc [ RunTime:0.000854s ]
+[ 2014-06-27T10:17:03+08:00 ] SQL: SELECT COUNT(*) AS tp_count FROM `on_shopping_cart` WHERE ( `member_id` = '' ) AND ( `status` = '0' ) LIMIT 1  [ RunTime:0.000323s ]
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: time DishesAction.class.php 第 61 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: dhours DishesAction.class.php 第 62 行.
+[ 2014-06-27T10:17:03+08:00 ] SQL: SELECT COUNT(*) AS tp_count FROM `on_comment` WHERE ( `restaurant_id` = '1' ) LIMIT 1  [ RunTime:0.000371s ]
+[ 2014-06-27T10:17:03+08:00 ] SQL: SELECT `star` FROM `on_comment` WHERE ( `restaurant_id` = '1' ) [ RunTime:0.000241s ]
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [2] Invalid argument supplied for foreach() ShowStarWidget.class.php 第 9 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: starcount ShowStarWidget.class.php 第 12 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [2] Division by zero ShowStarWidget.class.php 第 12 行.
+[ 2014-06-27T10:17:03+08:00 ] SQL: SHOW COLUMNS FROM on_member [ RunTime:0.032516s ]
+[ 2014-06-27T10:17:03+08:00 ] SQL: SELECT `name` FROM `on_member` WHERE ( `id` = null ) LIMIT 1  [ RunTime:0.001078s ]
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 130 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 131 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 132 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 130 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 131 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 132 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 130 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 131 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 132 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 130 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 131 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 132 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 130 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 131 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 132 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 130 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 131 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 132 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 130 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 131 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 132 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 130 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 131 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 132 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 130 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 131 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 132 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:17:03+08:00 ] NOTIC: [8] Undefined variable: member_id 50a80d95ab48e6914519aae87b5b2faf.php 第 303 行.
+[ 2014-06-27T10:17:07+08:00 ] NOTIC: [8] Undefined index: disid DishesAction.class.php 第 127 行.
+[ 2014-06-27T10:17:07+08:00 ] SQL: SHOW COLUMNS FROM on_item [ RunTime:0.004454s ]
+[ 2014-06-27T10:17:07+08:00 ] SQL: SHOW COLUMNS FROM on_dishes_item [ RunTime:0.004212s ]
+[ 2014-06-27T10:17:08+08:00 ] SQL: SHOW COLUMNS FROM on_package_group [ RunTime:0.094517s ]
+[ 2014-06-27T10:17:08+08:00 ] SQL: SHOW COLUMNS FROM on_item_attribute [ RunTime:0.074838s ]
+[ 2014-06-27T10:17:08+08:00 ] SQL: SELECT * FROM `on_item` WHERE ( `id` = null ) LIMIT 1  [ RunTime:0.098422s ]
+[ 2014-06-27T10:17:08+08:00 ] SQL: SELECT id,item_name FROM `on_dishes_item` WHERE ( `dishes_id` = null ) AND ( `p_id` = '0' ) [ RunTime:0.000503s ]
+[ 2014-06-27T10:17:08+08:00 ] NOTIC: [2] Invalid argument supplied for foreach() DishesAction.class.php 第 149 行.
+[ 2014-06-27T10:17:08+08:00 ] SQL: SELECT on_packagelist.group_name as package_name,on_item_attribute.is_values,on_packagelist.price,on_package_group.* FROM `on_package_group` LEFT JOIN on_packagelist ON on_package_group.package_id=on_packagelist.id LEFT JOIN on_item_attribute ON on_package_group.id=on_item_attribute.package_group_id WHERE ( on_package_group.package_id = '14' ) [ RunTime:0.000778s ]
+[ 2014-06-27T10:17:08+08:00 ] SQL: SELECT * FROM `on_item` WHERE ( `id` IN ('36','37','38') ) [ RunTime:0.000584s ]
+[ 2014-06-27T10:17:08+08:00 ] SQL: SELECT * FROM `on_item` WHERE ( `id` IN ('29','32','31','30') ) [ RunTime:0.000468s ]
+[ 2014-06-27T10:17:08+08:00 ] SQL: SELECT * FROM `on_item` WHERE ( `id` IN ('33','34','35') ) [ RunTime:0.000531s ]
+[ 2014-06-27T10:17:08+08:00 ] SQL: SELECT * FROM `on_item` WHERE ( `id` IN ('29','32','31') ) [ RunTime:0.000530s ]
+[ 2014-06-27T10:17:08+08:00 ] SQL: SELECT * FROM `on_item` WHERE ( `id` IN ('13','9','12','14','10') ) [ RunTime:0.000483s ]
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: resid DishesAction.class.php 第 8 行.
+[ 2014-06-27T10:23:54+08:00 ] SQL: SHOW COLUMNS FROM on_restaurant_member [ RunTime:0.004985s ]
+[ 2014-06-27T10:23:54+08:00 ] SQL: SHOW COLUMNS FROM on_comment [ RunTime:0.003962s ]
+[ 2014-06-27T10:23:54+08:00 ] SQL: SHOW COLUMNS FROM on_item [ RunTime:0.004396s ]
+[ 2014-06-27T10:23:54+08:00 ] SQL: SHOW COLUMNS FROM on_menugroup [ RunTime:0.006258s ]
+[ 2014-06-27T10:23:54+08:00 ] SQL: SHOW COLUMNS FROM on_restaurant_details [ RunTime:0.004291s ]
+[ 2014-06-27T10:23:54+08:00 ] SQL: SHOW COLUMNS FROM on_shopping_cart [ RunTime:0.004506s ]
+[ 2014-06-27T10:23:54+08:00 ] SQL: SHOW COLUMNS FROM on_packagelist [ RunTime:0.005413s ]
+[ 2014-06-27T10:23:54+08:00 ] SQL: SELECT * FROM `on_restaurant_member` WHERE ( `id` = '1' ) LIMIT 1  [ RunTime:0.000687s ]
+[ 2014-06-27T10:23:54+08:00 ] SQL: SELECT * FROM `on_comment` WHERE ( `restaurant_id` = '1' ) ORDER BY create_time desc LIMIT 1  [ RunTime:0.000271s ]
+[ 2014-06-27T10:23:54+08:00 ] SQL: SELECT COUNT(*) AS tp_count FROM `on_item` WHERE ( `restaurant_id` = '1' ) LIMIT 1  [ RunTime:0.000325s ]
+[ 2014-06-27T10:23:54+08:00 ] SQL: SELECT * FROM `on_restaurant_details` WHERE ( `restaurant_id` = '1' ) LIMIT 1  [ RunTime:0.000498s ]
+[ 2014-06-27T10:23:54+08:00 ] SQL: SELECT id,group_name FROM `on_menugroup` WHERE ( `restaurant_id` = '1' ) ORDER BY create_time desc [ RunTime:0.000323s ]
+[ 2014-06-27T10:23:54+08:00 ] SQL: SELECT * FROM `on_packagelist` WHERE ( `restaurant_id` = '1' ) ORDER BY create_time desc [ RunTime:0.000376s ]
+[ 2014-06-27T10:23:54+08:00 ] SQL: SELECT COUNT(*) AS tp_count FROM `on_packagelist` WHERE ( `restaurant_id` = '1' ) LIMIT 1  [ RunTime:0.000271s ]
+[ 2014-06-27T10:23:54+08:00 ] SQL: SELECT * FROM `on_item` WHERE ( `group_id` = '7' ) [ RunTime:0.000312s ]
+[ 2014-06-27T10:23:54+08:00 ] SQL: SELECT * FROM `on_item` WHERE ( `group_id` = '6' ) [ RunTime:0.000320s ]
+[ 2014-06-27T10:23:54+08:00 ] SQL: SELECT * FROM `on_item` WHERE ( `group_id` = '5' ) [ RunTime:0.000327s ]
+[ 2014-06-27T10:23:54+08:00 ] SQL: SELECT * FROM `on_item` WHERE ( `group_id` = '4' ) [ RunTime:0.000321s ]
+[ 2014-06-27T10:23:54+08:00 ] SQL: SELECT * FROM `on_item` WHERE ( `group_id` = '3' ) [ RunTime:0.000334s ]
+[ 2014-06-27T10:23:54+08:00 ] SQL: SELECT id,item_name,price,quantity FROM `on_shopping_cart` WHERE ( `member_id` = '' ) AND ( `status` = '0' ) ORDER BY id desc [ RunTime:0.000324s ]
+[ 2014-06-27T10:23:54+08:00 ] SQL: SELECT COUNT(*) AS tp_count FROM `on_shopping_cart` WHERE ( `member_id` = '' ) AND ( `status` = '0' ) LIMIT 1  [ RunTime:0.000550s ]
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: time DishesAction.class.php 第 61 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: dhours DishesAction.class.php 第 62 行.
+[ 2014-06-27T10:23:54+08:00 ] SQL: SELECT COUNT(*) AS tp_count FROM `on_comment` WHERE ( `restaurant_id` = '1' ) LIMIT 1  [ RunTime:0.000551s ]
+[ 2014-06-27T10:23:54+08:00 ] SQL: SELECT `star` FROM `on_comment` WHERE ( `restaurant_id` = '1' ) [ RunTime:0.000352s ]
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [2] Invalid argument supplied for foreach() ShowStarWidget.class.php 第 9 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: starcount ShowStarWidget.class.php 第 12 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [2] Division by zero ShowStarWidget.class.php 第 12 行.
+[ 2014-06-27T10:23:54+08:00 ] SQL: SHOW COLUMNS FROM on_member [ RunTime:0.004484s ]
+[ 2014-06-27T10:23:54+08:00 ] SQL: SELECT `name` FROM `on_member` WHERE ( `id` = null ) LIMIT 1  [ RunTime:0.000203s ]
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 130 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 131 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 132 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 130 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 131 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 132 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 130 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 131 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 132 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 130 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 131 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 132 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 130 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 131 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 132 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 130 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 131 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 132 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 130 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 131 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 132 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 130 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 131 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 132 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 130 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 131 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: v 8f7d8f33f2ccc1607a3627df05efa4df.php 第 132 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: is_commend 8f7d8f33f2ccc1607a3627df05efa4df.php 第 142 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined index: peanut 8f7d8f33f2ccc1607a3627df05efa4df.php 第 143 行.
+[ 2014-06-27T10:23:54+08:00 ] NOTIC: [8] Undefined variable: member_id 50a80d95ab48e6914519aae87b5b2faf.php 第 303 行.

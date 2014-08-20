@@ -1,0 +1,15 @@
+<div class="top clearfix">
+        	<a href="/"><img class="logo" src="__PUBLIC__/Index/images/logo.gif" /></a>
+           <if condition='cookie("OrderOnlineAuth") eq ""'>
+            <div class="btn btn1">
+            	<a class="login" href="#">Sign In</a>
+            	<a class="regist" href="#">Create Your Account</a>
+            </div>
+            <else />
+            <div class="btn btn2">
+            	<a class="quit" href="{:U('Member/logout')}">Sign out</a>
+            	<a class="chris" href="{:U('Member/personal')}">{$member_name}</a>
+                <a class="cart" href="{:U('Member/yourOrder')}">Cart({$member_count})</a>
+            </div>
+            </if>
+        </div>

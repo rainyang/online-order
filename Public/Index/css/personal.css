@@ -1,0 +1,19 @@
+.personal{ width:100%; padding-bottom:80px;}
+.personal .title{ font-size:18px; padding:12px 0; border-bottom:1px solid #eb6100;}
+.personal .title span{ padding: 0 0 0 45px;}
+.personal .title .s1{ color:#eb6100;}
+.personal .title .s2{ color:#7c7c7c;}
+
+.personal .list{ padding:20px 12px 20px 35px;}
+.personal .list .p1{ color:#eb6100; font-size:18px; padding-bottom:13px;}
+.personal .list .a1{ color:#7c7c7c; border-bottom:1px solid #7c7c7c; font-size:14px;}
+.personal .list .p2{ font-size:12px; color:#7c7c7c; padding:10px 0;}
+.personal .list .p3{ font-size:14px; color:#7c7c7c;}
+.personal .list .p3 span{ color:#eb6100;}
+
+.personal .list .d1{ padding:40px 0 0 0;}
+.personal .list .d1 span{ font-size:14px; color:#7c7c7c; padding-right:22px;}
+.personal .list .d1 a{ font-size:18px; color:#eb6100; border-bottom:1px solid #eb6100;}
+
+.personal .t1{ background:#fdefe5;}
+.personal .t2{ background:#fbe8e8;}

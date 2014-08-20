@@ -1,0 +1,282 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>OrderOnline - restaurantDetails</title>
+<link rel="stylesheet" href="__PUBLIC__/Index/css/reset.css" />
+<link rel="stylesheet" href="__PUBLIC__/Index/css/public.css" />
+<link rel="stylesheet" href="__PUBLIC__/Index/css/top.css" />
+<link rel="stylesheet" href="__PUBLIC__/Index/css/restaurant.css" />
+<link rel="stylesheet" href="__PUBLIC__/Index/css/foot.css" />
+<style>
+	@import url(__PUBLIC__/Index/css/reset.css);
+	@import url(__PUBLIC__/Index/css/public.css);
+	@import url(__PUBLIC__/Index/css/top.css)(min-width:940px);
+	@import url(__PUBLIC__/Index/css/top_768-940.css)(min-width:768px) and (max-width:940px);
+	@import url(__PUBLIC__/Index/css/top_640-768.css)(min-width:640px) and (max-width:768px);
+	@import url(__PUBLIC__/Index/css/top_480-640.css)(min-width:480px) and (max-width:640px);
+	@import url(__PUBLIC__/Index/css/top_480under.css)(max-width:480px);
+	
+	@import url(__PUBLIC__/Index/css/foot.css)(min-width:940px);
+	@import url(__PUBLIC__/Index/css/foot_768-940.css)(min-width:768px) and (max-width:940px);
+	@import url(__PUBLIC__/Index/css/foot_640-768.css)(min-width:640px) and (max-width:768px);
+	@import url(__PUBLIC__/Index/css/foot_480-640.css)(min-width:480px) and (max-width:640px);
+	@import url(__PUBLIC__/Index/css/foot_480under.css)(max-width:480px);
+</style>
+<script type="text/javascript" src="__PUBLIC__/Index/js/jquery-1.7.1.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Index/js/main.js"></script>
+</head>
+
+<body>
+	<div class="container">
+    	<include file="Index:head" />
+        
+        <div class="restaurant clearfix">
+        	<div class="restaurant_title clearfix">
+            	<span class="s1">
+                	<a href="#">Basic Info</a>
+                </span>
+                <span class="s2">
+                	<a href="#">Restaurant Details</a>
+                </span>
+                <span class="s3">
+                	<a href="#">Done</a>
+                </span>
+                <label class="l1"></label>
+                <label class="l2"></label>
+            </div>
+            <div class="restaurant_lt">
+            	<p class="p1">DELIVERY INFORMATION</p>
+                <div class="d1 clearfix">
+                	<span>Do you offer delivery?</span>
+                    <span><input name="radio" type="radio" id="radio" value="radio" checked="checked" />Yes</span>
+                    <span><input type="radio" name="radio" id="radio" value="radio" />No</span>
+                </div>
+                <div class="d2 clearfix">
+                	<span class="s1">Do you charge for delivery?</span>
+                    <span>
+                    	<p>If so, how much?</p>
+                        <input type="text" />
+                    </span>
+                </div>
+                <div class="d2 clearfix">
+                	<span class="s1">Do you have a delivery minimum?</span>
+                    <span>
+                    	<p>If so, what is it?</p>
+                        <input type="text" />
+                    </span>
+                </div>
+                <p class="p2">DELIVERY HOURS</p>
+                <div class="list">
+                	<div class="clearfix">
+                    	<p>Monday<p>
+                        <span class="clearfix"><label>From</label>
+                            <select name="">
+                                <option>10:00AM</option>
+                            </select>
+                        </span>
+                        <span class="clearfix"><label>until</label>
+                            <select name="">
+                                <option>10:00AM</option>
+                            </select>
+                        </span>
+                    </div>
+                  	<div class="clearfix">
+                    	<p>Tuesday <p>
+                        <span class="clearfix"><label>From</label>
+                            <select name="">
+                                <option>10:00AM</option>
+                            </select>
+                        </span>
+                        <span class="clearfix"><label>until</label>
+                            <select name="">
+                                <option>10:00AM</option>
+                            </select>
+                        </span>
+                    </div>
+                    <div class="clearfix">
+                    	<p>Wednesday<p>
+                        <span class="clearfix"><label>From</label>
+                            <select name="">
+                                <option>10:00AM</option>
+                            </select>
+                        </span>
+                        <span class="clearfix"><label>until</label>
+                            <select name="">
+                                <option>10:00AM</option>
+                            </select>
+                        </span>
+                    </div>
+                    <div class="clearfix">
+                    	<p>Thursday<p>
+                        <span class="clearfix"><label>From</label>
+                            <select name="">
+                                <option>10:00AM</option>
+                            </select>
+                        </span>
+                        <span class="clearfix"><label>until</label>
+                            <select name="">
+                                <option>10:00AM</option>
+                            </select>
+                        </span>
+                    </div>
+                    <div class="clearfix">
+                    	<p>Friday<p>
+                        <span class="clearfix"><label>From</label>
+                            <select name="">
+                                <option>10:00AM</option>
+                            </select>
+                        </span>
+                        <span class="clearfix"><label>until</label>
+                            <select name="">
+                                <option>10:00AM</option>
+                            </select>
+                        </span>
+                    </div>
+                    <div class="clearfix">
+                    	<p>Saturday<p>
+                        <span class="clearfix"><label>From</label>
+                            <select name="">
+                                <option>10:00AM</option>
+                            </select>
+                        </span>
+                        <span class="clearfix"><label>until</label>
+                            <select name="">
+                                <option>10:00AM</option>
+                            </select>
+                        </span>
+                    </div>
+                    <div class="clearfix">
+                    	<p>Sunday<p>
+                        <span class="clearfix"><label>From</label>
+                            <select name="">
+                                <option>10:00AM</option>
+                            </select>
+                        </span>
+                        <span class="clearfix"><label>until</label>
+                            <select name="">
+                                <option>10:00AM</option>
+                            </select>
+                        </span>
+                    </div>
+                </div>
+                <p class="p2">PICKUP INFORMATION</p>
+                <div class="d1 clearfix">
+                	<span>Do you offer pickup?</span>
+                    <span><input name="radio" type="radio" id="radio" value="radio" checked="checked" />Yes</span>
+                    <span><input type="radio" name="radio" id="radio" value="radio" />No</span>
+                </div>
+                <div class="d1 clearfix">
+                	<span>Do you have your own parking lot?</span>
+                    <span><input name="radio" type="radio" id="radio" value="radio" checked="checked" />Yes</span>
+                    <span><input type="radio" name="radio" id="radio" value="radio" />No</span>
+                </div>
+                <p class="p2">PICKUP HOURS</p>
+                <div class="list">
+                	<div class="clearfix">
+                    	<p>Monday<p>
+                        <span class="clearfix"><label>From</label>
+                            <select name="">
+                                <option>10:00AM</option>
+                            </select>
+                        </span>
+                        <span class="clearfix"><label>until</label>
+                            <select name="">
+                                <option>10:00AM</option>
+                            </select>
+                        </span>
+                    </div>
+                  	<div class="clearfix">
+                    	<p>Tuesday <p>
+                        <span class="clearfix"><label>From</label>
+                            <select name="">
+                                <option>10:00AM</option>
+                            </select>
+                        </span>
+                        <span class="clearfix"><label>until</label>
+                            <select name="">
+                                <option>10:00AM</option>
+                            </select>
+                        </span>
+                    </div>
+                    <div class="clearfix">
+                    	<p>Wednesday<p>
+                        <span class="clearfix"><label>From</label>
+                            <select name="">
+                                <option>10:00AM</option>
+                            </select>
+                        </span>
+                        <span class="clearfix"><label>until</label>
+                            <select name="">
+                                <option>10:00AM</option>
+                            </select>
+                        </span>
+                    </div>
+                    <div class="clearfix">
+                    	<p>Thursday<p>
+                        <span class="clearfix"><label>From</label>
+                            <select name="">
+                                <option>10:00AM</option>
+                            </select>
+                        </span>
+                        <span class="clearfix"><label>until</label>
+                            <select name="">
+                                <option>10:00AM</option>
+                            </select>
+                        </span>
+                    </div>
+                    <div class="clearfix">
+                    	<p>Friday<p>
+                        <span class="clearfix"><label>From</label>
+                            <select name="">
+                                <option>10:00AM</option>
+                            </select>
+                        </span>
+                        <span class="clearfix"><label>until</label>
+                            <select name="">
+                                <option>10:00AM</option>
+                            </select>
+                        </span>
+                    </div>
+                    <div class="clearfix">
+                    	<p>Saturday<p>
+                        <span class="clearfix"><label>From</label>
+                            <select name="">
+                                <option>10:00AM</option>
+                            </select>
+                        </span>
+                        <span class="clearfix"><label>until</label>
+                            <select name="">
+                                <option>10:00AM</option>
+                            </select>
+                        </span>
+                    </div>
+                    <div class="clearfix">
+                    	<p>Sunday<p>
+                        <span class="clearfix"><label>From</label>
+                            <select name="">
+                                <option>10:00AM</option>
+                            </select>
+                        </span>
+                        <span class="clearfix"><label>until</label>
+                            <select name="">
+                                <option>10:00AM</option>
+
+                            </select>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="restaurant_rt">
+            	<p class="p1">Start the Sign-Up Process Now</p>
+                <p class="p1">(it's easy and free)</p>
+                <p class="p2">This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non  mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a augue. </p>
+                
+                <a class="link" href="{:U('Restaurant/done')}">Done ></a>
+            </div>
+        </div>
+    </div>
+    <div class="foot"></div>
+	<div class="popup_layer"></div>
+</body>
+</html>

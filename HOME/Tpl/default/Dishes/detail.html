@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>OrderOnline - deatail</title>
+<link rel="stylesheet" href="__PUBLIC__/Index/css/reset.css" />
+<link rel="stylesheet" href="__PUBLIC__/Index/css/public.css" />
+<link rel="stylesheet" href="__PUBLIC__/Index/css/top.css" />
+<link rel="stylesheet" href="__PUBLIC__/Index/css/detail.css" />
+<link rel="stylesheet" href="__PUBLIC__/Index/css/foot.css" />
+<link href="__PUBLIC__/Index/css/popup.css" rel="stylesheet" type="text/css" />
+<style>
+	@import url(__PUBLIC__/Index/css/reset.css);
+	@import url(__PUBLIC__/Index/css/public.css);
+	@import url(__PUBLIC__/Index/css/top.css)(min-width:940px);
+	@import url(__PUBLIC__/Index/css/top_768-940.css)(min-width:768px) and (max-width:940px);
+	@import url(__PUBLIC__/Index/css/top_640-768.css)(min-width:640px) and (max-width:768px);
+	@import url(__PUBLIC__/Index/css/top_480-640.css)(min-width:480px) and (max-width:640px);
+	@import url(__PUBLIC__/Index/css/top_480under.css)(max-width:480px);
+	
+	@import url(__PUBLIC__/Index/css/detail.css)(min-width:940px);
+	@import url(__PUBLIC__/Index/css/detail_768-940.css)(min-width:768px) and (max-width:940px);
+	@import url(__PUBLIC__/Index/css/detail_640-768.css)(min-width:640px) and (max-width:768px);
+	@import url(__PUBLIC__/Index/css/detail_480-640.css)(min-width:480px) and (max-width:640px);
+	@import url(__PUBLIC__/Index/css/detail_480under.css)(max-width:480px);
+
+</style>
+<script type="text/javascript" src="__PUBLIC__/Index/js/jquery-1.7.1.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Index/js/main.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Index/js/public.js"></script>
+<script src="http://maps.google.cn/maps?file=api&ampv=2&ampkey=your key&sensor=true" type="text/javascript"></script>
+</head>
+
+<body>
+	<div class="container">
+    	<include file="Index:head" />
+        <div class="search_box clearfix">
+            <div class="left clearfix">
+            <form name="form" method="post" id="form" action="{:U('Dishes/results')}">
+                <span class="t1">Please Enter Your Address:</span><input class="b1" type="text" id="address" name="address" value="Street Address, City, State" /><br />
+                <span class="t2">What would you like? (optional):</span><input class="b2" type="text" name="taste" value="tuna melt, John's Subs, Italian" />
+                <input type="hidden" id="coordinate" name="lat" value="">
+                <input type="hidden" id="map" >
+                </form>
+            </div>
+                <a class="btn" href="javascript:;" id="btn_go">
+                <img src="__PUBLIC__/Index/images/search_btn.gif" />
+                <p>Search Restaurants</p>
+                </a>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function()
+            {
+                $("#btn_go").click(function()
+                {
+                    $("#form").submit();
+                    return false;
+                });
+            });
+        </script>
+        
+        
+        <div class="detail">
+        	<a class="back" href="{:U('Dishes/results')}">< Back to Search Results</a>
+            <div class="shop clearfix">
+            	<div class="ico">
+                	<img src="{$resinfo.logo}" width="140" height="81" />
+                    <div id="num" num="{:W('ShowStar',array('id'=>$resinfo['id']))}" flag=false class="star clearfix"><label>Item({$count}) &nbsp;Package({$count_package})</label></div>
+
+                </div>
+                
+                <div class="introduction clearfix">
+                	<div class="open"></div>
+                    <p class="p1">{$resinfo.nickname} Menu</p>
+                    <div class="p2">{$time[2]} 
+                    	<span><label>{$resinfo.openhours}</label><span></span>
+                        	<!-- <ul class="time">
+                            <volist name="dhours" id="vo">
+                            	<li>{$vo[2]} {$vo[0]}-{$vo[1]}</li>
+							</if>
+                            </volist>
+                            </ul> -->
+                        </span>
+                    </div>
+                    <p class="p3">{$resinfo.remark}</p>
+                    <p class="p4" resid="{$resinfo.id}">"{$comment['title']} {$comment['star']} stars,{:W('ShowMember',array('id'=>$comment['member_id']))} "<a href="#" resid="{$resinfo.id}">More</a></p>
+                </div>
+                
+                <div class="mode clearfix">
+                	<ul>
+                    	<li class="selected">
+                        	<span class="drop_box"><label>DELIVERY</label><span></span>
+                                <ul>
+                                    <li><if condition="$resinfo['delivery_charges']">Yes<else/>No</if></li>
+                                </ul>
+                        	</span>
+                        </li>
+                        <li>
+                        	<span class="drop_box"><label>Coupons(9)</label><span></span>
+                                <ul>
+                                    <li>Coupons</li>
+                                </ul>
+                        	</span>
+                        </li>
+                        <li>
+                        	<span class="drop_box"><label>PICKUP</label><span></span>
+                                <ul>
+                                    <li><if condition="$details['is_pickup'] neq '1'">Yes<else/>No</if></li>
+                                </ul>
+                        	</span>
+                        </li>
+                        <li>Reservation</li>
+                        <li>Dine In Express</li>
+                    </ul>
+                </div>
+                
+                <div class="contact">
+                	<div class="phone"><span class="ico"></span>{$resinfo.phone}</div>
+                    <div class="address"><span class="ico"></span><a href="javascript:;">{$resinfo.address}</a></div>
+                    <div class="book"><span class="ico"></span><a href="javascript:;" resid="{$resinfo.id}">I want Reservation!</a></div>
+                </div>
+            </div>
+            
+            <div class="context">
+            	<div class="title">
+                    Click whatever you like to start your order.
+                </div>
+                <div class="list">
+                    <div class="top"><span class="ico"></span>Package</div>
+                    <ul class="clearfix">
+                    <volist name="list_package" id="va">
+                        <li resid="{$va['restaurant_id']}" packid="{$va['id']}">
+                        <if condition="$v['is_commend'] eq '1'">
+                            <span class="ico1 ico"></span>
+                         </if>
+                         <if condition="$v['peanut'] eq '1'">
+                            <span class="ico2 ico"></span>
+                         </if>
+                         <if condition="$v['spicy'] eq '1'">
+                            <span class="ico3 ico"></span>    
+                         </if>
+                         
+                            <span class="name">{$va['group_name']}</span><span class="price">${$va['price']}</span>
+                        </li>
+                        
+                    </volist>   
+                    </ul>
+                </div>
+               <volist name="list" id="vo">
+                <div class="list">
+                	<div class="top"><span class="ico"></span>{$vo['group_name']}</div>
+                    <ul class="clearfix">
+                    <volist name="vo['dishes']" id="v">
+                    	<li resid="{$v['restaurant_id']}" disid="{$v['id']}">
+                        <if condition="$v['is_commend'] eq '1'">
+                            <span class="ico1 ico"></span>
+                         </if>
+                         <if condition="$v['peanut'] eq '1'">
+                         	<span class="ico2 ico"></span>
+                         </if>
+                         <if condition="$v['spicy'] eq '1'">
+                         	<span class="ico3 ico"></span>    
+                         </if>
+                         
+                            <span class="name">{$v['item_name']}</span><span class="price">${$v['price']}</span>
+                        </li>
+                        
+					</volist>	
+                    </ul>
+                </div>
+                
+                </volist>
+
+                
+                
+                
+                
+            </div>
+        </div>
+    </div>
+    <div class="foot"></div>
+	<div class="popup_layer"></div>
+<if condition='cookie("OrderOnlineAuth") neq ""'>
+    <div class="shopping_cart">
+   
+        <div class="cart_title clearfix" flag=true>
+            <a class="lt" num="0" href="#">Your Order</a>
+            <a class="rt" href="#">{$ordernum}</a>
+        </div>
+        
+        <ul>
+         <volist name="order" id="vo">
+            <li class="clearfix">
+                <a href="javascript:;" class="area lt">{$vo['item_name']}</a>&nbsp;<span class="price rt">${$vo['price']}</span>
+                <a href="javascript:;" class="name lt">{$vo['quantity']} Piece,{:substr($vo['item'],0,13)}</a>
+                <span class="num rt"><a class="reduce" href="javascript:;" s_id="{$vo['id']}"></a><span class="qty">{$vo['quantity']}</span><a class="add" href="javascript:;" s_id="{$vo['id']}"></a></span>
+            </li>
+            
+            </volist>
+            <li class="last"><a href="{:U('Member/yourOrder')}">Ready</a></li>
+        </ul>
+       
+    </div>
+   </if>
+<script type="text/javascript">
+	$(".reduce").live('click',function(){
+		var val = parseInt($(this).siblings(".qty").html());
+		if(val>1){
+			$(this).siblings(".qty").html(val-1);
+		}else{
+			$(this).parents(".clearfix").remove();
+			var top = parseInt($(".shopping_cart ul").css("top"))+44;
+			$(".shopping_cart ul").css("top",top);
+		}
+		var id = $(this).attr("s_id");
+		$.post("{:U('Dishes/reduceQty')}",{id:id},function(){
+		},'json')
+	})
+	$(".add").live('click',function(){
+		var val = parseInt($(this).siblings(".qty").html());	
+		$(this).siblings(".qty").html(val+1);
+		var id = $(this).attr("s_id");
+		$.post("{:U('Dishes/addQty')}",{id:id},function(){
+			
+		})
+	})
+</script>
+</body>
+</html>

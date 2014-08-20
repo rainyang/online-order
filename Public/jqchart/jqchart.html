@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+
+<!--[if IE]>
+<script src="excanvas-compressed.js" type="text/javascript" ></script>
+<![endif]-->
+<script src="/Public/dwz/js/jquery-1.4.4.min.js" type="text/javascript"></script>
+<script src="jquery.jqchart.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<style>
+
+/*#canvasMyID{
+	background-color:#3f464c;
+}*/
+</style>
+<body>
+<canvas id="canvasMyID" height="400" width="900"></canvas>
+ 
+<script type="text/javascript">
+
+/*$(function(){
+	$('#canvasMyID').jQchart('./data/data0.txt')
+});*/
+var data = [
+      [435,500,600,700,888,777,925,100],
+      [60,435,456,352,567,678,1260,100],
+      [200,123,312,200,402,300,512,100]
+  ];
+var chartSetting1={
+  config:{
+    title    : '这是自定义的标题',
+    type     : 'bar',//bar,line
+	//colorSet   : ['#adadad','orange','#dddcd6'],//定义颜色
+	labelX : ["一月","二月","三月","四月","五月","六月","七月","八月"],
+	scaleY : {min:0,max:1300,gap:100}
+  },
+  data : data
+};
+
+jQuery(function($){
+	$('#canvasMyID').jQchart(chartSetting1);
+})
+
+</script>
+
+
+</body>
+</html>

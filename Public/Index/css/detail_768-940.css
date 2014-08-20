@@ -1,0 +1,81 @@
+.detail{ width:100%; padding:5px 0 0 3px; overflow:hidden;}
+.detail .back{ font-size:14px; color:#868686;}
+
+.detail .shop{ padding-bottom:10px;}
+
+.detail .ico{ float:left;}
+.detail .ico .star label{ height:25px; line-height:25px; padding-left:5px; font-size:14px; color:#000; cursor:pointer;}
+
+.detail .shop .introduction{ padding:10px 0 0 12px; float:left;}
+.detail .shop .introduction .open{ width:30px; height:30px; background:url(../images/detail_ico.gif) 0 0 no-repeat; float:left; margin-top:3px;}
+.detail .shop .introduction .p1{ padding-left:38px; font-size:18px; color:#739d00; font-weight:bold;}
+.detail .shop .introduction .p2{ padding-left:38px; font-size:14px; color:#000; font-weight:bold; padding-top:3px;}
+.detail .shop .introduction .p2 .drop_box{ margin-left:5px; color:#739d00;}
+.detail .shop .introduction .p2 .drop_box label{ border-bottom:1px solid #739d00;}
+
+.detail .shop .introduction .p3{ color:#a3a3a3; font-size:14px; padding:8px 0 16px 0;}
+.detail .shop .introduction .p4{ color:#000; font-size:14px; cursor:pointer;}
+.detail .shop .introduction .p4 a{ border:1px solid #b4b4b4; color:#b4b4b4; padding:0 2px; margin-left:8px;}
+
+.detail .shop .mode{ float:left; width:196px;}
+.detail .shop .mode ul{ height:auto; margin:0; padding:0;}
+.detail .shop .mode ul li{ float:left; min-width:92px; font-size:14px; color:#739d00; padding:5px 3px;}
+.detail .shop .mode ul .selected span{ color:#db1919;}
+.detail .shop .mode ul .selected li{ color:#db1919;}
+
+.detail .shop .contact{ float:left; width:100%; padding:10px 0 0 156px;}
+.detail .shop .contact .phone{ font-size:22px; color:#000; line-height:32px; padding-left:15px; float:left;}
+.detail .shop .contact .phone .ico{ width:25px; height:32px; background:url(../images/detail_ico.gif) 0 -30px no-repeat; margin-right:5px;}
+
+.detail .shop .contact .address{ font-size:14px; line-height:12px; float:left; padding:8px 0 0 15px;}
+.detail .shop .contact .address a{ color:#000; border-bottom:1px solid #000;}
+.detail .shop .contact .address .ico{ width:14px; height:12px; background:url(../images/detail_ico.gif) -30px 0 no-repeat; margin-right:5px; }
+
+.detail .shop .contact .book{ font-size:14px; padding:6px 0 0 7px; float:left;}
+.detail .shop .contact .book a{ color:#739d00; border-bottom:1px solid #739d00;}
+.detail .shop .contact .book .ico{ width:30px; height:25px; background:url(../images/detail_ico.gif) 0 -62px no-repeat; margin-right:15px;}
+
+
+.detail .context{ position:relative; padding-bottom:80px;}
+.detail .context .title{ width:100%; text-align:center; background:#e3ebcc; color:#739d00; font-size:14px; padding:8px 0; margin-bottom:5px;}
+.detail .context .list{ width:100%; padding-bottom:35px;}
+.detail .context .list .top{ background:#fbdfcc; padding:3px 0 3px 6px; font-size:14px; color:#000;}
+
+.detail .context .list .ico{ height:18px; width:14px; margin-right:5px; float:left;}
+.detail .context .list .ico1{background:url(../images/detail_ico.gif) right 0 no-repeat;}
+.detail .context .list .ico2{background:url(../images/detail_ico.gif) right -18px no-repeat;}
+.detail .context .list .ico3{background:url(../images/detail_ico.gif) right -36px no-repeat;}
+
+.detail .context .list ul{ width:100%; margin:0; padding:0;}
+.detail .context .list ul li{ float:left; padding:3px 10px 3px 6px; width:44%; font-size:14px; color:#000; margin-top:7px; margin-right:3.5%; cursor:pointer;}
+.detail .context .list ul .end{ margin-right:3.5%;}
+
+.detail .context .list ul li .name{ float:left;}
+.detail .context .list ul li .price{ float:right; text-align:right;}
+.detail .context .list ul li:hover{ background-color:#f5b07f;}
+
+.close .shop .introduction .p1{ color:#db1919;}
+.close .context .title{ color:#db1919;}
+
+.shopping_cart{ width:220px; height:30px; position:fixed; bottom:0; right:0;}
+.shopping_cart .cart_title{ background:#ef7f1b; height:25px; width:200px; padding:5px 10px 0 10px; position:absolute; left:0; top:0; z-index:500; cursor:pointer;}
+.shopping_cart .cart_title a{ color:#fff; font-size:14px;}
+.shopping_cart .cart_title .lt{ float:left; border-bottom:1px solid #fff;}
+.shopping_cart .cart_title .rt{ float:right;}
+
+.shopping_cart ul{ position:absolute; top:0; left:0; margin:0; padding:0; padding-bottom:20px; width:220px; background:#f3b181;}
+.shopping_cart ul li{ padding:8px 10px 0 14px; font-size:14px; color:#000;}
+.shopping_cart ul li span{ padding:2px 0;}
+.shopping_cart ul li a{ padding:2px 0;}
+
+.shopping_cart ul li .lt{ float:left;}
+.shopping_cart ul li .rt{ float:right;}
+.shopping_cart ul li .area{ color:#000;}
+.shopping_cart ul li .name{ color:#9c6f4f;}
+
+.shopping_cart ul li .num a{ display:inline-block; width:10px; height:7px; background:url(../images/detail_add.gif) 0 0 no-repeat;}
+.shopping_cart ul li .num .add{ background-position:0 0; margin-left:5px;}
+.shopping_cart ul li .num .reduce{ background-position:0 -10px; margin-right:5px;}
+
+.shopping_cart ul .last{ text-align:right;}
+.shopping_cart ul .last a{ color:#fff; border-bottom:1px solid #fff;}

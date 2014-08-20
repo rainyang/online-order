@@ -1,0 +1,51 @@
+.page_order{ width:100%; padding-bottom:80px;}
+.page_order .title{ width:100%; padding:16px 0 0 0 ; position:relative;}
+.page_order .title span{ width:50%; text-align:center; display:inline-block; float:left; padding:4px 0; font-size:14px;}
+
+.page_order .title .your_btn{ background:#fbdfcc;}
+.page_order .title .your_btn a{ color:#eb6100; border-bottom:1px solid #eb6100;}
+.page_order .title .place_order{ background:#d2d2d2;}
+.page_order .title .place_order a{ color:#fff; border-bottom:1px solid #fff;}
+
+.page_order .title .atr{ width:14px; height:24px; position:absolute; left:50%; top:16px; background:url(../images/order_ico.gif) 0 0 no-repeat; padding:0;}
+
+.order_list{ width:100%; padding:12px 0 0 0;}
+.order_list .list_title{ padding:5px 0 4px 2px; border-bottom:2px solid #fbdeca;}
+.order_list .list_title .name{ font-size:18px; color:#739d00; text-align:left; font-weight:bold;}
+
+.order_list  span{ color:#000; font-size:14px; text-align:center;}
+.order_list .name{ width:45%; float:left;}
+.order_list .price{ width:9.5%; float:left;}
+.order_list .num{ width:25%; float:left;}
+.order_list .total{ width:14.5%; float:left;}
+.order_list .act{ width:3%; float:left;}
+
+.order_list .list{ padding:9px 0 17px 18px; border-bottom:1px solid #fbdeca;}
+.order_list .list .name{ text-align:left;} 
+.order_list .list .name input{ float:left; margin:20px 30px 0 0;}
+.order_list .list .name img{ width:77px; height:51px; float:left;}
+.order_list .list .name p{ font-size:14px; color:#a3a1a1; padding:1px 0 3px 15px; float:left;}
+.order_list .list .name .p1{ color:#000;}
+
+.order_list .list .num a{ display:inline-block; width:10px; height:10px;  background:url(../images/order_ico.gif) 0 0 no-repeat;}
+.order_list .list .num .reduce{ background-position:0 -34px; margin-right:3px;}
+.order_list .list .num .add{ background-position:0 -24px; margin-left:3px;}
+.order_list .list .num input{ border:1px solid #eb6100; width:39px; height:18px; text-align:center; line-height:18px;}
+
+.order_list .list .total{  color:#eb6100;}
+.order_list .list .act a{ display:inline-block; width:16px; height:16px; background:url(../images/order_ico.png) right 0 no-repeat;}
+.order_list .list .act a:hover{ background-position:right -16px;}
+.order_list .list .pd{ margin:24px 0 0 0;}
+
+.order_list .l1{ background:#fffdfc;}
+.order_list .l2{ background:#fef7f2;}
+
+.page_order .links{ padding:0 0 0 0; text-align:right; padding:25px 8px 19px 0;}
+.page_order .links a{ border-bottom:1px solid #eb6100; color:#eb6100; font-size:18px;}
+
+.page_order .recommend{ position:relative; min-height:285px; overflow:hidden;}
+.page_order .recommend .rd_title{ padding:0 0 0 8px; font-size:14px; color:#252525; background:#e5e5e5; height:24px; line-height:24px;}
+.page_order .recommend .list{ position:absolute; top:24px; width:100%;}
+.page_order .recommend .list ul{ width:100%; margin:0; padding:0;}
+.page_order .recommend .list ul li{ float:left; padding:20px 23px;}
+.page_order .recommend .list ul li p{ font-size:14px; color:#000; padding:10px 0 0 0;}
