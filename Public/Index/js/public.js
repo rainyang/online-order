@@ -19,7 +19,7 @@ function additem(resid,disid){
 	$("#additem_disid").val(disid);
 	$(".additem_error").html('');
 	$.post("/index.php?s=Dishes/additem",{resid:resid,disid:disid},function(rs){
-		console.log(rs);
+		//console.log(rs);
 		$('.detail_layer .context .list .clearfix').empty();
 		$('.detail_layer .context .d2 .d2_title').empty();
 		$('.detail_layer .context .d1 .lt .p1').html(rs['dishes']['item_name']);

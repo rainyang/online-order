@@ -9,26 +9,12 @@
 <link rel="stylesheet" href="__PUBLIC__/Index/css/detail.css" />
 <link rel="stylesheet" href="__PUBLIC__/Index/css/foot.css" />
 <link href="__PUBLIC__/Index/css/popup.css" rel="stylesheet" type="text/css" />
-<style>
-	@import url(__PUBLIC__/Index/css/reset.css);
-	@import url(__PUBLIC__/Index/css/public.css);
-	@import url(__PUBLIC__/Index/css/top.css)(min-width:940px);
-	@import url(__PUBLIC__/Index/css/top_768-940.css)(min-width:768px) and (max-width:940px);
-	@import url(__PUBLIC__/Index/css/top_640-768.css)(min-width:640px) and (max-width:768px);
-	@import url(__PUBLIC__/Index/css/top_480-640.css)(min-width:480px) and (max-width:640px);
-	@import url(__PUBLIC__/Index/css/top_480under.css)(max-width:480px);
-	
-	@import url(__PUBLIC__/Index/css/detail.css)(min-width:940px);
-	@import url(__PUBLIC__/Index/css/detail_768-940.css)(min-width:768px) and (max-width:940px);
-	@import url(__PUBLIC__/Index/css/detail_640-768.css)(min-width:640px) and (max-width:768px);
-	@import url(__PUBLIC__/Index/css/detail_480-640.css)(min-width:480px) and (max-width:640px);
-	@import url(__PUBLIC__/Index/css/detail_480under.css)(max-width:480px);
 
-</style>
 <script type="text/javascript" src="__PUBLIC__/Index/js/jquery-1.7.1.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Index/js/jquery-extend-order.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Index/js/main.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Index/js/public.js"></script>
-<script src="http://maps.google.cn/maps?file=api&ampv=2&ampkey=your key&sensor=true" type="text/javascript"></script>
+<!--<script src="http://maps.google.cn/maps?file=api&ampv=2&ampkey=your key&sensor=true" type="text/javascript"></script>-->
 </head>
 
 <body>
@@ -48,36 +34,25 @@
         </div>
         <div class="search_box clearfix">
             <div class="left clearfix">
-            <form name="form" method="post" id="form" action="<?php echo U('Dishes/results');?>">
-                <span class="t1">Please Enter Your Address:</span><input class="b1" type="text" id="address" name="address" value="Street Address, City, State" /><br />
-                <span class="t2">What would you like? (optional):</span><input class="b2" type="text" name="taste" value="tuna melt, John's Subs, Italian" />
-                <input type="hidden" id="coordinate" name="lat" value="">
-                <input type="hidden" id="map" >
+                <form name="form" method="post" id="form" action="<?php echo U('Dishes/results');?>">
+                    <span class="t1">Please Enter Your Address:</span><input class="b1" type="text" id="address" name="address" value="Street Address, City, State" /><br />
+                    <span class="t2">What would you like? (optional):</span><input class="b2" type="text" name="taste" value="tuna melt, John's Subs, Italian" />
+                    <input type="hidden" id="coordinate" name="lat" value="">
+                    <input type="hidden" id="map" >
                 </form>
             </div>
-                <a class="btn" href="javascript:;" id="btn_go">
+            <a class="btn" href="javascript:;" id="btn_go">
                 <img src="__PUBLIC__/Index/images/search_btn.gif" />
                 <p>Search Restaurants</p>
-                </a>
+            </a>
         </div>
-        <script type="text/javascript">
-            $(document).ready(function()
-            {
-                $("#btn_go").click(function()
-                {
-                    $("#form").submit();
-                    return false;
-                });
-            });
-        </script>
-        
         
         <div class="detail">
         	<a class="back" href="<?php echo U('Dishes/results');?>">< Back to Search Results</a>
             <div class="shop clearfix">
             	<div class="ico">
                 	<img src="<?php echo ($resinfo["logo"]); ?>" width="140" height="81" />
-                    <div id="num" num="<?php echo W('ShowStar',array('id'=>$resinfo['id']));?>" flag=false class="star clearfix"><label>Item(<?php echo ($count); ?>) &nbsp;Package(<?php echo ($count_package); ?>)</label></div>
+                        <p class="stars" resid="<?php echo ($resinfo["id"]); ?>"><a href="#" resid="<?php echo ($resinfo["id"]); ?>">More</a></p>
 
                 </div>
                 
@@ -93,37 +68,10 @@
                         </span>
                     </div>
                     <p class="p3"><?php echo ($resinfo["remark"]); ?></p>
-                    <p class="p4" resid="<?php echo ($resinfo["id"]); ?>">"<?php echo ($comment['title']); ?> <?php echo ($comment['star']); ?> stars,<?php echo W('ShowMember',array('id'=>$comment['member_id']));?> "<a href="#" resid="<?php echo ($resinfo["id"]); ?>">More</a></p>
+                    <p class="p4" id="num" num="<?php echo W('ShowStar',array('id'=>$resinfo['id']));?>" flag=false><label>Item(<?php echo ($count); ?>) &nbsp;Package(<?php echo ($count_package); ?>)</label></p>
                 </div>
                 
-                <div class="mode clearfix">
-                	<ul>
-                    	<li class="selected">
-                        	<span class="drop_box"><label>DELIVERY</label><span></span>
-                                <ul>
-                                    <li><?php if($resinfo['delivery_charges']): ?>Yes<?php else: ?>No<?php endif; ?></li>
-                                </ul>
-                        	</span>
-                        </li>
-                        <li>
-                        	<span class="drop_box"><label>Coupons(9)</label><span></span>
-                                <ul>
-                                    <li>Coupons</li>
-                                </ul>
-                        	</span>
-                        </li>
-                        <li>
-                        	<span class="drop_box"><label>PICKUP</label><span></span>
-                                <ul>
-                                    <li><?php if($details['is_pickup'] != '1'): ?>Yes<?php else: ?>No<?php endif; ?></li>
-                                </ul>
-                        	</span>
-                        </li>
-                        <li>Reservation</li>
-                        <li>Dine In Express</li>
-                    </ul>
-                </div>
-                
+                                
                 <div class="contact">
                 	<div class="phone"><span class="ico"></span><?php echo ($resinfo["phone"]); ?></div>
                     <div class="address"><span class="ico"></span><a href="javascript:;"><?php echo ($resinfo["address"]); ?></a></div>
@@ -132,6 +80,7 @@
             </div>
             
             <div class="context">
+              <div class="menu">
             	<div class="title">
                     Click whatever you like to start your order.
                 </div>
@@ -159,16 +108,69 @@
                         </li><?php endforeach; endif; else: echo "" ;endif; ?>	
                     </ul>
                 </div><?php endforeach; endif; else: echo "" ;endif; ?>
+            </div>
 
+            <div class="order">
+                <h1>Your Order</h1>
+                <ul class="ordertiems">
+                    <?php if(is_array($order)): $i = 0; $__LIST__ = $order;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): ++$i;$mod = ($i % 2 )?><li class="orderitem" data-price='<?php echo ($vo['price']); ?>'>
+                            <span class="quantity">
+                            <a class="reduce" href="javascript:;" s_id="<?php echo ($vo['id']); ?>">-</a>
+                            <span class="num qty"><?php echo ($vo['quantity']); ?></span>
+                            <a class="add" href="javascript:;" s_id="<?php echo ($vo['id']); ?>">+</a>
+                        </span>
+                        <span class="name"><?php echo ($vo['item_name']); ?></span>
+                        <span class="price rt">$<?php echo ($vo['price'] * $vo['quantity']); ?></span>
+                        </li><?php endforeach; endif; else: echo "" ;endif; ?>
+                    <!--<li class="last"><a href="<?php echo U('Member/yourOrder');?>">Ready</a></li>-->
+                </ul>
+                <ul class="subtotal-item">
+                    <li>
+                        <span>Subtotal</span>
+                        <span class="subtotal sub-total">$60.00</span>
+                    </li>
+                    <li>
+                        <span class="tax-text">Tax</span>
+                        <span class="tax">$4.00</span>
+                    </li>
+                </ul>
+                    <ul class="mode clearfix">
+                        <li class="selected">
+                            <span class="drop_box"><label>Delivery</label><span></span>
+                                <ul style="display: none;">
+                                    <li>Yes</li>
+                                </ul>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="drop_box"><label>Coupons(9)</label><span></span>
+                                <ul style="display: none;">
+                                    <li>Coupons</li>
+                                </ul>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="drop_box"><label>Pickup</label><span></span>
+                                <ul style="display: none;">
+                                    <li>Yes</li>
+                                </ul>
+                            </span>
+                        </li>
+                    </ul>
                 
-                
-                
-                
+                <ul class="subtotal-item total">
+                    <li>
+                        <span>Total</span>
+                        <span class="subtotal all-total">$64.00</span>
+                    </li>
+                </ul>
+              </div>
+
             </div>
         </div>
     </div>
     <div class="foot"></div>
-	<div class="popup_layer"></div>
+    <div class="popup_layer"></div>
 <?php if(cookie("OrderOnlineAuth") != ""): ?><div class="shopping_cart">
    
         <div class="cart_title clearfix" flag=true>
@@ -187,27 +189,66 @@
        
     </div><?php endif; ?>
 <script type="text/javascript">
-	$(".reduce").live('click',function(){
-		var val = parseInt($(this).siblings(".qty").html());
-		if(val>1){
-			$(this).siblings(".qty").html(val-1);
-		}else{
-			$(this).parents(".clearfix").remove();
-			var top = parseInt($(".shopping_cart ul").css("top"))+44;
-			$(".shopping_cart ul").css("top",top);
-		}
-		var id = $(this).attr("s_id");
-		$.post("<?php echo U('Dishes/reduceQty');?>",{id:id},function(){
-		},'json')
-	})
-	$(".add").live('click',function(){
-		var val = parseInt($(this).siblings(".qty").html());	
-		$(this).siblings(".qty").html(val+1);
-		var id = $(this).attr("s_id");
-		$.post("<?php echo U('Dishes/addQty');?>",{id:id},function(){
-			
-		})
-	})
+$(document).ready(function()
+{
+    $("#btn_go").click(function()
+    {
+        $("#form").submit();
+        return false;
+    });
+
+    $(".reduce").live('click',function(){
+        var val = parseInt($(this).siblings(".qty").html());
+        if(val>1){
+            var old_price = $(this).parents('.orderitem').find('.price').html().substr(1);
+            var unit_price = $(this).parents('.orderitem').attr('data-price');
+            var newprice = parseFloat(old_price) - parseFloat(unit_price);
+
+            $(this).siblings(".qty").html(val-1);
+            $(this).parents('.orderitem').find('.price').html('$' + newprice.toFixed(2));
+        }else{
+            $(this).parents(".orderitem").remove();
+        }
+        var id = $(this).attr("s_id");
+        $.post("<?php echo U('Dishes/reduceQty');?>",{id:id},function(){
+        },'json');
+        calSubTotal();
+    })
+
+    $(".add").live('click',function(){
+        var val = parseInt($(this).siblings(".qty").html());	
+        var old_price = $(this).parents('.orderitem').find('.price').html().substr(1);
+        var unit_price = $(this).parents('.orderitem').attr('data-price');
+        var id = $(this).attr("s_id");
+        
+        var newprice = parseFloat(old_price) + parseFloat(unit_price);
+        $(this).parents('.orderitem').find('.price').html('$'+ newprice.toFixed(2));
+        $(this).siblings(".qty").html(val+1);
+        $.post("<?php echo U('Dishes/addQty');?>",{id:id},function(){
+        });
+        calSubTotal();
+    });
+
+    function calSubTotal(){
+        //var subTotal = parseFloat($(".orderItem").find(".price").html().substr(1))-price;
+        var subTotal = 0;
+        $('.orderitem').each(function(){
+            subTotal += parseFloat($(this).find('.price').html().substr(1)); 
+        });
+
+        var tax = subTotal * 0.05;
+        var allTotal = subTotal + tax;
+        $('.sub-total').html('$' + subTotal.toFixed(2));
+        $('.tax').html('$' + tax.toFixed(2));
+
+        $('.all-total').html('$' + allTotal.toFixed(2));
+        //console.log(subTotal);
+    };
+
+    calSubTotal();
+
+    $(".order").smartFloat();
+});
 </script>
 </body>
 </html>

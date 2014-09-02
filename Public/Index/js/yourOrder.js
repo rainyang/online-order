@@ -51,8 +51,10 @@ $(function(){
 		},'json')
 	})
 	
+    //减法
 	$(".reduce").live('click',function(){
 		var qty = parseInt($(this).siblings(".qty").val());
+        console.log(qty);
 		if(qty > 1){
 			$(this).siblings(".qty").val(qty-1);
 			var obj = $(this).parents(".num").siblings(".total").find("p");

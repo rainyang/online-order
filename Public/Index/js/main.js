@@ -258,17 +258,17 @@ $(function(){
 			    initLayer($(".popup_layer .detail_layer"));
 			    $(".popup_layer .detail_layer").show();
 			}else{
-				addpackage(resid,packid);
 				$(".popup_layer").show();
 			    initLayer($(".popup_layer .package_layer"));
 			    $(".popup_layer .package_layer").show();
+				addpackage(resid,packid);
 			}
 			
         });	
 		
 		$(".popup_layer .close").live('click',function(e) {
-			$(".package_layer .context .d2 .d2_title").remove();
-			window.location.reload();
+			$(".package_layer .context .d2 .d2_title").empty();
+			//window.location.reload();
             $(".popup_layer").hide();
 			$(".popup_layer .layer").hide();
 
@@ -331,6 +331,16 @@ $(function(){
 	//加载弹出框
 	function loadPopupLayer(){
 		$(".popup_layer").load('/index.php?s=Member/layer');
+        var body_height = $("body").height();
+        var foot_height = $(".foot").height();
+        $(".popup_layer").css("height", body_height + 430);
+
+        //$(".popup_layer").css("position", "fixed");
+		$(window).scroll(function() {
+			var scrolls = $(this).scrollTop();
+            //console.log(scrolls );
+            //$(".popup_layer").css("position", "absolute");
+        });
 	}
 	//加载foot
 	function loadFootPage(){
@@ -350,10 +360,12 @@ $(function(){
 		obj.css('margin-top',marginTop);
 		
 		/* 火狐*/
+        /*
 		if(document.addEventListener){
 			document.addEventListener('DOMMouseScroll',scrollFunc,false);
 		}
 		window.onmousewheel=document.onmousewheel=scrollFunc;//IE/Opera/Chrome/Safari
+        */
 	}
 	
 	//鼠标滚动事件
@@ -371,10 +383,10 @@ $(function(){
 		
 		//判断滚动方向
 		if(direct>0){
-			mx_h += 30;	
+			mx_h += 3;	
 			layerObj.css('margin-top',mx_h)
 		}else{
-			mx_h -= 30;	
+			mx_h -= 3;	
 			layerObj.css('margin-top',mx_h)
 		}
 	}

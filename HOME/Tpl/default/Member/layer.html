@@ -119,7 +119,7 @@
 </head>
 
 <body>
-<!-- -------------------------------------------------------------------------------------------------------------------------------- -->
+<!-- 套餐开始 -->
   <div class="layer package_layer" style="width:500px;height:auto;margin-top:50px;">
         <div class="title clearfix">
             <p>Add Package</p>
@@ -127,8 +127,6 @@
         </div>
         <div class="context">
             <div class="d1 clearfix">
-              
-              
             </div>
             <form id="addpack_form">
             <input type="hidden" name="restaurant_id" id="additem_pack_resid" />
@@ -138,7 +136,6 @@
             <div class="d2_title"></div>
                 <div class="list">
                     <ul class="clearfix">
-                    
                      
                     </ul>
               </div>
@@ -164,13 +161,15 @@
         if(rs.status == '0'){
           $(".additem_error").html(rs.msg); 
         }else{
+            //todo,需改为无刷新
+            //$(".ordertiems").appendTo('');
           window.location.reload(); 
         }
       },'json')
     })
    </script>
 
-<!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
+<!-- 套餐结束 -->
 
 	<div class="layer detail_layer">
         <div class="title clearfix">

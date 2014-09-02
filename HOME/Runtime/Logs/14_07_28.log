@@ -1,5 +1,0 @@
-[ 2014-07-28T09:09:34+08:00 ] ERR: (ThinkException) 模板不存在[./HOME/Tpl/default/Index/index.html]
-[ 2014-07-28T09:09:38+08:00 ] ERR: (ThinkException) 模板不存在[./HOME/Tpl/default/Index/index.html]
-[ 2014-07-28T09:10:22+08:00 ] ERR: (ThinkException) 模板不存在[./HOME/Tpl/default/Index/index.html]
-[ 2014-07-28T09:12:26+08:00 ] ERR: (ThinkException) 模板不存在[./HOME/Tpl/default/Index/index.html]
-[ 2014-07-28T09:12:37+08:00 ] ERR: (ThinkException) 模板不存在[./HOME/Tpl/default/Index/index.html]

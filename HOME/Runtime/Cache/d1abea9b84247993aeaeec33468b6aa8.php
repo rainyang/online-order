@@ -1,3 +1,0 @@
-<?php if (!defined('THINK_PATH')) exit();?>		<?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): ++$i;$mod = ($i % 2 )?><ul class="clearfix">
-        	<?php if(is_array($vo)): $i = 0; $__LIST__ = $vo;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): ++$i;$mod = ($i % 2 )?><li><img src="<?php echo ($v["image"]); ?>" width="188px" height="125px" /><p><?php echo ($v["dishes_name"]); ?></p><p>$<?php echo ($v["price"]); ?></p></li><?php endforeach; endif; else: echo "" ;endif; ?>    
-         	</ul><?php endforeach; endif; else: echo "" ;endif; ?>
