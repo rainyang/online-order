@@ -32,22 +32,34 @@
                 <a class="cart" href="<?php echo U('Member/yourOrder');?>">Cart(<?php echo ($member_count); ?>)</a>
             </div><?php endif; ?>
         </div>
+    	<form name="form" method="post" id="form" action="<?php echo U('Dishes/results');?>">
         <div class="search_box clearfix">
-            <div class="left clearfix">
-                <form name="form" method="post" id="form" action="<?php echo U('Dishes/results');?>">
-                    <span class="t1">Please Enter Your Address:</span><input class="b1" type="text" id="address" name="address" value="Street Address, City, State" /><br />
-                    <span class="t2">What would you like? (optional):</span><input class="b2" type="text" name="taste" value="tuna melt, John's Subs, Italian" />
-                    <input type="hidden" id="coordinate" name="lat" value="">
-                    <input type="hidden" id="map" >
-                </form>
+        	<div class="left clearfix">
+            	<span class="t1">Please Enter Your Address:</span><input class="b1" type="text" id="address" name="address" value="Street Address, City, State" /><br />
+                <span class="t2">What would you like? (optional):</span><input class="b2" type="text" name="taste" value="tuna melt, John's Subs, Italian" />
+                <input type="hidden" id="coordinate" name="lat" value="">
+                <input type="hidden" id="map" >
             </div>
-            <a class="btn" href="javascript:;" id="btn_go">
+                <a class="btn" href="javascript:;" id="btn_go">
                 <img src="__PUBLIC__/Index/images/search_btn.gif" />
                 <p>Search Restaurants</p>
-            </a>
+                </a>
         </div>
+        </form>
+        <script type="text/javascript">
+            $(document).ready(function()
+            {
+                $("#btn_go").click(function()
+                {
+                    $("#form").submit();
+                    return false;
+                });
+            });
+        </script>
+
+
         
-        <div class="detail">
+    	<div class="detail">
         	<a class="back" href="<?php echo U('Dishes/results');?>">< Back to Search Results</a>
             <div class="shop clearfix">
             	<div class="ico">
@@ -78,7 +90,8 @@
                     <div class="book"><span class="ico"></span><a href="javascript:;" resid="<?php echo ($resinfo["id"]); ?>">I want Reservation!</a></div>
                 </div>
             </div>
-            
+
+
             <div class="context">
               <div class="menu">
             	<div class="title">
@@ -110,7 +123,7 @@
                 </div><?php endforeach; endif; else: echo "" ;endif; ?>
             </div>
 
-            <div class="order">
+    	                <div class="order">
                 <h1>Your Order</h1>
                 <ul class="ordertiems">
                     <?php if(is_array($order)): $i = 0; $__LIST__ = $order;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): ++$i;$mod = ($i % 2 )?><li class="orderitem" data-price='<?php echo ($vo['price']); ?>'>
@@ -166,6 +179,7 @@
                 </ul>
               </div>
 
+
             </div>
         </div>
     </div>
@@ -184,19 +198,13 @@
                 <a href="javascript:;" class="name lt"><?php echo ($vo['quantity']); ?> Piece,<?php echo substr($vo['item'],0,13);?></a>
                 <span class="num rt"><a class="reduce" href="javascript:;" s_id="<?php echo ($vo['id']); ?>"></a><span class="qty"><?php echo ($vo['quantity']); ?></span><a class="add" href="javascript:;" s_id="<?php echo ($vo['id']); ?>"></a></span>
             </li><?php endforeach; endif; else: echo "" ;endif; ?>
-            <li class="last"><a href="<?php echo U('Member/yourOrder');?>">Ready</a></li>
+            <li class="last"><a href="<?php echo U('Member/placeOrder?res_id=1');?>">Ready</a></li>
         </ul>
        
     </div><?php endif; ?>
 <script type="text/javascript">
 $(document).ready(function()
 {
-    $("#btn_go").click(function()
-    {
-        $("#form").submit();
-        return false;
-    });
-
     $(".reduce").live('click',function(){
         var val = parseInt($(this).siblings(".qty").html());
         if(val>1){

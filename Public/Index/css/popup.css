@@ -11,9 +11,9 @@ input[type="text"],textarea,input[type="password"],input[type="email"],input[typ
 	border-bottom:1px solid #d3d3d3;
 	background:#fafcfc url(../images/inputBkgd_20120106.png) repeat-x left -2px;
 	font-size:11pt;
-	-moz-border-radius:.66em;
-	-webkit-border-radius:.66em;
-	border-radius:.66em;
+	-moz-border-radius:.3em;
+	-webkit-border-radius:.3em;
+	border-radius:.3em;
 	margin-bottom:15px;
 	color:#403345;
 	-webkit-box-shadow:inset 0 1px 1px #c6bdc9;
@@ -33,11 +33,11 @@ input[type="text"],textarea,input[type="password"],input[type="email"],input[typ
 	-webkit-box-shadow: 0 8px 18px 1px rgba(0,0,0,0.9);
 	-moz-box-shadow: 0 8px 18px 1px rgba(0,0,0,0.9);
 	box-shadow: 0 8px 18px 1px rgba(0,0,0,0.9);
-	-webkit-border-radius: 1em;
-	-moz-border-radius: 1em;
-	-ms-border-radius: 1em;
-	-o-border-radius: 1em;
-	border-radius: 1em;
+	-webkit-border-radius: 0.5em;
+	-moz-border-radius: 0.5em;
+	-ms-border-radius: 0.5em;
+	-o-border-radius: 0.5em;
+	border-radius: 0.5em;
 
 }
 .popup_layer .layer .title{

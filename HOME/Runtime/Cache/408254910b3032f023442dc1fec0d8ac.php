@@ -9,24 +9,6 @@
 <link rel="stylesheet" href="__PUBLIC__/Index/css/home.css" />
 <link rel="stylesheet" href="__PUBLIC__/Index/css/foot.css" />
 
-
-<style>
-	@import url(__PUBLIC__/Index/css/reset.css);
-	@import url(__PUBLIC__/Index/css/public.css);
-	@import url(__PUBLIC__/Index/css/top.css)(min-width:940px);
-	@import url(__PUBLIC__/Index/css/top_768-940.css)(min-width:768px) and (max-width:940px);
-	@import url(__PUBLIC__/Index/css/top_640-768.css)(min-width:640px) and (max-width:768px);
-	@import url(__PUBLIC__/Index/css/top_480-640.css)(min-width:480px) and (max-width:640px);
-	@import url(__PUBLIC__/Index/css/top_480under.css)(max-width:480px);
-	
-	@import url(__PUBLIC__/Index/css/home.css)(min-width:940px);
-	@import url(__PUBLIC__/Index/css/home_768-940.css)(min-width:768px) and (max-width:940px);
-	@import url(__PUBLIC__/Index/css/home_640-768.css)(min-width:640px) and (max-width:768px);
-	@import url(__PUBLIC__/Index/css/home_480-640.css)(min-width:480px) and (max-width:640px);
-	@import url(__PUBLIC__/Index/css/home_480under.css)(max-width:480px);
-	
-
-</style>
 <script type="text/javascript" src="__PUBLIC__/Index/js/jquery-1.7.1.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Index/js/list_scroll.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Index/js/slide.js"></script>
@@ -52,21 +34,20 @@
                 <a class="cart" href="<?php echo U('Member/yourOrder');?>">Cart(<?php echo ($member_count); ?>)</a>
             </div><?php endif; ?>
         </div>
-        
+    	<form name="form" method="post" id="form" action="<?php echo U('Dishes/results');?>">
         <div class="search_box clearfix">
         	<div class="left clearfix">
-            <form name="form" method="post" id="form" action="<?php echo U('Dishes/results');?>">
             	<span class="t1">Please Enter Your Address:</span><input class="b1" type="text" id="address" name="address" value="Street Address, City, State" /><br />
                 <span class="t2">What would you like? (optional):</span><input class="b2" type="text" name="taste" value="tuna melt, John's Subs, Italian" />
                 <input type="hidden" id="coordinate" name="lat" value="">
                 <input type="hidden" id="map" >
-                </form>
             </div>
                 <a class="btn" href="javascript:;" id="btn_go">
                 <img src="__PUBLIC__/Index/images/search_btn.gif" />
                 <p>Search Restaurants</p>
                 </a>
         </div>
+        </form>
         <script type="text/javascript">
             $(document).ready(function()
             {
@@ -77,6 +58,9 @@
                 });
             });
         </script>
+
+
+
         <div class="banner">
         	<img class="list" src="__PUBLIC__/Index/images/banner_img.gif" />
         	<img class="list" src="__PUBLIC__/Index/images/banner_img.gif" />

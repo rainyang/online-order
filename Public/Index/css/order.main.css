@@ -1,0 +1,462 @@
+body{
+	color: #333;
+	font-size: 15px;
+}
+a{
+	color: #739d00;
+	cursor: pointer;
+}
+h3{
+	color: #333;
+	font-size: 18px;
+	margin: 0 0 10px;
+}
+b, strong{
+	font-weight: 700;
+}
+button, html, input, select, textarea{
+	font-size: 15px;
+	line-height: 18px;	
+	height: 40px;
+	box-sizing: border-box;
+	color: #333;
+	background: #fff;
+}
+input[type=email], input[type=number], input[type=password], input[type=search], input[type=submit], input[type=tel], input[type=text], select, textarea{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	height: 40px;
+	border: 1px solid #ccc;
+}
+input[type=email], input[type=number], input[type=password], input[type=search], input[type=submit], input[type=tel], input[type=text], textarea{
+	padding-left: 10px;
+}
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+    color: #666;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: #666;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #666;
+}
+
+
+.hide{
+	display: none;
+}
+.checkout-details{
+	padding: 15px;
+	background: #FCFCFC; 	
+}
+.checkout-details .address h3{
+	padding: 0 0 20px;
+	margin: 0;
+}
+.checkout-details .address p{
+	font-size: 15px;
+	line-height: 18px;
+	margin: 0 0 10px;
+}
+.address .form-field{
+	padding: 0;
+	margin: 10px 0 0;
+	border: 0;
+}
+.address .form-field.city{
+	display: inline-block;
+	margin: 0 5px 0 0;
+	width: 262px;
+}
+.address .form-field.state{
+	display: inline-block;
+	margin: 0 5px 0 0;
+	width: 135px;
+}
+.address .form-field.state select{
+	width: 100%;
+}
+.address .form-field.zip{
+	display: inline-block;
+	width: 135px;	
+}
+.address .form-field.unit{
+	display: inline-block;
+	margin: 0 5px 0 0;
+	width: 361px;
+}
+.address .form-field.phone{
+	display: inline-block;
+	width: 180px;
+}
+.address .form-field input{
+	padding: 5px;
+	border: 1px solid #d9d9d9;
+	background: #fff;
+	width: 100%;
+	height: 40px;
+}
+.payments{
+	padding: 20px 0 0;
+}
+.payment-info{
+    zoom:1;
+	clear:both;
+	margin:10px 0 0;
+	border-bottom:1px solid #d9d9d9;
+	border-right:1px solid #d9d9d9;
+	border-left:1px solid #d9d9d9;
+	background:#fff;
+	padding-bottom: 20px;
+}
+.card-tab{
+	overflow: hidden;	
+}
+.card-tab li{
+    -webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+	float:left;
+	width:50%;
+	border-right:1px solid #ccc;
+	color:#ccc;
+	text-align:center;
+	vertical-align:middle;
+}
+.card-tab li a{
+    -webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+    display: block;
+    height: 50px;
+	padding:15px 0;
+	background: #f8f8f8;
+	border-top:1px solid #ccc;
+	border-bottom:1px solid #ccc;
+	color: #ccc;
+	font-weight: 700;
+}
+.card-tab li a:hover{
+	background: #fff;
+    border-top: 3px solid #739d00;
+    padding-top: 13px;
+	color: #739d00;
+}
+.card-tab li a.hover{
+	background: #fff;
+    border-top: 3px solid #739d00;
+    padding-top: 12px;
+	color: #739d00;	
+	border-bottom: none;
+}
+.card-tab li:last-child{
+	border-right: none;
+}
+.payment-info .credit-and-other{
+	margin: 20px;
+	padding: 0 0 20px;
+	border-bottom: 1px solid #d9d9d9;
+}
+.page-checkout .payment-method label{
+	border-top: 1px solid #d9d9d9;
+	cursor: pointer;
+}
+.credit-new label{
+	display: block;
+	padding: 14.5px 10px;
+	border: 1px solid #d9d9d9;
+	background: #fff;
+	font-size: 15px;
+	line-height: 20px;
+	cursor: pointer;
+}
+.credit-new label:hover{
+	background: rgba(115,157,0,.1);
+	-webkit-transition: all 0.5s; 
+}
+
+.line-total, .other-payments{
+	margin: 30px 20px 20px;
+	padding: 0 0 20px;
+	border-bottom: 1px solid #d9d9d9;
+}
+.line-total p, .other-payments p{
+	font-weight: 700;
+}
+.line-total .amount{
+	height: 40px;
+	line-height: 40px;
+}
+.line-total .tip-percent{
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	font-weight: 700;
+	text-align: center;
+	background: #ccc;
+	color: #fff;
+	cursor: pointer;
+	vertical-align: -2px;
+}
+.line-total .tip-percent:hover{
+	text-decoration: none;
+}
+.line-total .tip-percent.hover{
+	background: #739d00;
+}
+.line-total input{
+	margin-left: 40px;
+	width: 80px;
+	background: #fff;
+}
+
+.cart-info{
+	padding-right: 15px;
+}
+.cart-info p{
+	margin: 0 0 10px;
+}
+.cart-info .label{
+	display: inline-block;
+	width: 450px;
+}
+.cart-info .label, .cart-info .value{
+	text-align: right;
+}
+.cart-info .value{
+	float: right;
+}
+.cart-info .total{
+	margin-bottom: 20px;
+}
+.cart-info .total strong{
+	font-size: 18px;
+	line-height: 24px;
+	color: #333;
+}
+.cart-info .check-btn{
+	margin: 0;
+	text-align: right;
+}
+.cart-info .check-btn a{
+	padding: 9px 40px;
+}
+.cart-info .check-btn a:hover{
+	text-decoration: none;
+}
+
+/* 用户中心 */
+.account-brink{
+	width: 1004px;
+	padding: 20px 10px;
+	margin: 0 auto;
+	overflow: hidden;
+	background: #fff;
+	min-height: 470px;
+}
+.account-side{
+	float: left;
+	width: 150px;
+}
+.account-side li a{
+	display: block;
+	padding: 10px 0 10px 10px;
+	height: 20px;
+	border-radius: 3px;
+}
+.account-side li a:hover{
+	background: #FAFCF0;
+}
+.account-side li a.hover{
+	background: #82AE07;
+	color: #fff;
+	font-weight: bold;
+}
+.account-main{
+	float: right;
+	width: 835px;
+	border-top: 3px solid #739d00;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	color: #999;
+	font-size: 13px;
+}
+.account-main h1{
+	line-height: 44px;
+	font-size: 18px;
+	border-bottom: 1px solid #ccc;
+	text-indent: 15px;
+	color: #739d00;
+}
+.no-orders{
+	padding: 15px;
+}
+.no-orders p{
+	margin: 0 0 10px;
+	color: #333;
+	font-size: 15px;
+}
+.order-btn a{
+	display:inline-block;
+	overflow:hidden;
+	padding:9px 40px;
+	border:0;
+	border-radius:2px;
+	background: #8CB029;
+	background-image:linear-gradient(to top,transparent 0,rgba(255,255,255,.2) 100%);
+	color:#fff;
+	cursor:pointer;
+	font-size:18px;
+	font-weight:700;
+	line-height:22px;
+	text-shadow:0 0 4px rgba(0,0,0,.4);
+	transition:background-color .2s linear 0s;
+}
+.order-btn a:hover{
+	background: #97BC32;
+}
+.profile-form{
+	padding: 0 15px 15px;
+	overflow: hidden;
+}
+.first-name-wrapper, .last-name-wrapper, .new-password-wrapper, .confirm-password-wrapper{
+	width: 50%;
+	box-sizing: border-box;
+	float: left;
+}
+.first-name-wrapper, .new-password-wrapper{
+	padding-right: 5px;
+}
+.last-name-wrapper, .confirm-password-wrapper{
+	padding-left: 5px;
+}
+.profile-form label{
+	display: block;
+	margin: 20px 0 8px;
+}
+.profile-form input{
+	width: 100%;
+}
+.email-wrapper{
+	width: 100%;
+	padding-right: 10px;
+	box-sizing: border-box;
+	float: left;
+}
+.email-wrapper input{
+	width: 50%;
+}
+.profile-form .order-btn a, .address-form .order-btn a, .cards-form .order-btn a{
+	margin-top: 20px;
+	float: left;
+	padding: 9px 100px;
+}
+.no-addresses{
+	font-size: 15px;
+	color: #333;
+	padding: 15px;
+	border-bottom: 1px solid #ccc;
+}
+.add-edit-address{
+	line-height: 44px;
+	padding: 0 15px;
+	cursor: pointer;
+	color: #666;
+	font-size: 15px;
+}
+.icon-plus{
+	font-size: 30px;
+	display: inline-block;
+	margin-right: 10px;
+	vertical-align: -5px;
+}
+.add-edit-address:hover{
+	background: #FAFCF0;
+}
+.account-list{
+	padding: 15px;
+	overflow: hidden;
+}
+.street-unit-wrapper{
+	display: table;
+}
+.street-address{
+	width: 60%;
+	float: left;
+}
+.street-address label{
+	display: block;
+	padding: 10px 0;
+	line-height: 15px;
+	color: #999;
+}
+.street-address input{
+	width: 100%;
+}
+.account-list .unit{
+	width: 40%;
+	float: left;
+	box-sizing: border-box;
+	padding-left: 10px;
+}
+.account-list .city{
+	width: 40%;
+	float: left;
+	box-sizing: border-box;
+}
+.address-form label, .cards-form label{
+	display: block;
+	padding: 10px 0;
+	line-height: 15px;
+	color: #999;
+}
+.address-form input, .cards-form select, .cards-form input{
+	width: 100%;
+}
+.address-form select{
+	width: 100%;
+}
+.account-list .state, .account-list .zip, .account-list .phone{
+	width: 20%;
+	float: left;
+	box-sizing: border-box;
+	padding-left: 10px;
+}
+.count-cancle{
+	display: block;
+	float: left;
+	margin: 30px 20px 0;
+	font-size: 15px;
+}
+.count-cancle:hover{
+	text-decoration: underline;
+}
+
+.cards-form{
+	padding: 15px;
+	overflow: hidden;
+}
+
+.month, .year, .cvv, .billing{
+	width: 25%;
+	float: left;
+	box-sizing: border-box;
+}
+.month, .year, .cvv{
+	padding-right: 5px;
+}
+
+
+
+
+
+
+
+

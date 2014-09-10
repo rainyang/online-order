@@ -1,0 +1,34 @@
+<div class="detail">
+        	<a class="back" href="{:U('Dishes/results')}">< Back to Search Results</a>
+            <div class="shop clearfix">
+            	<div class="ico">
+                	<img src="{$resinfo.logo}" width="140" height="81" />
+                        <p class="stars" resid="{$resinfo.id}"><a href="#" resid="{$resinfo.id}">More</a></p>
+
+                </div>
+                
+                <div class="introduction clearfix">
+                	<div class="open"></div>
+                    <p class="p1">{$resinfo.nickname} Menu</p>
+                    <div class="p2">{$time[2]} 
+                    	<span><label>{$resinfo.openhours}</label><span></span>
+                        	<!-- <ul class="time">
+                            <volist name="dhours" id="vo">
+                            	<li>{$vo[2]} {$vo[0]}-{$vo[1]}</li>
+							</if>
+                            </volist>
+                            </ul> -->
+                        </span>
+                    </div>
+                    <p class="p3">{$resinfo.remark}</p>
+                    <p class="p4" id="num" num="{:W('ShowStar',array('id'=>$resinfo['id']))}" flag=false><label>Item({$count}) &nbsp;Package({$count_package})</label></p>
+                </div>
+                
+                                
+                <div class="contact">
+                	<div class="phone"><span class="ico"></span>{$resinfo.phone}</div>
+                    <div class="address"><span class="ico"></span><a href="javascript:;">{$resinfo.address}</a></div>
+                    <div class="book"><span class="ico"></span><a href="javascript:;" resid="{$resinfo.id}">I want Reservation!</a></div>
+                </div>
+            </div>
+

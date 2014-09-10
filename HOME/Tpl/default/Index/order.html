@@ -1,0 +1,57 @@
+            <div class="order">
+                <h1>Your Order</h1>
+                <ul class="ordertiems">
+                    <volist name="order" id="vo">
+                        <li class="orderitem" data-price='{$vo['price']}'>
+                            <span class="quantity">
+                            <a class="reduce" href="javascript:;" s_id="{$vo['id']}">-</a>
+                            <span class="num qty">{$vo['quantity']}</span>
+                            <a class="add" href="javascript:;" s_id="{$vo['id']}">+</a>
+                        </span>
+                        <span class="name">{$vo['item_name']}</span>
+                        <span class="price rt">${$vo['price'] * $vo['quantity']}</span>
+                        </li>
+                    </volist>
+                    <!--<li class="last"><a href="{:U('Member/yourOrder')}">Ready</a></li>-->
+                </ul>
+                <ul class="subtotal-item">
+                    <li>
+                        <span>Subtotal</span>
+                        <span class="subtotal sub-total">$60.00</span>
+                    </li>
+                    <li>
+                        <span class="tax-text">Tax</span>
+                        <span class="tax">$4.00</span>
+                    </li>
+                </ul>
+                    <ul class="mode clearfix">
+                        <li class="selected">
+                            <span class="drop_box"><label>Delivery</label><span></span>
+                                <ul style="display: none;">
+                                    <li>Yes</li>
+                                </ul>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="drop_box"><label>Coupons(9)</label><span></span>
+                                <ul style="display: none;">
+                                    <li>Coupons</li>
+                                </ul>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="drop_box"><label>Pickup</label><span></span>
+                                <ul style="display: none;">
+                                    <li>Yes</li>
+                                </ul>
+                            </span>
+                        </li>
+                    </ul>
+                
+                <ul class="subtotal-item total">
+                    <li>
+                        <span>Total</span>
+                        <span class="subtotal all-total">$64.00</span>
+                    </li>
+                </ul>
+              </div>

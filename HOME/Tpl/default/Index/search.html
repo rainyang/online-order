@@ -1,0 +1,25 @@
+<form name="form" method="post" id="form" action="{:U('Dishes/results')}">
+        <div class="search_box clearfix">
+        	<div class="left clearfix">
+            	<span class="t1">Please Enter Your Address:</span><input class="b1" type="text" id="address" name="address" value="Street Address, City, State" /><br />
+                <span class="t2">What would you like? (optional):</span><input class="b2" type="text" name="taste" value="tuna melt, John's Subs, Italian" />
+                <input type="hidden" id="coordinate" name="lat" value="">
+                <input type="hidden" id="map" >
+            </div>
+                <a class="btn" href="javascript:;" id="btn_go">
+                <img src="__PUBLIC__/Index/images/search_btn.gif" />
+                <p>Search Restaurants</p>
+                </a>
+        </div>
+        </form>
+        <script type="text/javascript">
+            $(document).ready(function()
+            {
+                $("#btn_go").click(function()
+                {
+                    $("#form").submit();
+                    return false;
+                });
+            });
+        </script>
+

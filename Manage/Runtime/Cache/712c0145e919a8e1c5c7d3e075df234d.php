@@ -39,7 +39,7 @@
         <div id="logo_area">
         	<div id="logo"><img src="__PUBLIC__/Images/man_img.png" width="57" height="74" /></div>
         	<div id="logo_text">ADMINISTRATION PANEL</div>
-        	<div id="login_text"><strong>Welcome</strong>&nbsp;&nbsp;restaurateur, <?php echo ($_SESSION['']); ?>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="__APP__/Public/logout/">Log out</a></div>
+        	<div id="login_text"><strong>Welcome</strong>&nbsp;&nbsp;admin, &nbsp;&nbsp;|&nbsp;&nbsp;<a href="__APP__/Public/logout/">Log out</a></div>
         	<br style="clear:both" />
         </div>                
         <!--End logo_area Div-->

@@ -30,6 +30,61 @@ class MemberAction extends CommonAction
 		$this->assign('list',$list);
 		$this->display();	
 	}
+
+    public function profile(){
+        $cookie = cookie('OrderOnlineAuth');
+		if(empty($cookie)){
+			$this->redirect('Index/index');	
+		}
+		$auth = authcode($cookie,'DECODE');
+		$authlist =  explode("\t",$auth);		
+		$Order = M('Order');
+		$ShoppingCart = M('ShoppingCart');
+		$list = $Order->where(array('member_id'=>$authlist[0]))->order('create_time desc')->select();
+		foreach($list as $key=>$val){
+			$list[$key]['carts'] = $ShoppingCart->field('quantity,dishes_id')->where(array('id'=>array('in',$val['cart_ids'])))->select();	
+		}
+		$this->assign('list',$list);
+
+        $this->display();
+    }
+
+    public function address(){
+        $cookie = cookie('OrderOnlineAuth');
+		if(empty($cookie)){
+			$this->redirect('Index/index');	
+		}
+		$auth = authcode($cookie,'DECODE');
+		$authlist =  explode("\t",$auth);		
+		$Order = M('Order');
+		$ShoppingCart = M('ShoppingCart');
+		$list = $Order->where(array('member_id'=>$authlist[0]))->order('create_time desc')->select();
+		foreach($list as $key=>$val){
+			$list[$key]['carts'] = $ShoppingCart->field('quantity,dishes_id')->where(array('id'=>array('in',$val['cart_ids'])))->select();	
+		}
+		$this->assign('list',$list);
+
+        $this->display();
+    }
+
+    public function cards(){
+        $cookie = cookie('OrderOnlineAuth');
+		if(empty($cookie)){
+			$this->redirect('Index/index');	
+		}
+		$auth = authcode($cookie,'DECODE');
+		$authlist =  explode("\t",$auth);		
+		$Order = M('Order');
+		$ShoppingCart = M('ShoppingCart');
+		$list = $Order->where(array('member_id'=>$authlist[0]))->order('create_time desc')->select();
+		foreach($list as $key=>$val){
+			$list[$key]['carts'] = $ShoppingCart->field('quantity,dishes_id')->where(array('id'=>array('in',$val['cart_ids'])))->select();	
+		}
+		$this->assign('list',$list);
+
+        $this->display();
+    }
+
 	public function register(){
 		$account = $_POST['account'];
 	 	$password = md5($_POST['password']);
@@ -119,7 +174,7 @@ class MemberAction extends CommonAction
          }
 		echo json_encode(array("status"=>1,"msg"=>"Send success.")); 
 	}
-	public function yourOrder(){
+	public function yourOrder($res_id){
 		$cookie = cookie('OrderOnlineAuth');
 		if(empty($cookie)){
 			$this->redirect('Index/index');	
@@ -146,7 +201,8 @@ class MemberAction extends CommonAction
 		$this->assign('restaurant_id',$orderlist[0]['restaurant_id']);
 		$this->display();	
 	}
-	public function placeOrder(){
+	public function placeOrder($id){
+		$id = $_GET['res_id'];
 		$cookie = cookie('OrderOnlineAuth');
 		if(empty($cookie)){
 			$this->redirect('Index/index');	
@@ -154,10 +210,12 @@ class MemberAction extends CommonAction
 		$authlist = explode("\t",authcode($cookie));
 		$ShoppingCart = M('ShoppingCart');
 		$MemberAddress = M('Member_address');
+		$RestaurantMember = M('RestaurantMember');
 		$RestaurantDetails = M('RestaurantDetails');
 		$Dishes = M('Item');
 		$orderlist = $ShoppingCart->where(array('member_id'=>$authlist[0],'status'=>'0'))->order('id desc')->select();
 		$ordercount=$ShoppingCart->where(array('member_id'=>$authlist[0],'status'=>'0'))->count();
+		$resinfo = $RestaurantMember->where(array('id'=>$id))->find();
 		foreach($orderlist as $k=>$v){
 			if(!empty($v['items'])){
 				$items = json_decode($v['items'],true);
@@ -177,8 +235,9 @@ class MemberAction extends CommonAction
 		$tiplist = explode(',',$tip);
 		$this->assign('total',$total);
 		$this->assign('tip',$tiplist);
+		$this->assign('resinfo',$resinfo);
 		$this->assign('address',$address);
-		$this->assign('orderlist',$orderlist);
+		$this->assign('order',$orderlist);
 		$this->assign('restaurant_id',$orderlist[0]['restaurant_id']);
 		$this->display();	
 	}

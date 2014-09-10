@@ -1,6 +1,9 @@
 $(function(){
 	var w,h;
 	var time = 500;
+
+    //初始的默认宽度
+    var default_width = 1024;
 	
 	var reviewsRt  = $(".reviews .list ul li .rt").width();
 	
@@ -9,7 +12,11 @@ $(function(){
 	function init(){
 		w = $(window).width();
 		h = $(window).height();
-		
+
+        var scrolls = $(window).scrollTop();
+        //console.log(scrolls );
+        $(".detail_layer").css("margin-top", scrolls - 200);
+
 		//浏览器窗口大小
 		windowSize(w);
 		//搜索输出框
@@ -92,33 +99,33 @@ $(function(){
 	
 	//判断浏览器的窗口宽度
 	function windowSize(w){
-		if(w<940){
+		if(w < default_width){
 			$(".container").css({'width':w});
 			$(".foot_in").css({'width':w});
 			mobileSize(w);
 			$(".shopping_cart").css('right',0);
 		}else{
-			$(".container").css({'width':'940px'});
-			$(".foot_in").css({'width':'940px'});
-			$(".shopping_cart").css("right",(w-940)/2+'px');
+			$(".container").css({'width':default_width+'px'});
+			$(".foot_in").css({'width':default_width+'px'});
+			$(".shopping_cart").css("right",(w-default_width)/2+'px');
 			normalSize(w);
 		}
 	}
 	
 	function normalSize(w){
-		var temp = 940 - 179;
+		var temp = default_width - 179;
 		$(".search_box .left").css({'width':temp});
 		$(".reviews .list ul li .rt").css({'width':reviewsRt});
 	}
 	
 	//移动端宽度尺寸
 	function mobileSize(w){
-		if(480 < w < 940){
+		if(480 < w < default_width){
 			var temp = w - 179;
 			$(".search_box .left").css({'width':temp});
 		}
 		
-		var tempreviewsRt = reviewsRt - (940 - w)/2;
+		var tempreviewsRt = reviewsRt - (default_width - w)/2;
 		$(".reviews .list ul li .rt").css({'width':tempreviewsRt});
 	}
 
@@ -252,14 +259,18 @@ $(function(){
 			var resid = $(this).attr('resid');
 			var disid = $(this).attr('disid');
 			var packid = $(this).attr('packid');
+            var scrolls = $(window).scrollTop();
+
 			if(!packid){
 				additem(resid,disid);
 	            $(".popup_layer").show();
-			    initLayer($(".popup_layer .detail_layer"));
+			    //initLayer($(".popup_layer .detail_layer"));
 			    $(".popup_layer .detail_layer").show();
+                $(".detail_layer").css("margin-top", scrolls + 100);
 			}else{
 				$(".popup_layer").show();
-			    initLayer($(".popup_layer .package_layer"));
+                $(".popup_layer .package_layer").css("margin-top", scrolls + 100);
+			    //initLayer($(".popup_layer .package_layer"));
 			    $(".popup_layer .package_layer").show();
 				addpackage(resid,packid);
 			}
@@ -335,13 +346,20 @@ $(function(){
         var foot_height = $(".foot").height();
         $(".popup_layer").css("height", body_height + 430);
 
+        $(".popup_layer").css("position", "absolute");
         //$(".popup_layer").css("position", "fixed");
-		$(window).scroll(function() {
-			var scrolls = $(this).scrollTop();
-            //console.log(scrolls );
-            //$(".popup_layer").css("position", "absolute");
-        });
+		
 	}
+
+    /*
+     *$(window).scroll(function() {
+     *    var scrolls = $(this).scrollTop();
+     *    console.log(scrolls );
+     *    $(".detail_layer").css("margin-top", "700px");
+     *    $(".popup_layer").css("position", "absolute");
+     *});
+     */
+
 	//加载foot
 	function loadFootPage(){
 		$(".foot").load('/index.php?s=Index/foot');

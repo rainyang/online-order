@@ -21,6 +21,7 @@ class DishesAction extends CommonAction
 		$com = $Comment->where(array('restaurant_id'=>$id))->order('create_time desc')->find();
 		$count = $Dishes->where(array('restaurant_id'=>$id))->count();
 		//$details = $RestaurantMember->where(array('id'=>$id))->find();
+        //todo,可用配置文件实现,并写入公共函数库
 		$key = date('w',time());
 		if($key == 0){
  			$resinfo['openhours'] = $open['sun'];
@@ -69,9 +70,11 @@ class DishesAction extends CommonAction
 		foreach($list as $k=>$v){
 			$list[$k]['dishes'] = $Dishes->where(array('group_id'=>$v['id']))->select();	
 		}
+
 		$cookie = cookie('OrderOnlineAuth');
 		$authlist = explode("\t",authcode($cookie));
 		$orderlist = $ShoppingCart->field('id,item_name,price,quantity')->where(array('member_id'=>$authlist[0],'status'=>'0'))->order('id desc')->select();
+        //dump($orderlist);
 		$ordercount=$ShoppingCart->where(array('member_id'=>$authlist[0],'status'=>'0'))->count();
 		/*foreach($orderlist as $k=>$v){
 			if(!empty($v['items'])){
