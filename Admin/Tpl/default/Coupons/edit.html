@@ -1,0 +1,197 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>easywayordering</title>
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-ui-1.8.22.custom.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/Togle.js"></script>
+
+<link href="__PUBLIC__/JQueryDate/jquery.datetimepicker.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/adminMain.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/south-street/jquery-ui-1.8.22.custom.css" rel="stylesheet" type="text/css" />
+
+
+<!-- GOOGLE API KEY FOR DREAM HOST:  AIzaSyCkRkSd4hQornJOYjYMoHqi3-Wv4hVOOgg-->
+<!-- GOOGLE API KEY FOR LOCAL PROJECT:  ABQIAAAAPpaOjFQ_miNP74G3g3O7oBTTwBGlz0OqYPu6tmNrU0ToxRrT5hQhlPr8PLUNIxb0D5FrOa5lJ1tp6w-->
+<!-- <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyBT2sOPbIDLELZVjk6vPcGs87xqabq2jcs&sensor=false" type="text/javascript"></script> -->
+<!--<script src="http://maps.google.com/maps?file=api&v=2&key=AIzaSyBT2sOPbIDLELZVjk6vPcGs87xqabq2jcs" type="text/javascript"></script> -->
+
+
+
+</head>
+
+<include file="Public:bg_header" />
+   	
+<include file="Public:menu_son" />
+<div id="tab_items">
+	<ul>
+    	<li>
+			<a href="__APP__/Coupons/index">Edit Exisiting Coupons</a>
+        </li>|
+        <li>
+        	<a href="__APP__/Coupons/addcoupons">Add New Coupon</a>
+        </li>
+     </ul>
+</div>
+
+<div id="main_heading">ADD COUPONS</div>
+<div class="form_outer">
+  <form name="form1" method="post" action="__APP__/Coupons/edit"  >
+    <table width="100%" border="0" cellpadding="4" cellspacing="0">
+      <tr align="left" valign="top">
+        <td width="172"><strong>Coupon Title:</strong></td>
+        <td width="973"><input name="coupon_title" type="text" size="40" id="coupon_title" value="{$info.title}"></td>
+      </tr>
+      <tr align="left" valign="top">
+        <td width="172"><strong>Coupon Type:</strong></td>
+        <td width="973">
+        	<select name="type" class="types">
+        		<option id="type0" value="0">Select Type</option>
+        		<option id="type1" value="1" <if condition="$info['type'] eq 1">selected="selected"</if>>Discount(%)</option>
+        		<option id="type2" value="2" <if condition="$info['type'] eq 2">selected="selected"</if>>Reduce Cash($)</option>
+        		<option id="type3" value="3" <if condition="$info['type'] eq 3">selected="selected"</if>>Give Item</option>
+        		<option id="type4" value="4" <if condition="$info['type'] eq 4">selected="selected"</if>>Exclusive Code</option>
+        	</select>
+        </td>
+      </tr>
+      <tr align="left" valign="top">
+        <td width="172"><strong>Minimum Order Total:</strong></td>
+        <td><input name="min_order_total" type="text" size="40" id="min_order_total" value="{$info.min_order}">
+          &nbsp;$</td>
+      </tr>
+      <tr align="left" valign="top">
+        <td width="172"><strong>Date To:</strong></td>
+        <td>From:&nbsp;<input name="date_from" type="text" value="<?php echo date('Y/m/d H:i',$info['date_from']);?>" id="date_form"/>
+          &nbsp;&nbsp;To:&nbsp;<input name="date_to" type="text" id="date_to" value="<?php echo date('Y/m/d H:i',$info['date_to']);?>" ></td>
+      </tr>
+      <tr align="left" valign="top" style="display:none;"id="code_show">
+        <td><strong>Coupon Code:</strong></td>
+        <td><input name="coupon_code" maxlength="11" type="text" size="40" id="coupon_code" value="{$info.code}"></td>
+      </tr>
+      
+      <tr align="left" valign="top" style="display:none;" id="discount_show">
+        <td><strong>Discount:</strong></td>
+        <td><input name="coupon_discount" type="text" size="26" id="coupon_discount" value="{$info.discount}">&nbsp;%</td>
+            </td>
+      </tr>
+      
+      <tr align="left" valign="top" style="display:none;" id="cash_show">
+        <td><strong>Cash:</strong></td>
+        <td><input name="coupon_cash" type="text" size="26" id="coupon_cash" value="{$info.cash}">&nbsp;$</td>
+            </td>
+      </tr>
+      
+      <tr align="left" valign="top" style="display:none;" id="item_show">
+        <td><strong>Item List:</strong></td>
+        <td>
+        	<div style="border:1px;border-color:black; width:600px;">
+        		<volist name="itemlist" id="vo">
+        		<span>
+        			<input name="item_list[{$vo.id}]" class="item_input" type="checkbox" size="26" value="{$vo.id}" <if condition="$vo['iteminfo']">checked="checked"</if> >{$vo.item_name}
+        			<input type="text" name="item_num[{$vo.id}]" value="{$vo.iteminfo.num}" size="3" <if condition="$vo['iteminfo']">style="display:;"<else/>style="display:none;"</if>placeholder="num">
+        		</span>
+        		</volist>
+        	</div>
+        	
+        	
+        </td>
+      </tr>
+      
+      <tr align="left" valign="top">
+        <td><strong>Coupon Description:</strong></td>
+        <td><textarea name="coupon_des" cols="40" rows="6" id="coupon_des">{$info.desc}</textarea></td>
+      </tr>
+      
+      <tr align="left" valign="top">
+        <td>&nbsp;</td>
+        <input type="hidden" name="coupons_id" id="coupons_id" value="{$info.id}" />
+        <input type="hidden" name="coupon_items1" id="coupon_items1" value="" />
+        <input type="hidden" name="coupon_items2" id="coupon_items2" value="" />
+        <input type="hidden" name="coupon_items3" id="coupon_items3" value="" />
+        <td><input type="submit" name="submit" value="Edit Coupon"></td>
+      </tr>
+    </table>
+  </form>
+</div>
+ </div>	
+         </div>   
+            
+        </div><!--End text_holder Div-->	
+        <div id="footer">
+            <div id="bottom">
+                <div id="bottom_left"></div>
+                <div id="bottom_right"></div>
+            </div><!--End bottom Div--><br style="clear:both" />
+        </div><!--End footer Div-->
+    </div><!--End header Div-->
+</div><!--End maincontainer Div-->
+</body>
+
+<script src="__PUBLIC__/JQueryDate/jquery.datetimepicker.js"></script>
+<script>
+$('#date_form').datetimepicker();
+$('#date_to').datetimepicker();
+</script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//下拉框事件
+		if($(".types").val() == 3){
+			
+			$("#item_show").show();
+		}
+		if($(".types").val() == 2){
+			
+			$("#cash_show").show();
+		}
+		if($(".types").val() == 1){
+			
+			$("#discount_show").show();
+		}
+		if($(".types").val() == 4){
+			
+			$("#code_show").show();
+		}
+		$(".types").change(function(){
+			if($(this).val() == 0){
+				$("#discount_show").hide();
+				$("#code_show").hide();
+				$("#cash_show").hide();
+				$("#item_show").hide();
+			}else if($(this).val() == 1){
+				$("#discount_show").show();
+				$("#code_show").hide();
+				$("#cash_show").hide();
+				$("#item_show").hide();
+			}else if($(this).val() == 2){
+				$("#discount_show").hide();
+				$("#code_show").hide();
+				$("#cash_show").show();
+				$("#item_show").hide();
+			}else if($(this).val() == 3){
+				$("#discount_show").hide();
+				$("#code_show").hide();
+				$("#cash_show").hide();
+				$("#item_show").show();
+			}else if($(this).val() == 4){
+				$("#discount_show").hide();
+				$("#code_show").show();
+				$("#cash_show").hide();
+				$("#item_show").hide();
+			}
+		});
+		//item 点击显示填写数量
+		$(".item_input").click(function(){
+			if($(this).attr("checked") == "checked"){
+				$(this).siblings('input').show();
+			}else{
+				$(this).siblings('input').hide();
+			}
+		});
+	});
+	
+</script>
+</html>

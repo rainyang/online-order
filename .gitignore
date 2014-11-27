@@ -16,5 +16,5 @@ Admin/siteconfig.inc.php
 
 sql/
 
-Manage/Conf/
+#Manage/Conf/
 Manage/Runtime/

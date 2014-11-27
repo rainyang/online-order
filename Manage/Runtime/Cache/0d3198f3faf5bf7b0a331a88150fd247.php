@@ -43,7 +43,7 @@
         			<div class="links selected"><a href="__APP__/Index" >Restaurants</a></div>
                     <div class="links selected"> <a href="__APP__/Order/index/">Orders</a></div>
                     <div class="links selected"><a href="__APP__/Customer/index">Customers</a></div>
-                    
+                    <div class="links selected"><a href="__APP__/Website/index">Website</a></div>
 
         			<!-- <div class="links not"><a href="__APP__/Public/changePwd" >Change Password</a></div> -->
                     <!-- <div class="links not"><a href="__APP__/Public/addRestaurant" >Create New Restaurant</a></div> -->
@@ -59,6 +59,7 @@
             		<li><a href="__APP__/Index/index" class="selected_red">Restaurants Listing</a></li>
             	</ul>
             </div>
+
             <div id="contents">
             	<div id="main_heading">
             		<form id="searchRestByUserFrm" name="searchRestByUserFrm" method="post" action="">
@@ -86,7 +87,9 @@
 		    </div>
 		    <div id="contents_area" style="float:left; margin-left:15px; width:78%;">
 		    	<strong  style="font-size:18px;">&nbsp;<a style="cursor:pointer; text-decoration:none;" href="__APP__/Index">All Resturants</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		    	<a style="cursor:pointer; text-decoration:none;" href="__APP__/Index/index/audit/0">Audit Resturants</a></strong><br />
+		    	<a style="cursor:pointer; text-decoration:none;" href="__APP__/Index/index/audit/0">Audit Resturants</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    	<a style="cursor:pointer; text-decoration:none;" href="__APP__/Index/in_coupons">In Coupons</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    	<a style="cursor:pointer; text-decoration:none;" href="__APP__/Index/in_reviews">In Reviews</a></strong><br />
 		    	<?php if(is_array($list)): foreach($list as $key=>$vo): ?><div class="listbox" onMouseOver="this.style.backgroundColor='#FFC';" onMouseOut="this.style.backgroundColor='';">
 		    		<div id="imagebox" ><img src="<?php echo ($vo["logo"]); ?>" border="0" width="80" height="50" /> </div>
 		    		<div id="URL_Links">
@@ -95,6 +98,10 @@
 		    				<a href="__APP__/RestaurantDetails/index/restaurant_id/<?php echo ($vo["id"]); ?>"><?php echo ($vo["nickname"]); ?></a>
 		    			</div>
 		    			<br style="clear:both" >
+		    			<div style="margin-top:10px;">
+		    			<div style="float:left;" id="joinCou<?php echo ($vo["id"]); ?>"><?php if($vo['cou']): ?>In Coupons<?php else: ?><a href="javascript:;" class="coupon" data-id="<?php echo ($vo["id"]); ?>">Join Coupons</a><?php endif; ?></div>
+		    			<div style="float:left;margin-left:50px;" id="joinRev<?php echo ($vo["id"]); ?>"><?php if($vo['rev']): ?>In Reviews<?php else: ?><a href="javascript:;" class="review" data-id="<?php echo ($vo["id"]); ?>">Join Reviews</a><?php endif; ?></div>
+		    			</div>
 		    			<!-- <div id="Site_URL">
 		    				Site URL:&nbsp;<a href="http://www.easywayordering.com/woow_sushi_algonquin/" target="_blank">http://wwww.easywayordering.com/ woow_sushi_algonquin/</a>
 		                </div>
@@ -140,4 +147,28 @@
     </div><!--End header Div-->
 </div><!--End maincontainer Div-->
 </body>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//点击加入优惠卷业务
+		$(".coupon").click(function(){
+			var id = $(this).attr("data-id");
+			//alert(id);
+			$.post('__APP__/Index/join_coupons',{id:id},function(data){
+				if(data){
+					$("#joinCou"+data).html("In Coupons");
+				}
+			})
+		});
+		//点击加入评论业务
+		$(".review").click(function(){
+			var id = $(this).attr("data-id");
+			//alert(id);
+			$.post('__APP__/Index/join_reviews',{id:id},function(data){
+				if(data){
+					$("#joinRev"+data).html("In Reviews");
+				}
+			})
+		});
+	});
+</script>
 </html>

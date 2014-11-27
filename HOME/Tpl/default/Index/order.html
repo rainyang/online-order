@@ -1,15 +1,15 @@
             <div class="order">
-                <h1>Your Order</h1>
+                <h1>Your Order1</h1>
                 <ul class="ordertiems">
                     <volist name="order" id="vo">
-                        <li class="orderitem" data-price='{$vo['price']}'>
+                        <li class="orderitem" data-price='{$vo['price']}' data-add-price="{$vo['item_add_price']}">
                             <span class="quantity">
                             <a class="reduce" href="javascript:;" s_id="{$vo['id']}">-</a>
                             <span class="num qty">{$vo['quantity']}</span>
                             <a class="add" href="javascript:;" s_id="{$vo['id']}">+</a>
                         </span>
                         <span class="name">{$vo['item_name']}</span>
-                        <span class="price rt">${$vo['price'] * $vo['quantity']}</span>
+                        <span class="price rt">$<em class="em_price">{$vo['price'] * $vo['quantity']}</em><?php if($vo['item_add_price']) echo '<em class="hastip" data-id="'.$vo['id'].'">+' . $vo['quantity'] * $vo['item_add_price'] . "</em>";?></span>
                         </li>
                     </volist>
                     <!--<li class="last"><a href="{:U('Member/yourOrder')}">Ready</a></li>-->
@@ -17,41 +17,235 @@
                 <ul class="subtotal-item">
                     <li>
                         <span>Subtotal</span>
-                        <span class="subtotal sub-total">$60.00</span>
+                        <span class="subtotal sub-total">$0.00</span>
                     </li>
                     <li>
                         <span class="tax-text">Tax</span>
-                        <span class="tax">$4.00</span>
+                        <span class="tax">$0.00</span>
                     </li>
                 </ul>
+                    <?php
+                    if(ACTION_NAME != 'placeOrder'){
+                    ?>
                     <ul class="mode clearfix">
-                        <li class="selected">
-                            <span class="drop_box"><label>Delivery</label><span></span>
-                                <ul style="display: none;">
-                                    <li>Yes</li>
-                                </ul>
-                            </span>
-                        </li>
                         <li>
-                            <span class="drop_box"><label>Coupons(9)</label><span></span>
-                                <ul style="display: none;">
-                                    <li>Coupons</li>
-                                </ul>
-                            </span>
+                            <span class="drop_box btn-coupons"><label>Coupons list.</label></span>
                         </li>
+                        </ul>
+                    <h2 class="to-order">Ready to order?</h2>
+                    <?php
+                    }
+                    ?>
+                <div class="finish-btn">
+                    <?php
+                    if(ACTION_NAME == 'placeOrder'){
+                    ?>
+                    <if condition='cookie("goMenuHubCoupons") neq ""'>
+                        <ul class="mode clearfix">
                         <li>
-                            <span class="drop_box"><label>Pickup</label><span></span>
-                                <ul style="display: none;">
-                                    <li>Yes</li>
-                                </ul>
-                            </span>
+                            <span class="drop_box"><label>use coupons.</label></span>
                         </li>
-                    </ul>
-                
-                <ul class="subtotal-item total">
-                    <li>
-                        <span>Total</span>
-                        <span class="subtotal all-total">$64.00</span>
-                    </li>
-                </ul>
+                        </ul>
+                    </if>
+                       <div class="place-order"><a href="javascript:void(0)" id="place-order">Place order</a></div> 
+                    <?php 
+                    }
+                    else{
+                    ?>
+                    <a class="check-btn novalid" id="delivery" href="javascript:void(0)">
+                        <!--<h3>I want delivery!</h3>
+                        <p class="delivery">Delivery $<span>2.00</span></p>
+                        <p class="delivery-total">Total $<span>0.00</span></p>-->
+                        <div id="ok-delivery" style="display:none;">
+                            <h3>I want delivery!</h3>
+                            <p class="delivery">Delivery $<span>{$resinfo.min_delivery}</span></p>
+                            <p class="delivery-total">Total $<span>0.00</span></p>
+                        </div>
+                        <div id="no-delivery">
+                            <h3>Want delivery?</h3>
+                            <p class="delivery">Add $<span>2.00</span></p>
+                            <p class="delivery-total">Minimum $<span>{$resinfo.order_minimum}</span></p>
+                        </div>
+                    </a> 
+                    <a class="pickup-btn" id="pickup" href="{:U('Member/placeOrder?res_id='.$resinfo["id"].'&type=pickup')}">
+                        <!--<h3>Pickup not available</h3>-->
+                        <h3>I'll pick it up</h3>
+                        <p class="delivery-total">Total $<span>0.00</span></p>
+                    </a>          	
+                    <?php }?>
+                </div>
               </div>
+<script type="text/x-tmpl" id="tmpl-delivery">
+    <h3>I want delivery!</h3>
+    <p class="delivery">Delivery $<span>{%=o.delivery%}</span></p>
+    <p class="delivery-total">Total $<span>{%=o.total%}</span></p>
+</script>
+
+<script type="text/x-tmpl" id="tmpl-no-delivery">
+    <h3>Want delivery?</h3>
+    <p class="delivery">Add $<span>2.00</span></p>
+    <p class="delivery-total">Minimum $<span>0.00</span></p>
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+    $('.hastip').tooltipsy({
+        content: function ($el, $tip) {
+            var id = $el.attr('data-id');
+            $.get("{:U('Order/getPackageAddItem')}", {id : id}, function (data) {
+                $tip.html(data);
+            });
+            
+            return 'Fallback content';
+        },
+        offset: [-10, 0],
+        show: function (e, $el) {
+            $el.css({
+                'left': parseInt($el[0].style.left.replace(/[a-z]/g, '')) - 50 + 'px',
+                'opacity': '0.0',
+                'display': 'block'
+            }).animate({
+                'left': parseInt($el[0].style.left.replace(/[a-z]/g, '')) + 50 + 'px',
+                'opacity': '1.0'
+            }, 300);
+        },
+        hide: function (e, $el) {
+            $el.slideUp(100);
+        },
+        css: {
+            'padding': '10px',
+            'max-width': '200px',
+            'color': '#303030',
+            'background-color': '#f5f5b5',
+            'border': '1px solid #deca7e',
+            '-moz-box-shadow': '0 0 10px rgba(0, 0, 0, .5)',
+            '-webkit-box-shadow': '0 0 10px rgba(0, 0, 0, .5)',
+            'box-shadow': '0 0 10px rgba(0, 0, 0, .5)',
+            'text-shadow': 'none'
+        }
+    });
+    //最小送餐金额
+    order.order_minimum = {$resinfo.order_minimum};
+    order.min_delivery = {$resinfo.min_delivery};
+    order.deliveryUrl = "{:U('Member/placeOrder?res_id='.$resinfo["id"].'&type=delivery')}";
+    order.pickupUrl = "{:U('Member/placeOrder?res_id='.$resinfo["id"].'&type=pickup')}";
+    var subTotal = 0.00;
+    var tax = 0.00;
+
+    $(".reduce").live('click',function(){
+        var val = parseInt($(this).siblings(".qty").html());
+        if(val>1){
+            var old_price = $(this).parents('.orderitem').find('.em_price').html();
+            //增加菜品的价格
+            var old_add_price = $(this).parents('.orderitem').find('.hastip').html();
+            var unit_price = $(this).parents('.orderitem').attr('data-price');
+
+            //增加菜品的单价
+            var unit_add_price = $(this).parents('.orderitem').attr('data-add-price');
+            var newprice = parseFloat(old_price) - parseFloat(unit_price);
+            var newAddPrice = parseFloat(old_add_price) - parseFloat(unit_add_price);
+
+            $(this).siblings(".qty").html(val-1);
+            $(this).parents('.orderitem').find('.em_price').html(newprice.toFixed(2));
+            $(this).parents('.orderitem').find('.hastip').html('+' + newAddPrice.toFixed(2));
+        }else{
+            $(this).parents(".orderitem").remove();
+        }
+        var id = $(this).attr("s_id");
+        $.post("{:U('Dishes/reduceQty')}",{id:id},function(){
+        },'json');
+        order.calSubTotal();
+    })
+
+    $(".add").live('click',function(){
+        var val = parseInt($(this).siblings(".qty").html());	
+        var old_price = $(this).parents('.orderitem').find('.em_price').html();
+        //增加菜品的价格
+        var old_add_price = $(this).parents('.orderitem').find('.hastip').html();
+        var unit_price = $(this).parents('.orderitem').attr('data-price');
+        //增加菜品的单价
+        var unit_add_price = $(this).parents('.orderitem').attr('data-add-price');
+        var id = $(this).attr("s_id");
+        
+        var newprice = parseFloat(old_price) + parseFloat(unit_price);
+        var newAddPrice = parseFloat(old_add_price) + parseFloat(unit_add_price);
+
+        $(this).parents('.orderitem').find('.em_price').html(newprice.toFixed(2));
+        $(this).parents('.orderitem').find('.hastip').html('+' + newAddPrice.toFixed(2));
+        $(this).siblings(".qty").html(val+1);
+        $.post("{:U('Dishes/addQty')}",{id:id},function(){
+        });
+        order.calSubTotal();
+    });
+
+    order.calTip();
+    order.calSubTotal();
+
+    $('.tip-percent').click(function(){
+        var tipPercent = $(this).attr('data-percent');
+        order.calTip(tipPercent);
+        $('.tip-percent').removeClass('hover');
+        $(this).addClass('hover');
+    });
+
+    $(".order").smartFloat();
+
+    $('#addNewAddress').click(function(){
+        $('.address-fields').toggle();
+    });
+
+    $('#place-order').click(function(){
+        if(!res_id){
+            alert('Illegal operation.');
+            return false;
+        }
+        
+        var address_id = $('.address-radio:input:radio:checked').val();
+        var card_id = $('.card-radio:input:radio:checked').val();
+        var tip = $('#order-tip').text().substr(1);
+        
+        var orderInfo = {
+            restaurant_id: res_id,
+            type : '{$type}',
+            address_id : address_id,
+            card_id : card_id,
+            tip : tip,
+            payment : payment
+        };
+
+        var param = $.param(orderInfo);
+
+        $.post(doOrderUrl, orderInfo, function(data){
+            console.log(data);
+            window.location.href = data.url;
+        }, 'json');
+    });
+
+    $('#credit-tab').click(function(){
+        payment = 'card';
+        var tipPercent = $('.tip-percent.hover').attr('data-percent');
+        console.log('TIP:'+tipPercent);
+        order.calTip(tipPercent);
+        $('#cash-tab').removeClass('hover');       
+        $(this).removeClass('hover').addClass('hover');       
+        $('.credit-and-other').show();
+        $('.cartinfo-tip').show();
+        $('.other-payments').hide();
+        $('.add-edit-address').show();
+        $('.line-total').show();
+    });
+    
+    $('#cash-tab').click(function(){
+        payment = 'cash';
+        order.calTip(0);
+        $('#credit-tab').removeClass('hover');       
+        $(this).removeClass('hover').addClass('hover');       
+        $('.other-payments').show();
+        $('.cartinfo-tip').hide();
+        $('.credit-and-other').hide();
+        $('.add-edit-address').hide();
+        $('.line-total').hide();
+    });
+});
+</script>
+

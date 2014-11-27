@@ -252,6 +252,144 @@ $(function(){
 			}
         });
 	}
+
+    //优惠券列表
+    $(".btn-coupons").click(function(e)
+    {
+        //console.log('111');
+        var scrolls = $(window).scrollTop();
+        $(".popup_layer").show();
+        initLayer($(".coupon_layer"));
+        $(".coupon_layer").show();
+
+        //使弹出框始终保持在屏幕的偏上方,可见
+        $(".coupon_layer").css("margin-top", scrolls + 100);
+
+        $.ajaxSettings.async = false;         
+        $.getJSON(getResCouponsUrl, {res_id : res_id}, function(data){
+            var content = '';
+            $.each(data, function(i, item){
+                var coupons_item_list = '';
+                if(item.type == 3){
+                    coupons_item_list = getCouponsItem(item);
+                    console.log('coupons_item:' + coupons_item_list);
+                }
+                var disabled = (item.min_order < order.subTotal) ? '' : 'disabled'; //不满足条件的不能选择
+                content += '<div class="d1"><input name="coupons_radio" id="coupons_item_'+item.id+'" class="coupons_radio" '+disabled+' type="radio" value="'+item.id+'" /><span><label for="coupons_item_'+item.id+'">'+ item.title +'</label></span></div><div class="coupons_detail hide" data-id="'+item.id+'"><p>'+ item.desc+'</p>' + coupons_item_list +'</div>';
+            });
+
+            //加一个none的选项,可取消使用优惠券
+            content += '<div class="d1"><input name="coupons_radio" id="coupons_item_none" class="coupons_radio" type="radio" value="none" /><span><label for="coupons_item_none">None</label></span></div>';
+            $('#coupons_list').html(content);
+        });
+    });
+
+    //确定使用优惠券
+    $('#btn-coupons-confirm').live("click", function(){
+        //用户选择的优惠券id
+        var coupon_id = $('input:radio[name="coupons_radio"]:checked').val();
+        //用户选择了赠菜，菜的id
+        var coupon_item_id = $('input:radio[name="give_item"]:checked').val();
+        if(coupon_item_id === undefined){
+            coupon_item_id = 0;
+        }
+
+        //计算优惠信息，并根据不同优惠类别显示,暂时不这么做了
+        //getDiscountInfo(coupon_id);
+
+        setCouponInfo(coupon_id);
+
+        //存储优惠信息到cookie, todo:优惠信息存储多久? 存储时间长了可能优惠信息就下架了，时间短了是否合适
+        var couponData = {
+                    res_id : res_id, 
+                    coupon_id: coupon_id, 
+                    coupon_item_id: coupon_item_id
+            };
+
+        $.post(useCouponUrl, couponData, function(data){
+            console.log(data);
+        });
+
+        $(".popup_layer").hide();
+        $(".coupon_layer").hide();
+    });
+
+    function setCouponInfo(id){
+        if(!id){
+            alert('No selected items');
+            return false; 
+        }
+
+        if (id === 'none') {
+            $('.order .mode .coupon-info').remove();
+        }
+
+        $.getJSON(getCouponsInfoUrl, {id : id}, function(data){
+            //1折扣，2抵现，3赠菜，4专属优惠
+            $('.order .mode').append('<li class="coupon-info">You have been using coupons</li>');
+        });
+
+    }
+
+    //获得优惠券赠送的菜品信息
+    function getCouponsItem(data){
+        //$.ajaxSettings.async = false;         
+        var contents = '';
+        $.getJSON(getCouponsItemUrl, {coupons_id : data.id}, function(res){
+            //console.log(res);
+            $.each(res, function(i, item){
+                contents += '<p><input name="give_item" type="radio" id="give_item_radio_'+ item.id +'" value="'+ item.id +'"> <label for="give_item_radio_'+ item.id +'">'+item.item_name+'</label></p>';
+            });
+
+            //console.log(contents);
+        });
+        return contents;
+    }
+
+    //获得优惠券详细信息,
+    //todo:暂时不这么做了,本函数暂时不使用
+    function getDiscountInfo(id){
+        if(!id){
+            alert('No selected items');
+            return false; 
+        }
+
+        if (id === 'none') {
+            console.log('none');
+            order.coupons_type = 'none';
+            order.calSubTotal();
+        }
+
+        $.getJSON(getCouponsInfoUrl, {id : id}, function(data){
+            //1折扣，2抵现，3赠菜，4专属优惠
+            switch (data.type){
+                case "1":
+                    order.coupons_type = data.type;
+                    order.discount = data.discount;
+                    order.calSubTotal();
+                    break;
+                case "2":
+                    order.coupons_type = data.type;
+                    order.cash = data.cash;
+                    order.calSubTotal();
+                    break;
+                case "3":
+                    var give_item = $('input:radio[name="give_item"]:checked').val();
+                    order.coupons_type = data.type;
+                    order.cash = data.cash;
+                    //order.calSubTotal();
+                    break;
+                default:
+                    break;
+            }
+
+        });
+    }
+
+    $('.coupons_radio').live('click', function(){
+        $('.coupons_detail').hide();
+        $('.coupons_detail[data-id='+$(this).val()+']').show();
+    });
 	
 	//显示菜单弹出层
 	function detailShowLayer(){
@@ -276,6 +414,8 @@ $(function(){
 			}
 			
         });	
+
+        
 		
 		$(".popup_layer .close").live('click',function(e) {
 			$(".package_layer .context .d2 .d2_title").empty();
@@ -289,7 +429,7 @@ $(function(){
 		$(".detail .contact .book a").click(function(e) {
 			
             $(".popup_layer").show();
-		   initLayer($(".popup_layer .booking_layer"));
+		    initLayer($(".popup_layer .booking_layer"));
             $(".popup_layer .booking_layer").show();
 			var resid = $(this).attr("resid");
 			$("#bk_resid").val(resid);
@@ -319,6 +459,13 @@ $(function(){
         });	
 	}
 	
+    $('.please_login').live('click', function(){
+        $(".popup_layer .layer").hide();
+		initLayer($(".popup_layer .login_layer"));
+        $(".popup_layer .login_layer").show();
+        $('html, body').animate({scrollTop:0}, 'slow');
+    });
+
 	function top(){
 		$(".top .btn1 .login").click(function(e) {
 		    $(".popup_layer").show();
@@ -370,7 +517,7 @@ $(function(){
 		var obj_h = obj.height();
 		layerObj = obj;
 		
-		var marginTop = (h - obj_h)*0.5;
+		var marginTop = (h - obj_h)*.5;
 		
 		if(marginTop<0){
 			marginTop = 0;
@@ -409,4 +556,31 @@ $(function(){
 		}
 	}
 
+    //套餐最大选择几项,注意必须把事件绑定到checkbox上，否则会出现两次事件
+    $(".item_check_select input[type='checkbox']").live('click', function(event){
+        var max_select = $(this).closest('ul').attr('max-select');
+        
+        if(max_select !== undefined){
+            var lis = $(this).closest('ul').find("input");
+            var max_item = 0;
+            $(this).closest('ul').find("input").each(function(){
+                //console.log($(this).attr('checked'));
+                if($(this).attr('checked') =='checked'){
+                    max_item += 1;
+                }
+            });
+            //console.log(max_item);
+            if(max_item >= max_select){
+                //$(this).closest('ul').find("input:checkbox[checked='false']").attr("disabled", "disabled");
+                //console.log($(this).closest('ul').find("input:checkbox[checked!='checked']"));
+                $(this).closest('ul').find("input:checkbox[checked!='checked']").attr("disabled", "disabled");
+            }
+            else{
+                $(this).closest('ul').find("input").removeAttr("disabled");
+            }
+        }
+    });
+
 });
+
+

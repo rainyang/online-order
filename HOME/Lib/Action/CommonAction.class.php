@@ -3,7 +3,7 @@
 class CommonAction extends Action
 {
 
-//解密cookie数据
+    //解密cookie数据
 	public function _initialize(){
 		$cookie = cookie('OrderOnlineAuth');
 		if(!empty($cookie)){	
@@ -20,6 +20,28 @@ class CommonAction extends Action
 			$this->assign('member_count',$count);
 		}
 	}
+
+    /**
+     * 取得用户信息,转为object返回
+     *
+     * @return void
+     * @author RainYang
+     **/
+    public function auth()
+    {
+        $cookie = cookie('OrderOnlineAuth');
+
+		if(empty($cookie)){
+			$this->redirect('Index/index');	
+		}
+
+		$authlist = explode("\t",authcode($cookie));
+
+        $auth = new stdClass;
+        $auth->id = $authlist[0];
+        $auth->username = $authlist[1];
+        return $auth;
+    }
 
 }
 ?>

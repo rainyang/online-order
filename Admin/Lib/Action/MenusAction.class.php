@@ -167,7 +167,9 @@ class MenusAction extends CommonAction {
 	}
 	//add_item
 	public function add_Item()
-	{
+	{	$item_config = require('item.php');
+		//print_r($item_config);
+
 		$Cuisine 	= 	M('Cuisine');
 		$Menugroup 	= 	M('Menugroup');
 		$Item 		= 	M('Item');
@@ -183,6 +185,12 @@ class MenusAction extends CommonAction {
 		$data['description']			=	$_POST['item_desc'];
 		$data['description_chinese']	=	$_POST['item_desc2'];
 		$data['price']					=	$_POST['price'];
+		$data['is_item']				=	$_POST['is_item'];
+		$data['is_present']				=	$_POST['is_present'];
+		$data['singature_dishes']		=	$_POST['item_config']['singature_dishes'];
+		$data['recommend']				=	$_POST['item_config']['recommend'];
+		$data['spicy']					=	$_POST['item_config']['spicy'];
+		$data['peanut']					=	$_POST['item_config']['peanut'];
 		
 		//print_r($data);
 		if(isset($_FILES['image']) && !empty($_FILES['image'])&& $_FILES['image']['error']==0)
@@ -227,6 +235,7 @@ class MenusAction extends CommonAction {
 		$this->assign('cuisine_id',$list['cuisine_id']);
 		$this->assign('group_id',$list['id']);
 		$this->assign('info',$info);
+		$this->assign('item_config',$item_config);
 		$this->display();
 	}
 	//delete_item
@@ -285,7 +294,7 @@ class MenusAction extends CommonAction {
 			}
 		}
 		$CuisineList = $Cuisine->where(array('restaurant_id' => $_SESSION['restaurant_id']))->order('ordering asc')->select();
-		$info = $Package->where(array('id' => $Package_id))->find();print_r($info);
+		$info = $Package->where(array('id' => $Package_id))->find();//print_r($info);
 		$this->assign('info',$info);
 		$this->assign('CuisineList',$CuisineList);
 		

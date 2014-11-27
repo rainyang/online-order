@@ -50,7 +50,7 @@
         			<div class="links selected"><a href="__APP__/Index" >Restaurants</a></div>
                     <div class="links selected"> <a href="__APP__/Order/index/">Orders</a></div>
                     <div class="links selected"><a href="__APP__/Customer/index">Customers</a></div>
-                    
+                    <div class="links selected"><a href="__APP__/Website/index">Website</a></div>
 
         			<!-- <div class="links not"><a href="__APP__/Public/changePwd" >Change Password</a></div> -->
                     <!-- <div class="links not"><a href="__APP__/Public/addRestaurant" >Create New Restaurant</a></div> -->
@@ -66,6 +66,7 @@
             		<li><a href="__APP__/Index/index" class="selected_red">Restaurants Listing</a></li>
             	</ul>
             </div>
+
 
 
 
@@ -224,8 +225,14 @@
 
             <tr align="left" valign="top" id="delivery_radius" > 
                 <td></td>
-                <td><strong>Delivery Radius for Resturant:</strong><br />
-                    <input name="delivery_radius" type="text" size="40" id="delivery_radius" value="<?php echo ($info["delivery_radius"]); ?>">&nbsp;(miles)            </td>
+                <td><strong>Delivery Max Radius:</strong><br />
+                    <input name="delivery_radius" type="text" size="40" id="delivery_radius" value="<?php echo ($info["delivery_radius"]); ?>">&nbsp;(miles)            <br />
+			<strong>Delivery Min Radius:</strong><br />
+                    <input name="min_delivery" type="text" size="40" id="min_delivery" value="<?php echo ($info["min_delivery"]); ?>">&nbsp;(miles)            <br />
+			<strong>Option Miles:</strong><br />
+                    <input name="option_miles" type="text" size="40" id="option_miles" value="<?php echo ($info["option_miles"]); ?>">&nbsp;(miles)            <br />
+			<strong>Option Dollar:</strong><br />
+                    <input name="option_dollar" type="text" size="40" id="option_dollar" value="<?php echo ($info["option_dollar"]); ?>">&nbsp;($/mile)            </td>
             </tr>
             <!-- <tr align="left" valign="top" id="delivery_zone" class="hidden"> 
                 <td>&nbsp;</td>

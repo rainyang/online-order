@@ -4,18 +4,23 @@ $config	= array(
 	'DB_TYPE'=>'mysql',
 
 
+	/*
 	'DB_HOST'=>'gomenuhub3.db.10698022.hostedresource.com',
 	'DB_NAME'=>'gomenuhub3',
 	'DB_USER'=>'gomenuhub3',
 	'DB_PWD'=>'hub3@ADS0701',
+	*/
 
-
+	'DB_HOST'=>'localhost',
+	'DB_NAME'=>'gomenuhub3',
+	'DB_USER'=>'root',
+	'DB_PWD'=>'',
 
 	'DB_PORT'=>'3306',
 	'DB_PREFIX'=>'on_',//表前缀
 	'CACHE_TIME'=>3600,//缓存时间 单位是秒
 
-	'APP_DEBUG' => false,	//调试模式开关
+	'APP_DEBUG' => true,	//调试模式开关
 	'TOKEN_ON'=>false, 
 	'TMPL_CACHE_ON' =>  false,	//默认开启模板编译缓存 false 的话每次都重新编译模板
 	

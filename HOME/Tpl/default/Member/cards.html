@@ -12,7 +12,17 @@
 
 <script type="text/javascript" src="__PUBLIC__/Index/js/jquery-1.7.1.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Index/js/main.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Index/js/member.js"></script>
+<style>
+    .cards-list input{height:18px;}
+    .cards-list span{ margin-left:10px;}
+</style>
 </head>
+<script type="text/javascript" charset="utf-8">
+    var setDefaultCardUrl = "{:U('Member/setDefaultCard')}";
+    var doCardUrl = "{:U('Member/doCard')}";
+    var getCardUrl = "{:U('Member/getCards')}";
+</script>
 
 <body>
 	<div class="container">
@@ -22,49 +32,62 @@
             <!-- 用户中心开始 -->
     <div class="account-brink">
         <ul class="account-side">
-            <li><a href="account-orders.htm">Order history</a></li>
-            <li><a href="account-profile.htm">Profile</a></li>
-            <li><a href="account-add.htm">Addresses</a></li>
-            <li><a class="hover" href="account-card.htm">Credit cards</a></li>
+    	    <include file="Index:orderMenuLeft" />
         </ul>
         <div class="account-main">
             <h1>Credit cards</h1>
+            <?php
+            if(!$ma){
+                echo '<p class="no-cards" id="no-card">You have no saved credit cards.</p>';
+            } 
+            ?>
+            <div class="cards-list">
+                <volist name="Ma" id="vo">
+                <p class="no-cards <eq name="vo['is_default']" value="1">cards-default</eq>" data-id="{$vo.id}">
+                <span><input type="radio" name="card_id" class="card-radio" id="card_id" <eq name="vo['is_default']" value="1">checked</eq> value="{$vo.id}"></span><span class='card-number'>{$vo.card_number}</span><span class='card-zip'>{$vo.card_zip}</span><span style="float:right"><a herf="javascript;;" class="edit-card" data-id="{$vo.id}">Edit</a></span>
+                </p>
+                </volist>
+            </div>
+            <div class="add-edit-address"><span class="icon-plus">+</span><span id="address-name">Add Credit card</span><span class="setDefault" id="set-default-card">Set to the default</span></div>
+            <div class="account-list">
             <form class="cards-form">
               <label>Credit card number</label>
-              <input type="text" class="street-input">
+              <input type="text" class="street-input" id="card_number">
               <div class="exp-wrapper">
                 <div class="month">
                   <label>Exp.month</label>
-                  <select type="text" class="month-select">
+                  <select type="text" class="month-select" id="card_exp_month">
                     <option></option>
-                    <option>01</option>
-                    <option>02</option>
-                    <option>03</option>
+                    <option value="1">01</option>
+                    <option value="2">02</option>
+                    <option value="3">03</option>
                   </select>
                 </div>
                 <div class="year">
                   <label>Exp.year</label>
-                  <select type="text" class="year-select">
+                  <select type="text" class="year-select" id="card_exp_year">
                     <option></option>
-                    <option>2014</option>
-                    <option>2013</option>
-                    <option>2012</option>
+                    <option value="2014">2014</option>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
                   </select>
                 </div>
                 <div class="cvv">
                   <label>CVV</label>
-                  <input type="text" class="street-input">
+                  <input type="text" class="street-input" id="card_cvv">
                 </div>
                 <div class="billing">
                   <label>Billing zip</label>
-                  <input type="text" class="street-input">
+                  <input type="text" class="street-input" id="card_zip">
                 </div>
               </div>
-              <div class="order-btn"><a href="#">Add address</a></div>
-              <a class="count-cancle" href="#">Cancle</a>
+                <input type="hidden" id="member_id" value="{$Mid}">
+                <input type="hidden" id="member_card_id" value="{$ma['id']}">
+              <div class="order-btn"><a href="javascript:void(0)" id="btn-add-card">Save Credit cards</a></div>
+                <a class="count-cancle" data-type="card" href="javascript:void(0)">Cancle</a>
             </form>
 
-            
+            </div>
         </div>
     </div>
     <!-- 用户中心结束 -->

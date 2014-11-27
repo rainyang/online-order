@@ -1,3 +1,4 @@
+<div class="top-box">
 <div class="top clearfix">
         	<a href="/"><img class="logo" src="__PUBLIC__/Index/images/logo.gif" /></a>
            <if condition='cookie("OrderOnlineAuth") eq ""'>
@@ -7,9 +8,20 @@
             </div>
             <else />
             <div class="btn btn2">
-            	<a class="quit" href="{:U('Member/logout')}">Sign out</a>
-            	<a class="chris" href="{:U('Member/personal')}">{$member_name}</a>
+                <!--<a class="quit" href="{:U('Member/logout')}">Sign out</a>-->
                 <a class="cart" href="{:U('Member/yourOrder')}">Cart({$member_count})</a>
+                <div class="chris-box"> 
+            	    <a class="chris" href="{:U('Member/personal')}">{$member_name}<i class="fa fa-chevron-down"></i></a>
+                   <ul class="order-account-nav">
+                      <li class="nav-font fa fa-caret-up"></li>
+                      <li><a class="account-nav-1" href="{:U('Member/personal')}">Order historry</a></li>
+                      <li><a href="{:U('Member/profile')}">Profile</a></li>
+                      <li><a href="{:U('Member/address')}">Addresses</a></li>
+                      <li><a href="{:U('Member/cards')}">Credit cards</a></li>
+                      <li><a href="{:U('Member/logout')}">Log out</a></li>
+                  </ul>
+              </div>
             </div>
             </if>
         </div>
+</div>

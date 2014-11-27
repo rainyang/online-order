@@ -2,7 +2,7 @@
 return array(
 	//'配置项'=>'配置值'
 	 /** URL设置*/
-   'URL_HTML_SUFFIX'=>'.html',//URL伪静态后缀设置
+    'URL_HTML_SUFFIX'=>'.html',//URL伪静态后缀设置
     'URL_MODEL'=>3, // 如果你的环境不支持PATHINFO 请设置为3
 	'DB_TYPE'=>'mysql',
 
@@ -17,7 +17,7 @@ return array(
 	'DB_NAME'=>'gomenuhub3',
 	'DB_USER'=>'root',
 	'DB_PWD'=>'',
-
+    'DB_FIELDS_CACHE' => false,
 
 	'DB_PORT'=>'3306',
 	'DB_PREFIX'=>'on_',//表前缀

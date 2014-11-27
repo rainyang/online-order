@@ -7,7 +7,9 @@ a{
 	cursor: pointer;
 }
 h3{
-	color: #333;
+        /*
+	 *color: #333;
+         */
 	font-size: 18px;
 	margin: 0 0 10px;
 }
@@ -104,6 +106,7 @@ textarea::-webkit-input-placeholder {
 }
 .payments{
 	padding: 20px 0 0;
+        clear:both;
 }
 .payment-info{
     zoom:1;
@@ -358,7 +361,7 @@ textarea::-webkit-input-placeholder {
 	float: left;
 	padding: 9px 100px;
 }
-.no-addresses{
+.no-addresses, .no-cards{
 	font-size: 15px;
 	color: #333;
 	padding: 15px;
@@ -453,10 +456,30 @@ textarea::-webkit-input-placeholder {
 	padding-right: 5px;
 }
 
+.ng-binding{
+cursor: pointer;
+line-height: 30px;
+color: rgb(43, 90, 54);
+/*
+ *text-decoration: underline;
+ */
+}
 
+.no-addresses:hover, .no-cards:hover{
+background: #FAFCF0;
+}
 
+.setDefault{margin-left:20px;}
+.address-default, .cards-default{background:rgb(247, 249, 243);}
 
+/* credit cards*/
 
+/* placeOrder*/
+.address-right{float:right;}
+.address-error{color:red;}
 
-
-
+.note{
+    margin-top:5px;
+    font-size: 13px;
+line-height: 15px;
+color: #999;}

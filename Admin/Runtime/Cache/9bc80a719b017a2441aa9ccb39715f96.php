@@ -70,19 +70,20 @@
       <img style="width:1085px; height:90px;" src="__PUBLIC__/Images/img_856_cat_header.jpg" border="0" />
   </div>
    	
-   <div id="navigation_links">
-   <div id="navigation">
-    
-    <div class="links "><a href="__APP__/RestaurantDetails/index/restaurant_id/<?php echo ($_SESSION['restaurant_id']); ?>" >Restaurant(<?php echo ($_SESSION['restaurant_count']); ?>)</a></div>
-    <div class="links selected"><a href="__APP__/Order/index/restaurant_id/<?php echo ($_SESSION['restaurant_id']); ?>" class="">Orders(<?php echo ($order_count); ?>)</a></div>
-    <div class="links "><a href="__APP__/Customer/index" class="">Customers(0)</a></div>
-    <!-- <div class="links "><a href="?mod=coupon" class="">Coupons</a></div> -->
-    <div class="links "><a href="__APP__/Menus/index/restaurant_id/<?php echo ($_SESSION['restaurant_id']); ?>"class="">Menus</a></div>
-    <!-- <div class="links "><a href="?mod=mailing_list"class="">Mailing List</a></div>
-    <div class="links "><a href="analytics.html"class="">Analytics</a></div> -->
-    <br style="clear:both" />
-  </div>
-</div>
+ <div id="navigation_links">
+                           <div id="navigation">
+                            
+                            <div class="links "><a href="__APP__/RestaurantDetails/index/restaurant_id/<?php echo ($_SESSION['restaurant_id']); ?>" >Restaurants(<?php echo ($_SESSION['restaurant_count']); ?>)</a></div>
+                            <div class="links "><a href="__APP__/Order/index/restaurant_id/<?php echo ($_SESSION['restaurant_id']); ?>" class="">Orders(<?php echo ($_SESSION['order_count']); ?>)</a></div>
+                            <div class="links "><a href="__APP__/Customer/index" class="">Customers(0)</a></div>
+                            <div class="links "><a href="__APP__/Coupons/index" class="">Coupons</a></div>
+                            <div class="links selected"><a href="__APP__/Menus/index/restaurant_id/<?php echo ($_SESSION['restaurant_id']); ?>"class="">Menus</a></div>
+                            <div class="links "><a href="__APP__/Pay/index"class="">Pay Config</a></div>
+                            <!--<div class="links "><a href="analytics.html"class="">Analytics</a></div> -->
+                            <br style="clear:both" />
+                          </div>
+                        </div>
+
   
   <div id="tab_items">
     <ul>

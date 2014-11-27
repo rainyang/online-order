@@ -7,7 +7,7 @@
 <link href="__PUBLIC__/css/adminMain.css" rel="stylesheet" type="text/css" />
 <link href="__PUBLIC__/css/jquery-ui-1.8.22.custom.css" rel="stylesheet" type="text/css" />
 <!-- <link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />  -->
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<!-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>  -->
 <script type="text/javascript"> 
     
   function codeAddress() { 
@@ -24,6 +24,8 @@
       } 
     }); 
   } 
+
+	
 </script> 
 </head>
 
@@ -106,19 +108,19 @@
       <img style="width:1085px; height:90px;" src="__PUBLIC__/Images/img_856_cat_header.jpg" border="0" />
   </div>
    	
-   <div id="navigation_links">
-   <div id="navigation">
-    
-    <div class="links selected"><a href="__APP__/RestaurantDetails/index/restaurant_id/<?php echo ($_SESSION['restaurant_id']); ?>" >Restaurant(<?php echo ($_SESSION['restaurant_count']); ?>)</a></div>
-    <div class="links "><a href="__APP__/Order/index/restaurant_id/<?php echo ($_SESSION['restaurant_id']); ?>" class="">Orders(1)</a></div>
-    <div class="links "><a href="__APP__/Customer/index" class="">Customers(0)</a></div>
-    <!-- <div class="links "><a href="?mod=coupon" class="">Coupons</a></div> -->
-    <div class="links "><a href="__APP__/Menus/index/restaurant_id/<?php echo ($_SESSION['restaurant_id']); ?>"class="">Menus</a></div>
-    <!-- <div class="links "><a href="?mod=mailing_list"class="">Mailing List</a></div>
-    <div class="links "><a href="analytics.html"class="">Analytics</a></div> -->
-    <br style="clear:both" />
-  </div>
-</div>
+  <div id="navigation_links">
+                           <div id="navigation">
+                            
+                            <div class="links "><a href="__APP__/RestaurantDetails/index/restaurant_id/<?php echo ($_SESSION['restaurant_id']); ?>" >Restaurants(<?php echo ($_SESSION['restaurant_count']); ?>)</a></div>
+                            <div class="links "><a href="__APP__/Order/index/restaurant_id/<?php echo ($_SESSION['restaurant_id']); ?>" class="">Orders(<?php echo ($_SESSION['order_count']); ?>)</a></div>
+                            <div class="links "><a href="__APP__/Customer/index" class="">Customers(0)</a></div>
+                            <div class="links "><a href="__APP__/Coupons/index" class="">Coupons</a></div>
+                            <div class="links selected"><a href="__APP__/Menus/index/restaurant_id/<?php echo ($_SESSION['restaurant_id']); ?>"class="">Menus</a></div>
+                            <div class="links "><a href="__APP__/Pay/index"class="">Pay Config</a></div>
+                            <!--<div class="links "><a href="analytics.html"class="">Analytics</a></div> -->
+                            <br style="clear:both" />
+                          </div>
+                        </div>
 
 
 <div id="main_heading">
@@ -131,7 +133,7 @@
             <tr align="left" valign="top">
                 <td width="76">&nbsp;</td>
                 <td width="1052"><strong>Restaurant Name</strong><br />
-                    <textarea name="catname" cols="35" id="catname" style="font-size:18px; font-family:Arial;"><?php echo ($info["nickname"]); ?>                    </textarea></td>
+                    <textarea name="catname" cols="35" id="catname" style="font-size:18px; font-family:Arial;"  disabled="disabled"><?php echo ($info["nickname"]); ?>                    </textarea></td>
             </tr>
                         <!-- <tr align="left" valign="top"> 
                 <td width="76"></td>
@@ -148,7 +150,7 @@
             <tr align="left" valign="top"> 
                 <td width="76"></td>
                 <td><strong>Email:</strong><br />
-                    <input name="email" type="text" size="40" value="<?php echo ($info["account"]); ?>" id="email" /> </td>
+                    <input name="email" type="text" size="40" value="<?php echo ($info["account"]); ?>" id="email" disabled="disabled" /> </td>
             </tr>
             <!--<tr align="left" valign="top"> 
               <td width="76"></td>
@@ -218,11 +220,7 @@
                 </td>
             </tr> -->
 
-            <tr align="left" valign="top" id="delivery_radius" > 
-                <td></td>
-                <td><strong>Delivery Radius for Resturant:</strong><br />
-                    <input name="delivery_radius" type="text" size="40" id="delivery_radius" value="<?php echo ($info["delivery_radius"]); ?>">&nbsp;(miles)            </td>
-            </tr>
+            
             <!-- <tr align="left" valign="top" id="delivery_zone" class="hidden"> 
                 <td>&nbsp;</td>
                 <td> <a href="ajax.php?mod=resturant&item=delivery_zone"  id="lnkdelivery_zones" rel="facebox"><img src="images/zones.png" title="Draw Delivery Zones"/></a>
@@ -278,11 +276,7 @@
                 <td><strong>Sales tax % for Restaurant:</strong><br />
                     <input name="tax_percent" type="text" size="40" id="tax_percent" value="<?php echo ($info["tax"]); ?>">            </td>
             </tr>
-            <tr align="left" valign="top"> 
-                <td></td>
-                <td><strong>Delivery Charges:</strong><br />
-                    <input name="delivery_charges" type="text" size="40" id="delivery_charges" value="<?php echo ($info["delivery_charges"]); ?>">            </td>
-            </tr> 
+            
             <tr align="left" valign="top"> 
                 <td></td>
                 <td><strong>Announcements:</strong><br />
@@ -295,13 +289,36 @@
                     <input name="announce_status" type="radio" value="0"  id="announce_status" <?php if($info['announcements_status'] == 0): ?>checked<?php endif; ?>>Deactivate
                 </td>
             </tr>  
-            <!-- <tr align="left" valign="top"> 
+		<tr align="left" valign="top"> 
+                <td></td>
+                <td><strong>Allow Dine In Option:</strong><br />
+                    <input name="dinein" type="radio" value="1"  id="dinein" <?php if($info['is_dinein'] == 1): ?>checked<?php endif; ?>>Yes            &nbsp;&nbsp;
+                    <input name="dinein" type="radio" value="0"  id="dinein" <?php if($info['is_dinein'] == 0): ?>checked<?php endif; ?>>No
+                </td>
+            </tr> 
+            <tr align="left" valign="top"> 
                 <td></td>
                 <td><strong>Allow Delivery Option:</strong><br />
-                    <input name="delivery_offer" type="radio" value="1"  id="delivery_offer" checked>Yes            &nbsp;&nbsp;
-                    <input name="delivery_offer" type="radio" value="0"  id="delivery_offer" >No
+                    <input name="delivery_offer" type="radio" value="1"  id="delivery_offer" <?php if($info['is_delivery'] == 1): ?>checked<?php endif; ?>>Yes            &nbsp;&nbsp;
+                    <input name="delivery_offer" type="radio" value="0"  id="delivery_offer" <?php if($info['is_delivery'] == 0): ?>checked<?php endif; ?>>No
                 </td>
-            </tr> -->  
+            </tr> 
+            <tr align="left" valign="top" id="delivery_radius" > 
+                <td></td>
+                <td><strong>Delivery Max Radius:</strong><br />
+                    <input name="delivery_radius" type="text" size="40" id="delivery_radius" value="<?php echo ($info["delivery_radius"]); ?>">&nbsp;(miles)            <br />
+			<strong>Delivery Min Radius:</strong><br />
+                    <input name="min_delivery" type="text" size="40" id="min_delivery" value="<?php echo ($info["min_delivery"]); ?>">&nbsp;(miles)            <br />
+			<strong>Option Miles:</strong><br />
+                    <input name="option_miles" type="text" size="40" id="option_miles" value="<?php echo ($info["option_miles"]); ?>">&nbsp;(miles)            <br />
+			<strong>Option Dollar:</strong><br />
+                    <input name="option_dollar" type="text" size="40" id="option_dollar" value="<?php echo ($info["option_dollar"]); ?>">&nbsp;($/mile)            </td>
+            </tr>
+            <tr align="left" valign="top"> 
+                <td></td>
+                <td><strong>Delivery Charges:</strong><br />
+                    <input name="delivery_charges" type="text" size="40" id="delivery_charges" value="<?php echo ($info["delivery_charges"]); ?>">            </td>
+            </tr> 
             <tr align="left" valign="top"> 
                 <td></td>
                 <td><strong>Resturant Status:</strong><br />
@@ -342,7 +359,10 @@
                     <input type="hidden"  id="hzone1_coordinates" value=""/>
                     <input type="hidden"  id="hzone2_coordinates" value=""/>
                     <input type="hidden"  id="hzone3_coordinates" value=""/> -->
-
+					
+					
+					<input type="hidden" name="restaurant_name_hidden" value="<?php echo ($info['nickname']); ?>"/>
+                    <input type="hidden" name="email_hidden" value="<?php echo ($info['account']); ?>"  />
                     <input type="hidden" name="restaurant_id" value="<?php echo ($restaurant_id); ?>"/>
                     <input type="submit" name="btnSave" value="Save Changes"  />
                 </td>

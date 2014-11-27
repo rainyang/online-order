@@ -1,27 +1,25 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<!DOCTYPE html>
+<html>
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>OrderOnline -- Home</title>
+<title>1OrderOnline -- Home</title>
 <link rel="stylesheet" href="__PUBLIC__/Index/css/reset.css" />
 <link rel="stylesheet" href="__PUBLIC__/Index/css/public.css" />
 <link rel="stylesheet" href="__PUBLIC__/Index/css/top.css" />
 <link rel="stylesheet" href="__PUBLIC__/Index/css/home.css" />
 <link rel="stylesheet" href="__PUBLIC__/Index/css/foot.css" />
+<link rel="stylesheet" href="__PUBLIC__/Index/css/font-awesome.css" />
 
 <script type="text/javascript" src="__PUBLIC__/Index/js/jquery-1.7.1.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Index/js/list_scroll.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Index/js/slide.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Index/js/home.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Index/js/main.js"></script>
-<script src="http://maps.google.cn/maps?file=api&ampv=2&ampkey=your key&sensor=true" type="text/javascript"></script>
-<script type="text/javascript" src="__PUBLIC__/Index/js/coordinate.js"></script>
-
 
 </head>
 <body>
-	<div class="container">
     	<include file="Index:head" />
+	<div class="container">
     	<include file="Index:search" />
 
         <div class="banner">
@@ -67,20 +65,22 @@
                 <a href="#"><img src="__PUBLIC__/Index/images/search_btn2.gif" /></a>
             </div>
            	<volist name="list" id="vo">
-            <div class="list">
-            	<ul class="clearfix">
+            <ul class="list">
                 <volist name="vo" id="v">
-                
-                    <li class="clearfix">
-                        <div class="lt">
-                            <a href="{:U('Dishes/detail?id='.$v['id'])}"><img src="{$v.logo}" width="120" height="56" /></a>
-                            <p class="p1">{$v.nickname}</p>
-                            <div num="{:W('ShowStar',array('id'=>$v['id']))}" class="star clearfix"></div>
-                            <p>Delivery ${$v['delivery_charges']}</p>
-                            <p>Minimum ${$v['order_minimum']}</p>
+                    <li>
+                        <a href="{:U('Dishes/detail?id='.$v['id'])}">
+                        <img class="restanurant-img" src="{$v.logo}" width="92" height="94">
+                        <div class="restaurant-text">
+                            <h1>{$v.nickname}<span class="few">too few ratings</span></h1>
+                            <p>Asaian,chinese</p>
+                            <!--<a href="{:U('Dishes/detail?id='.$v['id'])}"><img src="{$v.logo}" width="120" height="56" /></a>-->
+                            <!--<div num="{:W('ShowStar',array('id'=>$v['id']))}" class="star clearfix"></div>-->
+                            <p class="topdish">Top dishes:Thquila-Lime Marinated Chicken Burrito,Steak Fajita,Burrito Bowl<span class="sponsore" href="#">sponsores</span></p>
+                            <p>${$v['order_minimum']} minimum<span class="value-line">|</span>${$v['delivery_charges']} delivery fee<strong class="distance">distance:0.4mi</strong></p>
                            <!--  <p>Parking:<if condition="$v['parking'] eq '1'">Yes<else/>No</if></p> -->
                         </div>
-                        
+                        </a> 
+                        <!--
                         <div class="rt">
                         	<p>{$v.remark}</p>
                             <ul>
@@ -90,12 +90,10 @@
                              </volist>
                             </ul>
                         </div>
+                        -->
                     </li>
-                    
-                    </volist>
-                
-                </ul>
-            </div>
+                </volist>
+            </ul>
          </volist>
             
             
@@ -105,15 +103,6 @@
     <div class="foot"></div>
    
     <div class="popup_layer"></div>
-<script type="text/javascript">
-    $(document).ready(function()
-    {
-        $("#btn_go").click(function()
-        {
-            $("#form").submit();
-            return false;
-        });
-    });
-</script>
+
 </body>
 </html>

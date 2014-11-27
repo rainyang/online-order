@@ -33,7 +33,7 @@ function additem(resid,disid){
 		}
 		var htm = '<a href="javascript:;" id="additem_submit">Add Item</a>';
 		var htm0 = '<a href="javascript:;" style="color:#999;border:none;">Not in the supply period</a>';
-		var htm2 = '<a href="javascript:;" style="color:#999;border:none;">Please login</a>';
+		var htm2 = '<a href="javascript:;" class="please_login" style="color:#999;border:none;">Please login</a>';
 			if(rs['dishes']['open'] == '0'){
 				 $('.detail_layer .context .d4 .d4_submit').html(htm0);
 			}else if(rs['dishes']['open'] == '2'){
@@ -71,19 +71,19 @@ function addpackage(resid,packid){
 			var group_id = this['id'];
             var inputType = (this['group_type'] == 0 ? "radio" : "checkbox");
 
-			$('.package_layer .context .d2 .d2_title').append('<ul><li class="choice"><h2 class="name">'+this['group_name']+'</h2><ul class="options" data-id="' + group_id + '"></ul></li></ul>');
+			$('.package_layer .context .d2 .d2_title').append('<ul><li class="choice"><h2 class="name">'+this['group_name']+'</h2><ul class="options" data-id="' + group_id + '" max-select="'+this['max_select']+'"></ul></li></ul>');
 
             $(this['item_info']).each(function(){
                 var $price = this['attr'];
                 $price = ($price == undefined) ? '' : '$'+$price;
 
-                $('.package_layer .context .d2 .d2_title .choice .options[data-id='+ group_id +']').append('<li class="option"><input type="'+inputType+'" name="itemName['+group_id+']" value="'+this['id']+'" attr-price="'+$price.substr(1)+'"><label><span class="name">'+this['item_name']+'</span><span class="price">'+$price+'</span></label></li>');
+                $('.package_layer .context .d2 .d2_title .choice .options[data-id='+ group_id +']').append('<li class="option item_check_select"><input type="'+inputType+'" name="itemName_'+group_id+'[]" id="itemName_'+group_id+'_'+this['id']+'" value="'+this['id']+'" attr-price="'+$price.substr(1)+'"><label for="itemName_'+group_id+'_'+this['id']+'"><span class="name">'+this['item_name']+'</span><span class="price">'+$price+'</span></label></li>');
             });
         });
 
 		var htm = '<a href="javascript:;" id="addpackage_submit">Add Item</a>';
 		var htm0 = '<a href="javascript:;" style="color:#999;border:none;">Not in the supply period</a>';
-		var htm2 = '<a href="javascript:;" style="color:#999;border:none;">Please login</a>';
+		var htm2 = '<a href="javascript:;" class="please_login" style="color:#999;border:none;">Please login</a>';
 			if(rs['dishes']['open'] == '0'){
 				 $('.package_layer .context .d4 .d4_submit').html(htm0);
 			}else if(rs['dishes']['open'] == '2'){
@@ -106,3 +106,5 @@ function starShow(obj,num){
         }
     });
 }
+
+

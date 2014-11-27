@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>OrderOnline -- Personal Center</title>
@@ -12,6 +12,14 @@
 
 <script type="text/javascript" src="__PUBLIC__/Index/js/jquery-1.7.1.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Index/js/main.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Index/js/member.js"></script>
+<style>
+    .address-list input{height:18px;}
+    .address-list span{ margin-left:10px;}
+</style>
+<script type="text/javascript" charset="utf-8">
+    var setDefaultAddressUrl = "{:U('Member/setDefaultAddress')}";
+</script>
 </head>
 
 <body>
@@ -22,53 +30,66 @@
 <!-- 用户中心开始 -->
     <div class="account-brink">
         <ul class="account-side">
-            <li><a href="account-orders.htm">Order history</a></li>
-            <li><a href="account-profile.htm">Profile</a></li>
-            <li><a class="hover" href="account-add.htm">Addresses</a></li>
-            <li><a href="account-card.htm">Credit cards</a></li>
+    	    <include file="Index:orderMenuLeft" />
         </ul>
         <div class="account-main">
             <h1>Addresses</h1>
-            <p class="no-addresses">You have no saved addresses.</p>
-            <div class="add-edit-address"><span class="icon-plus">+</span>Add address</div>
+            <?php
+            if(!$ma){
+                echo '<p class="no-addresses" id="no-address">You have no saved addresses.</p>';
+            } 
+            ?>
+            <div class="address-list">
+                <volist name="Ma" id="vo">
+                <p class="no-addresses <eq name="vo['is_default']" value="1">address-default</eq>" data-id="{$vo.id}">
+                <span><input type="radio" name="address_id" class="address-radio" id="address_id" <eq name="vo['is_default']" value="1">checked</eq> value="{$vo.id}"></span><span class='address-name'>{$vo.address}</span><span class='address-mobile'>{$vo.mobile}</span><span style="float:right"><a herf="javascript;;" class="edit-address" data-id="{$vo.id}">Edit</a></span>
+                </p>
+                </volist>
+            </div>
+
+            <div class="add-edit-address"><span class="icon-plus">+</span><span id="address-name">Add address</span><span class="setDefault" id="set-default-address">Set to the default</span></div>
 
             <div class="account-list hide">
               <form class="address-form">
                 <div clas="street-unit-wrapper">
                   <div class="street-address">
                     <label>Street address *</label>
-                    <input type="text" class="street-input">
+                    <input type="text" name="member_address" id="member_address" class="street-input">
                   </div>
                   <div class="unit">
                     <label>Apt / suite / company name</label>
-                    <input type="text" class="uni-input">
+                    <input type="text" name="company" id="company" class="uni-input">
                   </div>
                 </div>
                 <div class="city-state-zip-phone">
                   <div class="city">
                     <label>City*</label>
-                    <input type="text" class="city-input">
+                    <input type="text" name="city" id="city" class="city-input">
                   </div>
                   <div class="state">
                     <label>State*</label>
-                    <select type="text" class="state-input">
+                    <select type="text" id="state" name="state" class="state-input">
                       <option value="">Select a state</option>
-                      <option value="">AL</option>
-                      <option value="">AK</option>
-                      <option value="">AZ</option>
+                      <option value="AL">AL</option>
+                      <option value="AK">AK</option>
+                      <option value="AZ">AZ</option>
                     </select>
                   </div>
                   <div class="zip">
                     <label>Zip code*</label>
-                    <input type="text" class="zip-input">
+                    <input type="text" name="zip_code" id="zip_code" class="zip-input">
                   </div>
                   <div class="phone">
                     <label>Phone number*</label>
-                    <input type="text" class="phone-input">
+                    <input type="text" id="mobile" name="mobile" class="phone-input">
                   </div>
                 </div>
-                <div class="order-btn"><a href="#">Add address</a></div>
-                <a class="count-cancle" href="#">Cancle</a>
+                <input type="hidden" id="url" value="{:U('Member/doAddress')}">
+                <input type="hidden" id="getAddressurl" value="{:U('Member/getAddress')}">
+                <input type="hidden" id="member_id" value="{$Mid}">
+                <input type="hidden" id="member_address_id" value="{$ma['id']}">
+                <div class="order-btn"><a href="javascript:void(0)" id="btn-add-address">Save address</a></div>
+                <a class="count-cancle" data-type="address" href="javascript:void(0)">Cancle</a>
               </form>
             </div>
         </div>

@@ -73,7 +73,7 @@ class DishesAction extends CommonAction
 
 		$cookie = cookie('OrderOnlineAuth');
 		$authlist = explode("\t",authcode($cookie));
-		$orderlist = $ShoppingCart->field('id,item_name,price,quantity')->where(array('member_id'=>$authlist[0],'status'=>'0'))->order('id desc')->select();
+		$orderlist = $ShoppingCart->field('id,item_name,price,quantity,item_add_price,package_add_item')->where(array('member_id'=>$authlist[0],'status'=>'0'))->order('id desc')->select();
         //dump($orderlist);
 		$ordercount=$ShoppingCart->where(array('member_id'=>$authlist[0],'status'=>'0'))->count();
 		/*foreach($orderlist as $k=>$v){
@@ -88,6 +88,7 @@ class DishesAction extends CommonAction
 				}	
 			}	
 		}*///print_r($list);
+        //dump($resinfo);
 		$this->assign('ordernum',$ordercount);
 		$this->assign('order',$orderlist);
 		$this->assign('list',$list);
@@ -100,52 +101,62 @@ class DishesAction extends CommonAction
 		$this->assign('resid',$resid);
 		$this->assign('list_package',$list_package);
 		$this->assign('count_package',$count_package);
-     	$this->display();  
+     	$this->display('Dishes/detail');  
     }
+
+    /**
+     * 首页查询结果
+     *
+     * @return void
+     * @author RainYang
+     **/
 	public function results()
     {	
     	$RestaurantMember = M('RestaurantMember');
     	$Opentime = M('Opentime');
     	$Comment = M('Comment');
-    	$address = $_POST['address'] == "Street Address, City, State"?'':$_POST['address'];
-    	$taste   = $_POST['taste'] == "tuna melt, John's Subs, Italian"?'':$_POST['taste'];
-    	//echo $coordinate =$_POST['lat'];
-    	if($_POST['lat'])
-    	{
-    		$arr = explode(',',$_POST['lat']);//print_r($arr);
-    		if($_POST['status_type']){
-				$result = $RestaurantMember->where(array('business_status' => 1))->select();
-    		}else{
-				$result = $RestaurantMember->select();
-    		}
-    		
-    		foreach($result AS $key => $val)
-    		{
-    			$result[$key]['distance'] = $this->getDistance($arr[0],$arr[1],$result[$key]['lat'],$result[$key]['lng'])/1609.3;
-    			if($result[$key]['distance']<$result[$key]['delivery_radius'])
-    			{
-    				$list[] = $result[$key];
-    				$list_count = $key+1;
-    			}
-    		}
-    	}
+    	$address = ($_POST['address'] == "Street Address, City, State") ? '' : $_POST['address'];
+    	$taste   = ($_POST['taste'] == "tuna melt, John's Subs, Italian") ? '' : $_POST['taste'];
+
+        $address = str_replace(' ', '+', $address);
+
+        $geocode = file_get_contents('http://maps.google.com/maps/api/geocode/json?address='.$address.'&sensor=false');  
+        $output= json_decode($geocode);  
   
+        $lat = $output->results[0]->geometry->location->lat; 
+        $lng = $output->results[0]->geometry->location->lng; 
     	
-    	/*if(!empty($address) && !empty($taste))
+    	if(!empty($taste))
     	{
-    		$where = " address like '%".$address."%' and taste like '%".$taste."%'";
-    	}else if(!empty($address) && empty($taste))
-    	{
-    		$where = " address like '%".$address."%'";
-    	}else if(!empty($taste) && empty($address))
-    	{
-    		$where = " taste like '%".$taste."%'";
+    		$where = " cuisine_name like '%".$taste."%'";
     	}else
     	{ 
-    		$where = " id>0";
-    	}*/
-    	//$list = $RestaurantMember->where($where)->field('on_opentime.restaurant_id,on_opentime.mon,on_opentime.tue,on_opentime.wed,on_opentime.thu,on_opentime.fri,on_opentime.sat,on_opentime.sun,on_restaurant_member.*')->join('on_opentime ON on_restaurant_member.id = on_opentime.restaurant_id')->order('create_time desc')->select();//print_r($list);
-    	//$list_count = $RestaurantMember->where($where)->order('create_time desc')->count();
+    		$where = " 1=1";
+    	}
+
+        $Model = new Model();
+        $result = $Model->query("select * from on_restaurant_member where id in (select restaurant_id from on_cuisine where `restaurant_id` = 1 and `cuisine_name` like '%ch%' group by id)");
+    	//$list = $RestaurantMember->where($where)->field('on_opentime.restaurant_id,on_opentime.mon,on_opentime.tue,on_opentime.wed,on_opentime.thu,on_opentime.fri,on_opentime.sat,on_opentime.sun,on_restaurant_member.*')->join('inner join on_opentime ON on_restaurant_member.id = on_opentime.restaurant_id')->join('right join on_cuisine ON on_cuisine.restaurant_id = on_restaurant_member.id')->order('create_time desc')->select();//print_r($list);
+
+        foreach($result AS $key => $val)
+        {
+            $result[$key]['distance'] = $this->getDistance($lat,$lng,$result[$key]['lat'],$result[$key]['lng'])/1609.3;
+            //echo '配送距离:' . $result[$key]['delivery_radius'] . "<br>";
+            //echo '实际距离' . $result[$key]['distance'] . "<br>";
+            if($result[$key]['distance']<$result[$key]['delivery_radius'])
+            {
+                $list[] = $result[$key];
+                $list_count = $key+1;
+            }
+        }
+
+        /*
+         *echo '<pre>';
+         *print_r($list);
+         *echo '</pre>';
+         */
+
+    	$list_count = count($list);
     	foreach($list AS $k => $v)
     	{
  			$num = date('w',time());

@@ -2,78 +2,148 @@
 //订单模块
 class OrderAction extends CommonAction
 {
-	
+    //完成订单
+    function orderdone()
+    {
+		$RestaurantMember = M('RestaurantMember');
+        $RestaurantInfo = $RestaurantMember->find($_GET['restaurant_id']);
+        $this->assign('bh_no',$_GET['bh_no']);
+        $this->assign('resinfo',$RestaurantInfo);
+     	$this->display('Member/orderdone');  
+    }
+
+    //提交订单处理
 	public function orders(){
-		$cookie = cookie('OrderOnlineAuth');
-		if(empty($cookie)){
-			$this->redirect('Index/index');	
-		}
-		$authlist = explode("\t",authcode($cookie));
+        $auth = $this->auth();
+        $address_id = intval($_POST['address_id']);
+        $card_id = intval($_POST['card_id']);
+        $restaurant_id = intval($_POST['restaurant_id']);
+
+        //快递方式,1快递,2自取,3堂吃
+        $type = ($_POST['type'] == 'delivery') ? 1 : 2;
+        $tip = $_POST['tip'];
+
+        //支付方式，0现金，1信用卡
+        $payment = ($_POST['payment'] == 'cash') ? 0 : 1;
+
 		$Order = M('Billhead');
 		$OrderItem = M('Billitem');
 		$OrderNote = M('Billnote');
 		$OrderAttr = M('Billattribute');
 		$Address = M('Member_address');
+		$Card = M('Member_card');
+		$CouponsModel = M('coupons');
 		$ShoppingCart = M('ShoppingCart');
-		$info = $Address->where(array('id' => $_POST['addressid']))->find();
-		$cartInfo = $ShoppingCart->where(array('id' => array('in',$_POST['cart_ids'])))->select();
+
+		//$Member = M('Member');
+		//$member = $Member->where(array('account'=>$auth->username))->find();
+
+        //地址信息
+		$addressInfo = $Address->find($address_id);
+		$cardInfo = $Card->find($card_id);
+
+        //购物车
+		//$cartInfo = $ShoppingCart->where(array('id' => array('in',$_POST['cart_ids'])))->select();
+		$cartInfo = $ShoppingCart->where(array('member_id' => $auth->id))->select();
+
+        if(!$cartInfo or ($cartInfo[0]['member_id'] != $auth->id)){
+            echo json_encode(array('status' => 0, 'err' => 'Members and shopping cart data does not match!'));
+            exit;
+        }
+
+        //餐馆信息
+		$RestaurantMember = M('RestaurantMember');
+        $RestaurantInfo = $RestaurantMember->find($restaurant_id);
+
+        $ModelCart = M();
+        //取购物车里的subtotal，不包含税点和小费、快递费以及优惠券情况
+        $subTotal = $ModelCart->query("SELECT sum(price*`quantity`) as subTotal, sum(`item_add_price` * `quantity`) as subItemTotal FROM `on_shopping_cart` WHERE `member_id` = {$auth->id} and `status` = 0 and `restaurant_id` = {$restaurant_id}");
+        /*
+         *echo $ModelCart->getLastSql();
+         *print_r($subTotal);
+         *exit;
+         */
+
+        $coupon = cookie('goMenuHubCoupons');
+        if($coupon){
+            $coupon = unserialize($coupon);
+            $couponInfo = $CouponsModel->find($coupon['coupon_id']);
+        }
+
 		$data = array(
-			'restaurant_id'	=>	$_POST['restaurant_id'],
+			'restaurant_id'	=>	$restaurant_id,
 			'bh_no' 		=>	date('YmdHis',time())+substr(time(),7)+rand(1,99999),
-			'bh_type'		=>	$_POST['type'],
+			'bh_type'		=>	$type,
 			'bh_status'		=>	'0',
 			'bh_column'		=>	'0',
-			'bh_customer_id'=>	$authlist[0],
-			//'bh_subtotal'	=>	
-			//'bh_discount'	=>	
+			'bh_customer_id'=>	$auth->id,
+			'bh_subtotal'	=>	$subTotal[0]['subTotal'] + $subTotal[0]['subItemTotal'],
+			'bh_discount'	=>	$couponInfo['discount'],
+			'bh_dx'	        =>	$couponInfo['cash'],
 			//'bh_disamt'	=>	
-			//'bh_taxrate'	=>	
-			//'bh_taxamt'	=>	
-			//'bh_delivery'	=>	
-			'bh_tips'		=>	$_POST['tip'],
-			//'bh_total'	=>	
-			'bh_payment'	=>	$_POST['payment'],
-			'bh_address'	=>	$info['address'],
+			'bh_taxrate'	=>	$RestaurantInfo['tax'],
+			'bh_taxamt'	    =>	$subTotal[0]['subTotal'] * ($RestaurantInfo['tax'] / 100) ,  //税费,税率*小计
+			'bh_delivery'	=>	($type == 1) ? $RestaurantInfo['delivery_charges'] : 0,
+			'bh_tips'		=>	$tip,
+			//'bh_total'	    =>	
+			'bh_payment'	=>	$payment,
+			'bh_address'	=>	$addressInfo['address'],
 			'bh_create_time'=>	time(),
+	    );
+        
+        if($data['bh_discount']){
+            $data['bh_total'] = $data['bh_subtotal'] * ($data['bh_discount'] / 10) + $data['bh_tips'] + $data['bh_delivery'] + $data['bh_taxamt'];
+        }
 
-			);
-		//$dataItem['restaurant_id'] = $_POST['restaurant_id'];
-		/*$dataItem = array(
-			'restaurant_id'	=>	$_POST['restaurant_id'],
-			'bh_id'			=>	
-			'item_id'		=>	
-			'bi_quantity'	=>	
-			'bi_price'		=>	
-			'bi_amount'		=>	
-			'');
-		$dataNote = array(
-			'restaurant_id'	=>	$_POST['restaurant_id'],
-			'bh_id'			=>	
-			'bn_note'		=>	);*/
-		if($_POST['payment'] == 1)
+        if($data['bh_dx']){
+            $data['bh_total'] = $data['bh_subtotal'] - $data['bh_dx'] + $data['bh_tips'] + $data['bh_delivery'] + $data['bh_taxamt'];
+        }
+
+        if(!$data['bh_dx'] && !$data['bh_discount']){
+            $data['bh_total'] = $data['bh_subtotal'] + $data['bh_tips'] + $data['bh_delivery'] + $data['bh_taxamt'];
+        }
+        //print_r($data);
+
+        //todo,支付过程/发送邮件/发送传真/没做
+
+		//if($_POST['payment'] == 1)
+		if(1)
 		{
-
-			$rs = $Order->add($data);
+            //添加到订单主信息
+			$order_id = $Order->add($data);
+            //echo $Order->getLastSql();
 			//$rs_item = $OrderItem->add($dataItem);
-			if($rs)
+			if($order_id)
 			{	
-				$_POST['quantity'] = explode(',',$_POST['quantity']);
+				//$_POST['quantity'] = explode(',',$_POST['quantity']);
 				foreach($cartInfo AS $key => $val)
 				{
-					
 					$rs_item = $OrderItem->add(array(
-													'restaurant_id' => $_POST['restaurant_id'],
-													'bh_id' => $rs,
+													'restaurant_id' => $restaurant_id,
+													'bh_id' => $order_id,
 													'item_id' => $val['item_id'],
-													'bi_quantity' => $_POST['quantity'][$key],
+													//'bi_quantity' => $_POST['quantity'][$key],
+													'bi_quantity' => $val['quantity'],
 													'bi_price' => $val['price'],
-													'bi_amount' => $val['price']*$_POST['quantity'][$key]
+													'bi_amount' => $val['price'] * $val['quantity']
 													));
 				}
-				echo json_encode(array('status'=>'1','id' => $rs));	
+
+				$ret = json_encode(array('status'=>'1','id' => $order_id, 'url' => U('Order/orderdone', $data)));	
 			}
 		}
-		
+
+        //销毁处理
+		cookie('goMenuHubCoupons', null);
+
+        //更新购物车数据
+        $cartData = array('status' => 1, 'bh_no' => $data['bh_no']);
+		$upid = $ShoppingCart->where("member_id = {$auth->id} and status = 0 and bh_no is null and restaurant_id={$restaurant_id}")->save($cartData);
+
+        //echo $ShoppingCart->getLastSql();
+
+        unset($data);
+        echo $ret;
 		//print_r($data);
 		/*if($rs){/
 			if($_POST['payment'] == 1){
@@ -131,7 +201,66 @@ class OrderAction extends CommonAction
 			echo json_encode(array('status'=>'0','msg'=>'error.'));	
 		}
 	}
-	public function shoppingcart(){//print_r($_REQUEST);
+
+    function getPackageAddItem()
+    {
+        $id = intval($_GET['id']);
+		//$ModelItemAttr = M('Item_attribute');
+		$ShoppingCart = M('ShoppingCart');
+
+        $carts = $ShoppingCart->find($id);
+        $addItems = unserialize($carts['package_add_item']);
+
+		$Dishes = M('Item');
+
+        foreach($addItems as $key => $val){
+            $item = $Dishes->find($key);
+            echo "<p class='order_list_p'><span class='order_list_p_left'>{$item['item_name']}</span><span class='order_list_p_right'>+{$val}</span></p>";
+        }
+        //echo "哈哈成功". $id;
+    }
+
+    //获得套餐用户是否加价数组
+    function getItemAddPrice($data){
+		$ModelItemAttr = M('Item_attribute');
+
+        //取attribute里相应的加价信息
+        $res = $ModelItemAttr->where(array('package_id' => $data['package_id'], 'restaurant_id' => $data['restaurant_id']))->select();
+
+        //print_r($res);
+        //通过两次foreach，把attr表里的加价数据变为数组
+        foreach($res as $key => $val){
+            if(!$val['is_values'])
+                continue;
+            $is_values = explode(',', $val['is_values']);
+            foreach($is_values as $k => $v){
+                $is_value = explode('=', $v);
+                $value_list[$is_value[0]] = $is_value[1];
+            }
+        }
+
+        if(!$value_list){
+            return false;
+        }
+
+        //print_r($value_list);
+
+        //把用户选择的数据先转为数组，再进行key/value翻转，通过array_intersect_key进行键名比较，得到最终的数组
+        $items = explode(',', $data['item_id']);
+        array_pop($items);        
+        $newItems = array_flip($items);
+        //print_r($newItems);
+
+        $userItemAttr = array_intersect_key($value_list, $newItems);
+        if(!$userItemAttr){
+            return false;
+        }
+        //print_r($userItemAttr);
+        return $userItemAttr;
+    }
+
+    //添加到购物车
+    public function shoppingcart(){
 		$ShoppingCart = M('ShoppingCart');
 		//$DishesItem = M('DishesItem');
 		$Dishes = M('Item');
@@ -156,13 +285,35 @@ class OrderAction extends CommonAction
 						'create_time' => time(),
 						'status'	=>	'0'
 						);
-			foreach($_REQUEST['itemName'] AS $k => $v){
-				$result[] = $Group->where(array('id' => $k))->select();
-				foreach($result AS $ke => $va){
-					$data['item_id'] .= ','.$va['id'];
-				} 
-				
-			}//print_r($result);print_r($data);
+
+            //根据取得的参数，获取itemName_13这样的数据值,没有分组，直接全部取出
+            /*  传递参数如下：
+                restaurant_id:1
+                package_id:14
+                itemName_13[]:32
+                itemName_13[]:31
+                itemName_12[]:12
+                itemName_12[]:9
+                itemName_12[]:14
+                itemName_11[]:37
+                quantity:1
+             */
+            foreach($_REQUEST as $postKey => $postVal){
+                if(strpos($postKey, 'itemName_') !== false){
+                    foreach($_REQUEST[$postKey] as $key => $val){
+					    $data['item_id'] .= $val . ',';
+                    }
+                }
+            }
+
+            $data['package_add_item'] = $this->getItemAddPrice($data);
+
+            if($data['package_add_item']){
+                $data['item_add_price'] = array_sum($data['package_add_item']);
+                $data['package_add_item'] = serialize($data['package_add_item']);
+            }
+
+            //print_r($result);print_r($data);
 			$rs = $ShoppingCart->add($data);
 			if($rs){
 				echo json_encode(array('status'=>'1'));

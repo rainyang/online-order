@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>OrderOnline -- Personal Center</title>
@@ -22,16 +22,22 @@
     <!-- 用户中心开始 -->
     <div class="account-brink">
         <ul class="account-side">
-            <li><a class="hover" href="#">Order history</a></li>
-            <li><a href="account-profile.htm">Profile</a></li>
-            <li><a href="account-add.htm">Addresses</a></li>
-            <li><a href="account-card.htm">Credit cards</a></li>
+    	    <include file="Index:orderMenuLeft" />
         </ul>
         <div class="account-main">
             <h1>Order history</h1>
-            <div class="no-orders">
-                <p>You have no past orders.</p>
-                <div class="order-btn"><a href="#">Start your first order now</a></div>
+            <?php
+            if(!$list){
+                echo '<div class="no-orders"><p>You have no past orders.</p><div class="order-btn"><a href="#">Start your first order now</a></div>
+            </div>';
+            } 
+            ?>
+            <div class="address-list">
+                <volist name="list" id="vo">
+                <p class="no-addresses">
+                <span class='address-name'>{$vo.nickname}</span><span style="margin-left:20px;">{$vo.bh_create_time|date="m/d/y H:i:s",###}</span><span style="margin-left:20px;">Order # {$vo.bh_no}</span><span style="float:right"><a herf="javascript;;" class="edit-address" data-id="{$vo.id}">${$vo.bh_total}</a></span>
+                </p>
+                </volist>
             </div>
         </div>
     </div>

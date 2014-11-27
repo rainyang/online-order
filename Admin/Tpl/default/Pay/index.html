@@ -1,0 +1,118 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>easywayordering</title>
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-ui-1.8.22.custom.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/Togle.js"></script>
+
+<link href="__PUBLIC__/JQueryDate/jquery.datetimepicker.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/adminMain.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/south-street/jquery-ui-1.8.22.custom.css" rel="stylesheet" type="text/css" />
+
+
+<!-- GOOGLE API KEY FOR DREAM HOST:  AIzaSyCkRkSd4hQornJOYjYMoHqi3-Wv4hVOOgg-->
+<!-- GOOGLE API KEY FOR LOCAL PROJECT:  ABQIAAAAPpaOjFQ_miNP74G3g3O7oBTTwBGlz0OqYPu6tmNrU0ToxRrT5hQhlPr8PLUNIxb0D5FrOa5lJ1tp6w-->
+<!-- <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyBT2sOPbIDLELZVjk6vPcGs87xqabq2jcs&sensor=false" type="text/javascript"></script> -->
+<!--<script src="http://maps.google.com/maps?file=api&v=2&key=AIzaSyBT2sOPbIDLELZVjk6vPcGs87xqabq2jcs" type="text/javascript"></script> -->
+
+
+
+</head>
+
+<include file="Public:bg_header" />
+   	
+<include file="Public:menu_son" />
+<div id="tab_items">
+	<ul>
+    	<li>
+			<a href="__APP__/Coupons/index">Edit Exisiting Coupons</a>
+        </li>|
+        <li>
+        	<a href="__APP__/Coupons/addcoupons">Add New Coupon</a>
+        </li>
+     </ul>
+</div>
+
+<div id="main_heading">ADD COUPONS</div>
+<div class="form_outer">
+  <form name="form1" method="post" action=""  >
+    <table width="100%" border="0" cellpadding="4" cellspacing="0">
+     <tr align="left" valign="top">
+        <td width="172"><strong>Pay Ment:</strong></td>
+        <td width="973"><input name="pay_type" type="radio" id="pay1" value="1" <if condition="$info['type'] eq 1">checked="checked"</if> >Authorize<input name="pay_type" type="radio" id="pay2" value="2" <if condition="$info['type'] eq 2">checked="checked"</if> >Smart Payment</td>
+      </tr>
+       <tr align="left" valign="top" style="display:none;" id="paytype1"> 
+                <td width="76"></td>
+                <td><strong>api_login_id:</strong><br />
+                    <input name="api_login_id" type="text" size="40" value="{$info.api_login_id}" id="api_login_id" /><br />
+                    <strong>transaction_key:</strong><br />
+                    <input name="transaction_key" type="text" size="40" value="{$info.transaction_key}" id="transaction_key" /><br />
+                    <strong>md5_setting:</strong><br />
+                    <input name="md5_setting" type="text" size="40" value="{$info.md5_setting}" id="md5_setting" /><br />
+                    <strong>host:</strong><br />
+                    <input name="host" type="text" size="40" value="{$info.host}" id="host" /><br />
+                    <strong>testMode:</strong><br />
+                    <input name="testMode" type="text" size="40" value="{$info.testMode}" id="testMode" /> </td>
+            </tr>
+            <tr align="left" valign="top" style="display:none;" id="paytype2"> 
+                <td width="76"></td>
+                <td><strong>username:</strong><br />
+                    <input name="username" type="text" size="40" value="{$info.username}" id="username" /><br />
+                    <strong>password:</strong><br />
+                    <input name="password" type="text" size="40" value="{$info.password}" id="password" /><br />
+                    <strong>url:</strong><br />
+                    <input name="url" type="text" size="40" value="{$info.url}" id="url" /><br />
+                  
+                     </td>
+            </tr>
+            
+		
+      
+      
+      
+      <tr align="left" valign="top">
+        <td>&nbsp;</td>
+        <input type="hidden" name="payid" id="payid" value="{$info.id}" />
+        <input type="hidden" name="restaurant_id" id="restaurant_id" value="{$info.restaurant_id}" />
+        <td><input type="submit" name="submit" value="Save"></td>
+      </tr>
+    </table>
+  </form>
+</div>
+ </div>	
+         </div>   
+            
+        </div><!--End text_holder Div-->	
+        <div id="footer">
+            <div id="bottom">
+                <div id="bottom_left"></div>
+                <div id="bottom_right"></div>
+            </div><!--End bottom Div--><br style="clear:both" />
+        </div><!--End footer Div-->
+    </div><!--End header Div-->
+</div><!--End maincontainer Div-->
+</body>
+
+<script  type="text/javascript">
+	$(document).ready(function(){
+		$("#pay1").click(function(){
+			$("#paytype1").show();
+			$("#paytype2").hide();
+		});
+		$("#pay2").click(function(){
+			$("#paytype2").show();
+			$("#paytype1").hide();
+		});
+		if($("#pay1").attr("checked") == "checked"){
+			$("#paytype1").show();
+		}
+		if($("#pay2").attr("checked") == "checked"){
+			$("#paytype2").show();
+		}
+	})
+</script>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>restocordobaordering</title>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/Togle.js"></script>
+<link href="__PUBLIC__/css/adminMain.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<include file="Public:bg_header" />
+
+
+
+<div id="contents">  
+
+
+
+<link href="css/facebox.css" media="screen" rel="stylesheet" type="text/css"/>
+
+ <div style="padding-bottom:10px;text-align:center">
+      <img style="width:1085px; height:90px;" src="__PUBLIC__/Images/img_856_cat_header.jpg" border="0" />
+  </div>
+   	
+   <div id="navigation_links">
+   <div id="navigation">
+    
+    
+    <div class="links "><a href="__APP__/Website/index" class="">base</a></div>
+    <div class="links "><a href="__APP__/Website/slide" class="">slide</a></div>
+    <!-- <div class="links "><a href="?mod=coupon" class="">Coupons</a></div>
+    <!-- <div class="links "><a href="__APP__/Menus/index/restaurant_id/{$_SESSION['restaurant_id']}"class="">Menus</a></div>
+    <!-- <div class="links "><a href="?mod=mailing_list"class="">Mailing List</a></div>
+    <div class="links "><a href="analytics.html"class="">Analytics</a></div>--> 
+    <br style="clear:both" />
+  </div> 
+</div>
+
+ <div id="tab_items">
+	<ul>
+    	<li>
+        	<a href="__APP__/Website/slide" class="selected_red" > Slide List</a>
+        </li>|
+    	<li>
+        	<a href="__APP__/Website/add" class="">Add Slide</a>
+       </li>
+    </ul>
+</div>
+
+<div id="main_heading">
+    <span>Edit Website</span>
+</div>
+ 
+<div id="AdminLeftConlum">
+    <form name="frmedit" id="frmedit"  action="" method="post" enctype="multipart/form-data"   >
+        <table width="100%" border="0" cellpadding="4" cellspacing="0">
+            
+ 
+            <tr align="left" valign="top"> 
+                <td width="76"></td>
+                <td><strong>Title:</strong><br />
+                    <input name="title" type="text" size="40" value="{$info.title}" id="title" /> </td>
+            </tr>
+          
+            
+           
+
+
+
+ 
+   
+            <tr align="left" valign="top">
+                <td>&nbsp;</td>
+                <td><strong> Image</strong><br> <font color="#666666"><!--(system will resize to 
+                    500x500)--></font>
+                    <input name="image" type="file" id="image">
+                    <input type="hidden" name="image2" value="{$info.image}">
+             
+
+             <tr align="left" valign="top">
+                <td></td>
+                <td><strong>Image Show:</strong><br />
+                    <img src="__ROOT__{$info.image}" width="150";>            </td>
+            </tr>
+             <tr align="left" valign="top"> 
+                <td width="76"></td>
+                <td><strong>Description:</strong><br />
+                    <textarea name="description"/> {$info.desc}</textarea> </td>
+            </tr>
+            
+		
+
+            
+            
+            <tr align="left" valign="top">
+                <td>&nbsp;</td>
+                <td>
+                	<input type="hidden" name="slideid" value="{$info.id}"  />
+                    <input type="submit" name="btnSave" value="Save"  />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>  
+
+<br class="clearfloat" />
+</div>
+<!--End body Div-->	
+         </div>   
+            
+        </div><!--End text_holder Div-->	
+        <div id="footer">
+            <div id="bottom">
+                <div id="bottom_left"></div>
+                <div id="bottom_right"></div>
+            </div><!--End bottom Div--><br style="clear:both" />
+        </div><!--End footer Div-->
+    </div><!--End header Div-->
+</div><!--End maincontainer Div-->
+</body>
+<script  type="text/javascript">
+	$(document).ready(function(){
+		$("#pay1").click(function(){
+			$("#paytype1").show();
+			$("#paytype2").hide();
+		});
+		$("#pay2").click(function(){
+				
+			$("#paytype1").hide();
+		});
+		if($("#pay1").attr("checked") == "checked"){
+			$("#paytype1").show();
+		}
+		if($("#pay2").attr("checked") == "checked"){
+			$("#paytype2").show();
+		}
+	})
+</script>
+</html>
+
+
+

@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>OrderOnline - deatail</title>
@@ -8,18 +8,27 @@
 <link rel="stylesheet" href="__PUBLIC__/Index/css/top.css" />
 <link rel="stylesheet" href="__PUBLIC__/Index/css/detail.css" />
 <link rel="stylesheet" href="__PUBLIC__/Index/css/foot.css" />
+<link rel="stylesheet" href="__PUBLIC__/Index/css/font-awesome.css" />
 <link href="__PUBLIC__/Index/css/popup.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript" src="__PUBLIC__/Index/js/jquery-1.7.1.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Index/js/jquery-extend-order.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Index/js/main.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Index/js/public.js"></script>
-<!--<script src="http://maps.google.cn/maps?file=api&ampv=2&ampkey=your key&sensor=true" type="text/javascript"></script>-->
+<script type="text/javascript" src="__PUBLIC__/Index/js/order.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/tooltipsy.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    var getResCouponsUrl = "{:U('Member/getResCoupons')}";
+    var res_id = {$resinfo.id};
+    var getCouponsInfoUrl = "{:U('Member/getCouponsInfo')}";
+    var getCouponsItemUrl = "{:U('Member/getCouponsItem')}";
+    var useCouponUrl = "{:U('Member/useCoupon')}";
+</script>
 </head>
 
 <body>
-	<div class="container">
     	<include file="Index:head" />
+	<div class="container">
     	<include file="Index:search" />
         
     	<include file="Index:resinfo" />
@@ -81,83 +90,5 @@
     </div>
     <div class="foot"></div>
     <div class="popup_layer"></div>
-<if condition='cookie("OrderOnlineAuth") neq ""'>
-    <div class="shopping_cart">
-   
-        <div class="cart_title clearfix" flag=true>
-            <a class="lt" num="0" href="#">Your Order</a>
-            <a class="rt" href="#">{$ordernum}</a>
-        </div>
-        
-        <ul>
-         <volist name="order" id="vo">
-            <li class="clearfix">
-                <a href="javascript:;" class="area lt">{$vo['item_name']}</a>&nbsp;<span class="price rt">${$vo['price']}</span>
-                <a href="javascript:;" class="name lt">{$vo['quantity']} Piece,{:substr($vo['item'],0,13)}</a>
-                <span class="num rt"><a class="reduce" href="javascript:;" s_id="{$vo['id']}"></a><span class="qty">{$vo['quantity']}</span><a class="add" href="javascript:;" s_id="{$vo['id']}"></a></span>
-            </li>
-            
-            </volist>
-            <li class="last"><a href="{:U('Member/placeOrder?res_id=1')}">Ready</a></li>
-        </ul>
-       
-    </div>
-   </if>
-<script type="text/javascript">
-$(document).ready(function()
-{
-    $(".reduce").live('click',function(){
-        var val = parseInt($(this).siblings(".qty").html());
-        if(val>1){
-            var old_price = $(this).parents('.orderitem').find('.price').html().substr(1);
-            var unit_price = $(this).parents('.orderitem').attr('data-price');
-            var newprice = parseFloat(old_price) - parseFloat(unit_price);
-
-            $(this).siblings(".qty").html(val-1);
-            $(this).parents('.orderitem').find('.price').html('$' + newprice.toFixed(2));
-        }else{
-            $(this).parents(".orderitem").remove();
-        }
-        var id = $(this).attr("s_id");
-        $.post("{:U('Dishes/reduceQty')}",{id:id},function(){
-        },'json');
-        calSubTotal();
-    })
-
-    $(".add").live('click',function(){
-        var val = parseInt($(this).siblings(".qty").html());	
-        var old_price = $(this).parents('.orderitem').find('.price').html().substr(1);
-        var unit_price = $(this).parents('.orderitem').attr('data-price');
-        var id = $(this).attr("s_id");
-        
-        var newprice = parseFloat(old_price) + parseFloat(unit_price);
-        $(this).parents('.orderitem').find('.price').html('$'+ newprice.toFixed(2));
-        $(this).siblings(".qty").html(val+1);
-        $.post("{:U('Dishes/addQty')}",{id:id},function(){
-        });
-        calSubTotal();
-    });
-
-    function calSubTotal(){
-        //var subTotal = parseFloat($(".orderItem").find(".price").html().substr(1))-price;
-        var subTotal = 0;
-        $('.orderitem').each(function(){
-            subTotal += parseFloat($(this).find('.price').html().substr(1)); 
-        });
-
-        var tax = subTotal * 0.05;
-        var allTotal = subTotal + tax;
-        $('.sub-total').html('$' + subTotal.toFixed(2));
-        $('.tax').html('$' + tax.toFixed(2));
-
-        $('.all-total').html('$' + allTotal.toFixed(2));
-        //console.log(subTotal);
-    };
-
-    calSubTotal();
-
-    $(".order").smartFloat();
-});
-</script>
 </body>
 </html>

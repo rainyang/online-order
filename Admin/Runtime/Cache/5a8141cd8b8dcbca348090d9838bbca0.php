@@ -51,15 +51,16 @@
                            <div id="navigation">
                             
                             <div class="links "><a href="__APP__/RestaurantDetails/index/restaurant_id/<?php echo ($_SESSION['restaurant_id']); ?>" >Restaurants(<?php echo ($_SESSION['restaurant_count']); ?>)</a></div>
-                            <div class="links "><a href="__APP__/Order/index/restaurant_id/<?php echo ($_SESSION['restaurant_id']); ?>" class="">Orders(1)</a></div>
+                            <div class="links "><a href="__APP__/Order/index/restaurant_id/<?php echo ($_SESSION['restaurant_id']); ?>" class="">Orders(<?php echo ($_SESSION['order_count']); ?>)</a></div>
                             <div class="links "><a href="__APP__/Customer/index" class="">Customers(0)</a></div>
-                            <div class="links "><a href="?mod=coupon" class="">Coupons</a></div>
+                            <div class="links "><a href="__APP__/Coupons/index" class="">Coupons</a></div>
                             <div class="links selected"><a href="__APP__/Menus/index/restaurant_id/<?php echo ($_SESSION['restaurant_id']); ?>"class="">Menus</a></div>
-                            <!-- <div class="links "><a href="?mod=mailing_list"class="">Mailing List</a></div>
-                            <div class="links "><a href="analytics.html"class="">Analytics</a></div> -->
+                            <div class="links "><a href="__APP__/Pay/index"class="">Pay Config</a></div>
+                            <!--<div class="links "><a href="analytics.html"class="">Analytics</a></div> -->
                             <br style="clear:both" />
                           </div>
                         </div>
+
                         <div id="tab_items">
                             <ul>
                                 <li>
@@ -117,7 +118,7 @@ jQuery(document).ready(function($) {
                                     <a href="__APP__/Menus/delete_SubMenu/group_id/<?php echo ($value["id"]); ?>" onclick="return confirm('Are you sure you would like to delete of this Sub Menu?This sub menu item will also be deleted.')"><img src="__PUBLIC__/Images/enable.png" width="16" height="16" border="0" title="Enabled"></a> <a href="__APP__/Menus/add_SubMenu/group_id/<?php echo ($value["id"]); ?>" class="largelink" title="Edit"><strong><?php echo ($value["group_name"]); ?></strong></a>&nbsp;&nbsp;<a href="__APP__/Menus/add_Item/group_id/<?php echo ($value["id"]); ?>" title="Add" class="smalllink">Add Items</a>
                                     <ul id="menus">
                                     <?php if(is_array($value['itemlist'])): $i = 0; $__LIST__ = $value['itemlist'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): ++$i;$mod = ($i % 2 )?><li>
-                                            <a href="__APP__/Menus/delete_Item/item_id/<?php echo ($v["id"]); ?>" onclick="return confirm('Are you sure you would like to delete of this Item?')"><img src="__PUBLIC__/Images/enable.png" width="16" height="16" border="0" title="Delete"></a> <a href="__APP__/Menus/add_Item/item_id/<?php echo ($v["id"]); ?>" class="mediumlink" title="Edit"><?php echo ($v["item_name"]); ?></a> &nbsp;&nbsp;<a href="__APP__/Menus/add_Attribute" class="smalllink" title="Add Attribute">Add Attribute</a> <a href="admin_contents/menus/popup.php?catid=856&amp;sub_cat=9602&amp;pid=76577" rel="facebox" class="smalllink" title="">associate item</a>
+                                            <a href="__APP__/Menus/delete_Item/item_id/<?php echo ($v["id"]); ?>" onclick="return confirm('Are you sure you would like to delete of this Item?')"><img src="__PUBLIC__/Images/enable.png" width="16" height="16" border="0" title="Delete"></a> <a href="__APP__/Menus/add_Item/item_id/<?php echo ($v["id"]); ?>" class="mediumlink" title="Edit"><?php echo ($v["item_name"]); ?></a> &nbsp;&nbsp;<!-- <a href="__APP__/Menus/add_Attribute" class="smalllink" title="Add Attribute">Add Attribute</a> <a href="admin_contents/menus/popup.php?catid=856&amp;sub_cat=9602&amp;pid=76577" rel="facebox" class="smalllink" title="">associate item</a> -->
                                             <ul id="items"></ul>
                                         </li><?php endforeach; endif; else: echo "" ;endif; ?>   
                                     </ul>
@@ -144,7 +145,7 @@ jQuery(document).ready(function($) {
                                     <a href="__APP__/Menus/delete_Package/package_id/<?php echo ($row["id"]); ?>" onclick="return confirm('Are you sure you would like to delete of this Sub Menu?This Package group  will also be deleted.')"><img src="__PUBLIC__/Images/enable.png" width="16" height="16" border="0" title="Enabled"></a> <a href="__APP__/Menus/add_Package/package_id/<?php echo ($row["id"]); ?>" class="largelink" title="Edit"><strong><?php echo ($row["group_name"]); ?></strong></a>&nbsp;&nbsp;<a href="__APP__/Menus/add_Item/group_id/<?php echo ($value["id"]); ?>" title="Add" class="smalllink">Add Items</a>
                                     <ul id="menus">
                                     <?php if(is_array($row['groupList'])): $i = 0; $__LIST__ = $row['groupList'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): ++$i;$mod = ($i % 2 )?><li>
-                                            <a href="__APP__/Menus/delete_Item/item_id/<?php echo ($v["id"]); ?>" onclick="return confirm('Are you sure you would like to delete of this Group?')"><img src="__PUBLIC__/Images/enable.png" width="16" height="16" border="0" title="Delete"></a> <a href="__APP__/Menus/add_Item/item_id/<?php echo ($v["id"]); ?>" class="mediumlink" title="Edit"><?php echo ($v["group_name"]); ?></a> &nbsp;&nbsp;<a href="__APP__/Menus/add_Attribute" class="smalllink" title="Add Attribute">Add Attribute</a> <a href="admin_contents/menus/popup.php?catid=856&amp;sub_cat=9602&amp;pid=76577" rel="facebox" class="smalllink" title="">associate item</a>
+                                            <a href="__APP__/Menus/delete_Item/item_id/<?php echo ($v["id"]); ?>" onclick="return confirm('Are you sure you would like to delete of this Group?')"><img src="__PUBLIC__/Images/enable.png" width="16" height="16" border="0" title="Delete"></a> <a href="__APP__/Menus/add_Item/item_id/<?php echo ($v["id"]); ?>" class="mediumlink" title="Edit"><?php echo ($v["group_name"]); ?></a> &nbsp;&nbsp;<!-- <a href="__APP__/Menus/add_Attribute" class="smalllink" title="Add Attribute">Add Attribute</a> <a href="admin_contents/menus/popup.php?catid=856&amp;sub_cat=9602&amp;pid=76577" rel="facebox" class="smalllink" title="">associate item</a> -->
                                             <ul id="items"></ul>
                                         </li><?php endforeach; endif; else: echo "" ;endif; ?>   
                                     </ul>

@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>OrderOnline - place order</title>
@@ -14,7 +14,25 @@
 <script type="text/javascript" src="__PUBLIC__/Index/js/jquery-extend-order.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Index/js/main.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Index/js/public.js"></script>
-<!--<script src="http://maps.google.cn/maps?file=api&ampv=2&ampkey=your key&sensor=true" type="text/javascript"></script>-->
+<script type="text/javascript" src="__PUBLIC__/Index/js/order.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Index/js/member.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/tooltipsy.min.js"></script>
+<style>
+    .address-list input{height:18px;}
+    .address-list span{ margin-left:10px;}
+    .no-cards input{height:18px;}
+    .no-cards span{ margin-left:10px;}
+</style>
+<script type="text/javascript" charset="utf-8">
+    var setDefaultAddressUrl = "{:U('Member/setDefaultAddress')}";
+    var setDefaultCardUrl = "{:U('Member/setDefaultCard')}";
+    var doCardUrl = "{:U('Member/doCard')}";
+    var getCardUrl = "{:U('Member/getCards')}";
+    var doOrderUrl = "{:U('Order/orders')}";
+    var OrderDoneUrl = "{:U('Order/orderdone')}";
+    var res_id = {$resinfo.id};
+    var payment = 'card';
+</script>
 </head>
 
 <body>
@@ -26,31 +44,41 @@
             <div class="context">
               <div class="menu">
             	<div class="title">
-                    Click whatever you like to start your order1.
+                    Click whatever you like to start your order.
                 </div>
 <!-- 订单信息开始 -->
                 <div class="checkout-details">
                     <div class="info">
-                        <form ng-show="location" class="address" name="locationform">
+                            <if condition='$type eq "delivery"'>
                             <div ng-hide="currentGroup==='l'" class="">
                                 <h3 ng-hide="orderPickup" class="">Delivery information</h3>
-                                <p ng-hide="orderPickup" class="ng-binding">
-                                    Papa John's Pizza 
+                                <div ng-hide="orderPickup" class="ng-binding">
+                                    <!--Papa John's Pizza 
                                     <strong class="ng-binding">Delivery Thu 09/04/2014 at 12:00am</strong>  
-                                    to  
-                                    <strong><span ng-hide="editAddr" class="ng-binding">218 W 23RD PL, CHICAGO, IL 60616</span></strong> 
-                                    <a ng-hide="editAddr || currentGroup==='l'" ng-click="editAddr = true" class="">(edit)</a>
-                                </p>
+                                    to:  
+                                    <br />-->
+                                    <div class="address-list">
+                                        <volist name="address" id="vo">
+                                        <p class="no-addresses <eq name="vo['is_default']" value="1">address-default</eq>" data-id="{$vo.id}">
+                                        <span><input type="radio" name="address_id" class="address-radio" id="address_id" <eq name="vo['is_default']" value="1">checked</eq> value="{$vo.id}"></span><span class='address-name'>{$vo.address}</span><span class='address-mobile'>{$vo.mobile}</span><span style="float:right"><a herf="javascript;;" class="edit-address" data-id="{$vo.id}">Edit</a></span>
+                                        </p>
+                                        </volist>
+                                    </div>
+                                    <p class="address-error hide">You did not select a address</p>
+                                    <p><a ng-hide="editAddr || currentGroup==='l'" id="addNewAddress" ng-click="editAddr = true" class="">Add new address.</a><span class="setDefault" id="set-default-address">Set to the default</span></p>
+                                </div>
                             </div>
-                            <div ng-show="editAddr" class="address-fields">
+                            </if>
+                        <form ng-show="location" class="address address-form" name="locationform">
+                        <div ng-show="editAddr" class="address-fields" style="display:none">
                         <div class="form-field" ng-hide="currentGroup==='l'">
-                            <input ng-model="location.street" type="text" placeholder="Enter street address" id="street-input" class="ng-pristine ng-valid">
+                            <input ng-model="location.street" type="text" placeholder="Enter street address" name="member_address" id="member_address" class="street-input" class="ng-pristine ng-valid">
                         </div>
                         <div class="form-field city" ng-hide="currentGroup==='l'">
-                            <input ng-model="location.city" type="text" placeholder="Enter city" id="city-input" class="ng-pristine ng-valid">
+                            <input type="text" name="city" id="city" class="city-input" placeholder="Enter city">
                         </div>
                         <div class="form-field state" ng-hide="currentGroup==='l'">
-                            <select ng-model="location.state" id="state-input" class="ng-pristine ng-valid">
+                            <select type="text" id="state" name="state" class="state-input">
                                 <option value="">State</option>
                                 <option value="AL">AL</option>
                                 <option value="AK">AK</option>
@@ -58,31 +86,80 @@
                             </select>
                         </div>
                         <div class="form-field zip" ng-hide="currentGroup==='l'">
-                            <input ng-model="location.zipCode" type="text" placeholder="Enter zip code" id="zip-input" pattern="[0-9]*" maxlength="5" class="ng-pristine ng-valid">
+                            <input type="text" name="zip_code" id="zip_code" class="zip-input" placeholder="Enter zip code">
                         </div>
-                    </div>
                             <div class="form-field unit" ng-hide="orderPickup">
-                                <input ng-blur="saveUnit()" ng-model="location.unit" type="text" placeholder="Apartment suite, unit number, or company name" id="unit-input" class="ng-pristine ng-valid">
+                                <input ng-blur="saveUnit()" ng-model="location.unit" type="text" placeholder="Apartment suite, unit number, or company name"  name="company" id="company" class="ng-pristine ng-valid">
                             </div>
                             <div class="form-field phone">
-                                <input ng-model="location.phone" type="tel" placeholder="(###) ###-####" id="phone-input" pattern="^(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}$" ng-blur="validatePhoneFormat($event);" class="ng-pristine ng-valid">
+                                <input ng-model="location.phone" type="tel" placeholder="(###) ###-####" id="mobile" name="mobile" pattern="^(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}$" ng-blur="validatePhoneFormat($event);" class="ng-pristine ng-valid">
                             </div>
-                            <div class="form-field" ng-hide="orderPickup">
-                                <input ng-blur="saveInstructions()" ng-model="specialInstructions" type="text" placeholder="Special instructions" id="instructions-input" class="ng-pristine ng-valid">
-                            </div>
+                            <input type="hidden" id="url" value="{:U('Member/doAddress')}">
+                <input type="hidden" id="getAddressurl" value="{:U('Member/getAddress')}">
+                <input type="hidden" id="member_id" value="{$Mid}">
+                <input type="hidden" id="member_address_id" value="{$ma['id']}">
+                <div class="order-btn small"><a href="javascript:void(0)" id="btn-add-address">Save address</a></div>
+                <div><a class="count-cancle" data-type="address" href="javascript:void(0)">Cancle</a></div>
+                    </div>
                         </form>
+                        <br>
                         <div ng-show="payments.paymentMethods" class="payments">
                             <h3>Payment information</h3>
                             <div class="payment-info">
                                 <ul class="card-tab">
-                                    <li><a class="hover" href="#">Credit card</a></li>
-                                    <li><a href="#">Cash</a></li>
+                                    <li><a class="hover" href="javascript:;" id="credit-tab">Credit card</a></li>
+                                    <li><a href="javascript:;" id="cash-tab">Cash</a></li>
                                 </ul>
 
                                 <div ng-show="isActivePaymentType('credit')" class="credit-and-other">
-                                    <div class="credit-new">
-                                        <label ng-click="addCreditCard()">Add new card</label>
+                                    <div class="cards-list">
+                                    <volist name="card" id="vo">
+                                    <p class="no-cards <eq name="vo['is_default']" value="1">cards-default</eq>" data-id="{$vo.id}">
+                                    <span><input type="radio" name="card_id" class="card-radio" id="card_id" <eq name="vo['is_default']" value="1">checked</eq> value="{$vo.id}"></span><span class='card-number'>{$vo.card_number}</span><span class='card-zip'>{$vo.card_zip}</span><span style="float:right"><a herf="javascript;;" class="edit-card" data-id="{$vo.id}">Edit</a></span>
+                                    </p>
+                                    </volist>
                                     </div>
+            <div class="add-edit-address"><span class="icon-plus">+</span><span id="address-name">Add Credit card</span><span class="setDefault" id="set-default-card">Set to the default</span></div>
+                                    <!--card info-->
+            <div class="account-list hide">
+            <form class="cards-form">
+              <label>Credit card number</label>
+              <input type="text" class="street-input" id="card_number">
+              <div class="exp-wrapper">
+                <div class="month">
+                  <label>Exp.month</label>
+                  <select type="text" class="month-select" id="card_exp_month">
+                    <option></option>
+                    <option value="1">01</option>
+                    <option value="2">02</option>
+                    <option value="3">03</option>
+                  </select>
+                </div>
+                <div class="year">
+                  <label>Exp.year</label>
+                  <select type="text" class="year-select" id="card_exp_year">
+                    <option></option>
+                    <option value="2014">2014</option>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                  </select>
+                </div>
+                <div class="cvv">
+                  <label>CVV</label>
+                  <input type="text" class="street-input" id="card_cvv">
+                </div>
+                <div class="billing">
+                  <label>Billing zip</label>
+                  <input type="text" class="street-input" id="card_zip">
+                </div>
+              </div>
+                <input type="hidden" id="member_id" value="{$Mid}">
+                <input type="hidden" id="member_card_id" value="{$ma['id']}">
+              <div class="order-btn"><a href="javascript:void(0)" id="btn-add-card">Save Credit cards</a></div>
+                <a class="count-cancle" data-type="card" href="javascript:void(0)">Cancle</a>
+            </form>
+            </div>
+            <!--end card info-->
                                 </div>
 
                                 <div ng-show="isActivePaymentType('credit')" ng-controller="TipCtrl" class="line-total">
@@ -91,36 +168,39 @@
                                         <span class="ng-binding"> (15%) </span>
                                     </p>
                                     <div class="amount">
-                                        <a ng-click="setTipPercent(10)" ng-class="{'active': (activeTab === 10)}" class="tip-percent">10%</a>
-                                        <a ng-click="setTipPercent(15)" ng-class="{'active': (activeTab === 15)}" class="tip-percent hover">15%</a>
-                                        <a ng-click="setTipPercent(20)" ng-class="{'active': (activeTab === 20)}" class="tip-percent">20%</a>
+                                        <a ng-click="setTipPercent(10)" data-percent="0.1" ng-class="{'active': (activeTab === 10)}" class="tip-percent">10%</a>
+                                        <a ng-click="setTipPercent(15)" data-percent="0.15" ng-class="{'active': (activeTab === 15)}" class="tip-percent hover">15%</a>
+                                        <a ng-click="setTipPercent(20)" data-percent="0.2" ng-class="{'active': (activeTab === 20)}" class="tip-percent">20%</a>
                                         <input type="text" ng-model="tip" ng-blur="formatCurrentTip()" id="tip-input" class="ng-pristine ng-valid">
                                     </div>
                                 </div>
 
-                                <div ng-show="isActivePaymentType('credit')" ng-class="{'active': isActivePaymentType('credit')}" class="other-payments active">
-                                    <p>Credits and promos</p>
+                                <div  class="other-payments hide">
+                                    <p>You will be paying with Cash</p>
+                                    <p class="note">Note: cash cannot be combined with any other payments (i.e. gift cards, Tell-a-Friend credits, or promo codes).</p>
                                 </div>
 
                                 <div class="cart-info" ng-include="'views/partials/cartInfo.html'">
                                    
                                     <p>
                                         <span class="label">Subtotal: </span>
-                                        <span class="value ng-binding"> 16.00 </span>
+                                        <span class="value ng-binding" id="order-subtotal"> 16.00 </span>
                                     </p>
-                                    <p ng-show="cartInfo.tip" class="">
-                                        <span class="label ng-binding">Tip (15%): </span>
-                                        <span class="value ng-binding">2.40 </span>
+                                    <p ng-show="cartInfo.tip" class="cartinfo-tip">
+                                        <span class="label ng-binding" id="order-tip-title">Tip (15%): </span>
+                                        <span class="value ng-binding" id="order-tip">2.40</span>
                                     </p>
                                     <p>
                                         <span class="label">Tax: </span>
-                                        <span class="value ng-binding"> 1.68 </span>
+                                        <span class="value ng-binding" id="order-tax"> 1.68 </span>
                                     </p>
                                     <div class="total">
                                         <strong class="label">Total: </strong>
-                                        <strong class="value ng-binding"> $20.08 </strong>
+                                        <strong class="value ng-binding" id="order-total"> $20.08 </strong>
                                     </div>
-                                    <div class="check-btn"><a href="#">Place order</a></div>
+                                    <!--表单-->
+                                    <input type="hidden" name="" value="" />
+                                    <div class="place-order"><a href="javascript:void(0)" id="place-order">Place order</a></div>
                                
                             </div>
 
@@ -139,90 +219,6 @@
     </div>
     <div class="foot"></div>
     <div class="popup_layer"></div>
-<if condition='cookie("OrderOnlineAuth") neq ""'>
-    <div class="shopping_cart">
-   
-        <div class="cart_title clearfix" flag=true>
-            <a class="lt" num="0" href="#">Your Order</a>
-            <a class="rt" href="#">{$ordernum}</a>
-        </div>
-        
-        <ul>
-         <volist name="order" id="vo">
-            <li class="clearfix">
-                <a href="javascript:;" class="area lt">{$vo['item_name']}</a>&nbsp;<span class="price rt">${$vo['price']}</span>
-                <a href="javascript:;" class="name lt">{$vo['quantity']} Piece,{:substr($vo['item'],0,13)}</a>
-                <span class="num rt"><a class="reduce" href="javascript:;" s_id="{$vo['id']}"></a><span class="qty">{$vo['quantity']}</span><a class="add" href="javascript:;" s_id="{$vo['id']}"></a></span>
-            </li>
-            
-            </volist>
-            <li class="last"><a href="{:U('Member/yourOrder')}">Ready</a></li>
-        </ul>
-       
-    </div>
-   </if>
-<script type="text/javascript">
-$(document).ready(function()
-{
-    $("#btn_go").click(function()
-    {
-        $("#form").submit();
-        return false;
-    });
-
-    $(".reduce").live('click',function(){
-        var val = parseInt($(this).siblings(".qty").html());
-        if(val>1){
-            var old_price = $(this).parents('.orderitem').find('.price').html().substr(1);
-            var unit_price = $(this).parents('.orderitem').attr('data-price');
-            var newprice = parseFloat(old_price) - parseFloat(unit_price);
-
-            $(this).siblings(".qty").html(val-1);
-            $(this).parents('.orderitem').find('.price').html('$' + newprice.toFixed(2));
-        }else{
-            $(this).parents(".orderitem").remove();
-        }
-        var id = $(this).attr("s_id");
-        $.post("{:U('Dishes/reduceQty')}",{id:id},function(){
-        },'json');
-        calSubTotal();
-    })
-
-    $(".add").live('click',function(){
-        var val = parseInt($(this).siblings(".qty").html());	
-        var old_price = $(this).parents('.orderitem').find('.price').html().substr(1);
-        var unit_price = $(this).parents('.orderitem').attr('data-price');
-        var id = $(this).attr("s_id");
-        
-        var newprice = parseFloat(old_price) + parseFloat(unit_price);
-        $(this).parents('.orderitem').find('.price').html('$'+ newprice.toFixed(2));
-        $(this).siblings(".qty").html(val+1);
-        $.post("{:U('Dishes/addQty')}",{id:id},function(){
-        });
-        calSubTotal();
-    });
-
-    function calSubTotal(){
-        //var subTotal = parseFloat($(".orderItem").find(".price").html().substr(1))-price;
-        var subTotal = 0;
-        $('.orderitem').each(function(){
-            subTotal += parseFloat($(this).find('.price').html().substr(1)); 
-        });
-
-        var tax = subTotal * 0.05;
-        var allTotal = subTotal + tax;
-        $('.sub-total').html('$' + subTotal.toFixed(2));
-        $('.tax').html('$' + tax.toFixed(2));
-
-        $('.all-total').html('$' + allTotal.toFixed(2));
-        //console.log(subTotal);
-    };
-
-    calSubTotal();
-
-    $(".order").smartFloat();
-});
-</script>
 </body>
 </html>
 

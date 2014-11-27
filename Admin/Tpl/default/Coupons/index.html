@@ -24,23 +24,11 @@
 
 <include file="Public:bg_header" />
    	
-   <div id="navigation_links">
-   <div id="navigation">
-    
-    <div class="links "><a href="?mod=resturant&item=restedit&cid=856" >Restaurant</a></div>
-    <div class="links "><a href="?mod=order&cid=856" class="">Orders(1)</a></div>
-   	<div class="links "><a href="?mod=customer&cid=856" class="">Customers(0)</a></div>
-    <div class="links selected"><a href="?mod=coupon&cid=856" class="">Coupons</a></div>
-    <div class="links "><a href="?mod=menus&cid=856"class="">Menus</a></div>
-    <div class="links "><a href="?mod=mailing_list&cid=856"class="">Mailing List</a></div>
-    			<div class="links "><a href="?mod=analytics&cid=856"class="">Analytics</a></div>
-                	    <br style="clear:both" />
-  </div>
-</div>
+<include file="Public:menu_son" />
 <div id="tab_items">
 	<ul>
     	<li>
-			<a href="?mod=coupon&item=main&cid=856">Edit Exisiting Coupons</a>
+			<a href="__APP__/Coupons/index">Edit Exisiting Coupons</a>
         </li>|
         <li>
         	<a href="__APP__/Coupons/addCoupons">Add New Coupon</a>
@@ -52,19 +40,21 @@
  
   <table width="100%" border="0"  cellpadding="4" cellspacing="0" class="listig_table">
      <tr>
-      	<th width="12%"><strong>coupon code</strong></th>
-        <th width="16%"><strong>Coupon title</strong></th>
-        <th width="22%"><strong>Coupon date</strong></th>
-        <th width="50%"><strong>Action</strong></th>
+      
+        <th width="16%"><strong>Coupon Title</strong></th>
+        <th width="16%"><strong>Coupon Type</strong></th>
+        <th width="22%"><strong>Coupon Date</strong></th>
+        <th width="10%"><strong>Operate</strong></th>
       </tr>
       <volist name="list" id="vo">
       <tr>
-        <td>{$vo.code}</td>
+      
         <td>{$vo.title}</td>
-        <td>{$vo.date}</td>
-        <td>{$vo.code}</td>
+        <td>{$vo.type}</td>
+        <td>{$vo.date_from} -- {$vo.date_to}</td>
+        <td><if condition="$vo['status'] eq 1"><a class="on" href="javascript:;" data-id="{$vo.id}"><span class="on_show" style="color:green;">ON</span></a><else/><a class="off"  href="javascript:;" data-id="{$vo.id}"><span style="color:red;">OFF</span></a></if> | <a href="__APP__/Coupons/edit/id/{$vo.id}">Edit</a> | <a href="__APP__/Coupons/delete/id/{$vo.id}" onclick="confirm('Are you sure to delete!')"> Delete</a></td>
       </tr>
-      </volist>
+      </volist> 
   </table>
 
  </div>	
@@ -80,4 +70,25 @@
     </div><!--End header Div-->
 </div><!--End maincontainer Div-->
 </body>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".on").click(function(){
+			var id = $(this).attr("data-id");
+			$.post("__APP__/Coupons/status",{id:id},function(r){
+				if(r){
+					window.location.reload();
+				}
+			});
+		});
+		$(".off").click(function(){
+			var id = $(this).attr("data-id");
+			$.post("__APP__/Coupons/status",{id:id},function(r){
+				if(r){
+					window.location.reload();
+				}
+			});
+		});
+	});
+
+</script>
 </html>

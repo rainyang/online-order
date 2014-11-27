@@ -45,7 +45,7 @@
         			<div class="links selected"><a href="__APP__/Index" >Restaurants</a></div>
                     <div class="links selected"> <a href="__APP__/Order/index/">Orders</a></div>
                     <div class="links selected"><a href="__APP__/Customer/index">Customers</a></div>
-                    
+                    <div class="links selected"><a href="__APP__/Website/index">Website</a></div>
 
         			<!-- <div class="links not"><a href="__APP__/Public/changePwd" >Change Password</a></div> -->
                     <!-- <div class="links not"><a href="__APP__/Public/addRestaurant" >Create New Restaurant</a></div> -->
@@ -60,7 +60,8 @@
             	<ul>
             		<li><a href="__APP__/Index/index" class="selected_red">Restaurants Listing</a></li>
             	</ul>
-            </div><!--End navigation_links Div-->
+            </div>
+<!--End navigation_links Div-->
             
 
 

@@ -179,6 +179,8 @@ class PublicAction extends Action {
         if(false === $authInfo) {
             $this->error('帐号不存在或已禁用！');
         }else {
+            echo $authInfo['password']. "<br>";
+            echo md5($_POST['password']);
             if($authInfo['password'] != md5($_POST['password'])) {
             	$this->error('密码错误！');
             }

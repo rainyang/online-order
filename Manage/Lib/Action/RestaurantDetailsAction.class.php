@@ -110,6 +110,9 @@ class RestaurantDetailsAction extends CommonAction {
 				$data['lng']					=	$_POST['lng'];
 				$data['lat']					=	$_POST['lat'];
 				$data['delivery_radius']		=	$_POST['delivery_radius'];
+				$data['min_delivery']			=	$_POST['min_delivery'];
+				$data['option_miles']			=	$_POST['option_miles'];
+				$data['option_dollar']			=	$_POST['option_dollar'];
 				$data['order_minimum']			=	$_POST['order_minimum'];
 				$data['tax']					=	$_POST['tax_percent'];
 				$data['delivery_charges']		=	$_POST['delivery_charges'];
@@ -131,6 +134,8 @@ class RestaurantDetailsAction extends CommonAction {
 
 				if($_POST['restaurant_id'])
 				{
+                    $User = M('User');
+                    $User->where(array('id' => $info['user_id']))->save(array('status' => $_POST['audit']));
 					$result = $RestaurantMember->where(array('id' => $_POST['restaurant_id']))->save($data);
 					if($result)
 					{

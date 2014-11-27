@@ -119,6 +119,25 @@
 </head>
 
 <body>
+
+    <!--coupon list-->
+    <div class="layer coupon_layer">
+        <div class="title clearfix">
+            <p>Coupons</p>
+            <a href="#" class="close"></a>
+        </div>
+        
+        <div class="context">
+            <div id="coupons_list">
+            
+            </div>
+          
+          <div class="d2">
+            <a href="javascript:void(0)" id="btn-coupons-confirm">confirm</a>
+          </div>
+      </div>
+    </div>
+
 <!-- 套餐开始 -->
   <div class="layer package_layer" style="width:500px;height:auto;margin-top:50px;">
         <div class="title clearfix">
@@ -251,7 +270,7 @@
       </div>
     </div>
     
-    <div class="layer  join_layer">
+    <div class="layer join_layer">
         <div class="title clearfix">
             <p>Join Us / Free Promote Your Restaurant </p>
             <a href="#" class="close"></a>
@@ -305,9 +324,9 @@
          <div style="color:red" id="review_error"></div>
           <div class="d1" id="revd1">
          
-           <?php if(cookie("OrderOnlineAuth") == ""): ?><a href="javascript:;" style="color:#999;border:none;">Please login</a>
+           <?php if(cookie("OrderOnlineAuth") == ""): ?><a href="javascript:;" class="please_login" style="color:#999;border:none;">Please login</a>
            <?php else: ?>
-            <a href="#" id="add_review">Add</a><?php endif; ?>
+            <a href="javascript:;" id="add_review">Add</a><?php endif; ?>
           </div>
        </div>
     </div>
@@ -455,7 +474,7 @@
             </form>
            <div style="color:red;" id="book_error"></div>
             <div class="d1">
-             <?php if(cookie("OrderOnlineAuth") == ""): ?><a href="javascript:;" style="color:#999;border:none;">Please login</a>
+             <?php if(cookie("OrderOnlineAuth") == ""): ?><a href="javascript:;" class="please_login" style="color:#999;border:none;">Please login</a>
              <?php else: ?>
                 <a href="#" id="book_submit">Book</a><?php endif; ?>   
             </div>

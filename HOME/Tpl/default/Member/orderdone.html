@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>OrderOnline - place order</title>
+<link rel="stylesheet" href="__PUBLIC__/Index/css/reset.css" />
+<link rel="stylesheet" href="__PUBLIC__/Index/css/public.css" />
+<link rel="stylesheet" href="__PUBLIC__/Index/css/top.css" />
+<link rel="stylesheet" href="__PUBLIC__/Index/css/detail.css" />
+<link rel="stylesheet" href="__PUBLIC__/Index/css/foot.css" />
+<link rel="stylesheet" href="__PUBLIC__/Index/css/order.main.css" />
+
+<script type="text/javascript" src="__PUBLIC__/Index/js/jquery-1.7.1.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Index/js/jquery-extend-order.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Index/js/main.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Index/js/public.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Index/js/order.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Index/js/member.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/tooltipsy.min.js"></script>
+<style>
+    .address-list input{height:18px;}
+    .address-list span{ margin-left:10px;}
+    .no-cards input{height:18px;}
+    .no-cards span{ margin-left:10px;}
+</style>
+<script type="text/javascript" charset="utf-8">
+    var setDefaultAddressUrl = "{:U('Member/setDefaultAddress')}";
+    var setDefaultCardUrl = "{:U('Member/setDefaultCard')}";
+    var doCardUrl = "{:U('Member/doCard')}";
+    var getCardUrl = "{:U('Member/getCards')}";
+    var doOrderUrl = "{:U('Order/orders')}";
+    var res_id = {$res_id};
+    var payment = 'card';
+</script>
+</head>
+
+<body>
+	<div class="container">
+    	<include file="Index:head" />
+    	<include file="Index:search" />
+        
+    	<include file="Index:resinfo" />
+            <div class="context">
+            	<div class="title">
+                    Order submitted successfully.
+                </div>
+<!-- 订单信息开始 -->
+                <div class="checkout-details">
+                    <div class="info">
+                            <div ng-hide="currentGroup==='l'" class="">
+                                <h4 ng-hide="orderPickup" class="">Your order # is {$bh_no}. You can access your order details any time at <a href="{:U('Member/personal')}">My Order</a></h4>
+                                <div ng-hide="orderPickup" class="ng-binding">
+                                </div>
+                            </div>
+                    </div>
+                </div>
+<!-- 订单信息结束 -->
+
+            
+            </div>
+        </div>
+    </div>
+    <div class="foot"></div>
+    <div class="popup_layer"></div>
+</body>
+</html>
+
+

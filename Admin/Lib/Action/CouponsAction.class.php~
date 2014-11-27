@@ -1,0 +1,105 @@
+﻿<?php
+class CouponsAction extends Action{
+	public function index(){
+		$Coupons = M('Coupons');
+		$result = $Coupons->select();
+		foreach($result as $key=>$val){
+			if($result[$key]['type'] == 1){
+				$result[$key]['type'] = "Discount";
+			}else if($result[$key]['type'] == 2){
+				$result[$key]['type'] = "Reduce Cash";
+			}else if($result[$key]['type'] == 3){
+				$result[$key]['type'] = "Give Item";
+			}else if($result[$key]['type'] == 4){
+				$result[$key]['type'] = "Exclusive Code";
+			}
+			$result[$key]['date_from'] = date('d/m/Y H:i',$result[$key]['date_from']);
+			$result[$key]['date_to'] = date('d/m/Y H:i',$result[$key]['date_to']);
+		}
+		//print_r($result);
+		$this->assign('list',$result);
+		$this->display();
+	}
+	public function addCoupons(){
+		$Coupons = M('Coupons');
+		if($_POST['submit']){//print_r($_POST);exit;
+			$data = array(
+						'title' => $_POST['coupon_title'],
+						'code' => $_POST['coupon_code'],
+						'min_order' => $_POST['min_order_total'],
+						'date_from' => strtotime($_POST['date_from']),
+						'date_to' => strtotime($_POST['date_to']),
+						'cash'	=>	$_POST['coupon_cash'],
+						'type'	=>	$_POST['type'],
+						'discount' => $_POST['coupon_discount'],
+						'desc' => $_POST['coupon_des'],
+						'create_time' =>time(),
+						);
+			
+			//print_r($data);exit;
+			$result = $Coupons->add($data);
+			if($result){
+				if($data['type'] == 3){
+					foreach($_POST['item_list'] as $key=>$val){
+						$add_coupons_item = M('CouponsItem')->add(array('coupons_id'=>$result,'item_id'=>$key,'num'=>$_POST['item_num'][$key]));
+					}	
+				}
+				$this->redirect('/Coupons/index');
+			}
+		}
+		$item_list = M('Item')->where(array('is_present' => 1))->select();//print_r($item_list);
+		$this->assign('itemlist',$item_list);
+		$this->display();
+	}
+	
+	public function edit(){
+		$id = $_GET['id'];
+		$data = array(
+						'title' => $_POST['coupon_title'],
+						'code' => $_POST['coupon_code'],
+						'min_order' => $_POST['min_order_total'],
+						'date_from' => strtotime($_POST['date_from']),
+						'date_to' => strtotime($_POST['date_to']),
+						'cash'	=>	$_POST['coupon_cash'],
+						'type'	=>	$_POST['type'],
+						'discount' => $_POST['coupon_discount'],
+						'desc' => $_POST['coupon_des'],
+						'create_time' =>time(),
+						);
+		if($_POST['coupons_id']){
+			//dump($_POST);exit;
+		}		
+		$info = M('Coupons')->where(array('id'=>$id))->find();//优惠券信息
+		$itemList =  M('Item')->where(array('is_present' => 1))->select();//可赠送的菜品列表
+		foreach($itemList as $key=>$val){
+			$itemList[$key]['iteminfo'] = M('CouponsItem')->where(array('coupons_id'=>$id,'item_id'=>$itemList[$key]['id']))->find();
+		}
+		$iteminfo = M('CouponsItem')->where(array('coupons_id'=>$id))->select();//以选择的赠送菜品
+		//print_r($itemList);
+		$this->assign('itemlist',$itemList);
+		$this->assign('info',$info);
+		$this->display();
+	}
+	public function delete(){
+		$id = $_GET['id'];
+		if($id){
+			$del = M('Coupons')->where(array('id'=>$id))->delete();
+			if($del){
+				$delItem = M('CouponsItem')->where(array('coupons_id'=>$id))->delete();
+				$this->redirect('/Coupons/index');
+			}
+		}
+	}
+	public function status(){
+		if($_POST['id']){
+			$list =  M('Coupons')->where(array('id' => $_POST['id']))->find();
+			if($list['status'] == 1){
+				$result = M('Coupons')->where(array('id' => $_POST['id']))->save(array('status' => 0));
+			}else{
+				$result = M('Coupons')->where(array('id' => $_POST['id']))->save(array('status' => 1));
+			}
+			echo $result;
+		}
+	}
+}
+?>

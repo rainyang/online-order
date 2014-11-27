@@ -1,53 +1,37 @@
+var geocoder; 
+  var map; 
+  function initialize() { 
+    console.log('init');
+    geocoder = new google.maps.Geocoder(); 
+    var latlng = new google.maps.LatLng(31.23, 121.47); 
+    var myOptions = { 
+      zoom: 12, 
+      center: latlng, 
+      mapTypeId: google.maps.MapTypeId.ROADMAP 
+    } 
+    map = new google.maps.Map(document.getElementById("map"), myOptions); 
+  } 
+ 
+  function codeAddress() { 
+    var address = document.getElementById("address").value; 
+    geocoder.geocode( { 'address': address}, function(results, status) { 
+      if (status == google.maps.GeocoderStatus.OK) { 
+        console.log(results[0].geometry.location) 
+        map.setCenter(results[0].geometry.location); 
+        this.marker = new google.maps.Marker({ 
+                title:address, 
+            map: map,  
+            position: results[0].geometry.location 
+        }); 
+                var infowindow = new google.maps.InfoWindow({ 
+                    content: '<strong>'+address+'</strong><br/>'+'纬度: '+results[0].geometry.location.Da+'<br/>经度: '+results[0].geometry.location.Ea 
+                }); 
+                infowindow.open(map,marker); 
+      } else { 
+        alert("Geocode was not successful for the following reason: " + status); 
+      } 
+    }); 
+  } 
 
-        
-   
-        window.g = {};
-        window.d = function(id) { return document.getElementById(id) };
-        window.onload = function() {
-            if (GBrowserIsCompatible()) {
+google.maps.event.addDomListener(window, 'load', initialize);
 
-                g.map = new GMap2(d("map"));
-                g.map.addControl(new GLargeMapControl());
-                g.map.addControl(new GMapTypeControl());
-                g.map.addControl(new GScaleControl());
-
-                g.geocoder = new GClientGeocoder();
-
-                g.getCoordinates = function(address) {
-                    g.geocoder.getLatLng(
-                    address,
-                    function(point) {
-                        if (point) {
-                            g.map.setCenter(point, 13);
-                            var marker = new GMarker(point);
-                            g.map.addOverlay(marker);
-                            var info =  point.lat() + "," + point.lng();
-                            //alert(info);return;
-
-                            d("coordinate").value = info;
-                            marker.openInfoWindowHtml(info);
-                            marker.__address_info = info;
-                            GEvent.addListener(marker, "click", function() {
-                                g.map.setCenter(this.getLatLng());
-                                this.openInfoWindowHtml(this.__address_info);
-                                d("coordinate").value = info;
-                                
-                            });
-                        }
-                        
-                    }
-                )
-                }
-
-                d("btn_go").onclick = function() {
-                    g.getCoordinates(d("address").value);
-                }
-                d("btn_go").onclick();
-            }
-            else {
-                alert('不支持的浏览器');
-            }
-        }
-        /*window.onunload = function() {
-            GUnload();
-        }*/

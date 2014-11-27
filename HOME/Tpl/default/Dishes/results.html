@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>OrderOnline - results</title>
@@ -31,7 +31,7 @@
 </style>
 <script type="text/javascript" src="__PUBLIC__/Index/js/jquery-1.7.1.js"></script>
 <script type="text/javascript" src="__PUBLIC__/Index/js/main.js"></script>
-<script src="http://maps.google.cn/maps?file=api&ampv=2&ampkey=your key&sensor=true" type="text/javascript"></script>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAZNhDMfxS_ZrrtrAVuwzGYvM49VaNdn70&sensor=true"></script>
 </head>
 
 <body>
@@ -41,8 +41,8 @@
         <div class="search_box clearfix">
             <div class="left clearfix">
             <form name="form" method="post" id="form" action="{:U('Dishes/results')}">
-                <span class="t1">Please Enter Your Address:</span><input class="b1" type="text" id="address" name="address" value="Street Address, City, State" /><br />
-                <span class="t2">What would you like? (optional):</span><input class="b2" type="text" name="taste" value="tuna melt, John's Subs, Italian" />
+                <span class="t1">Please Enter Your Address:</span><input class="b1" type="text" id="address" name="address" value="" placeholder="Street Address, City, State" /><br />
+                <span class="t2">What would you like? (optional):</span><input class="b2" type="text" id="cuisines" name="taste" placeholder="tuna melt, John's Subs, Italian" value="" />
                 <input type="hidden" id="coordinate" name="lat" value="">
                 <input type="hidden" id="map" >
                 </form>

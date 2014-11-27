@@ -40,30 +40,17 @@
     <div style="padding-bottom:10px;text-align:center">
       <img style="width:1085px; height:90px;" src="__PUBLIC__/Images/img_856_cat_header.jpg" border="0" />
   </div>
-   	
-  <div id="navigation_links">
-   <div id="navigation">
-    
-    <div class="links "><a href="__APP__/RestaurantDetails/index/restaurant_id/{$_SESSION['restaurant_id']}" >Restaurant({$_SESSION['restaurant_count']})</a></div>
-    <div class="links selected"><a href="__APP__/Order/index/restaurant_id/{$_SESSION['restaurant_id']}" class="">Orders(1)</a></div>
-    <!-- <div class="links "><a href="?mod=customer" class="">Customers(0)</a></div>
-    <div class="links "><a href="?mod=coupon" class="">Coupons</a></div> -->
-    <div class="links "><a href="__APP__/Menus/index/restaurant_id/{$_SESSION['restaurant_id']}"class="">Menus</a></div>
-    <!-- <div class="links "><a href="?mod=mailing_list"class="">Mailing List</a></div>
-    <div class="links "><a href="analytics.html"class="">Analytics</a></div> -->
-    <br style="clear:both" />
-  </div>
-</div>
+ <include file="Public:menu_son" />
   
   <div id="tab_items">
     <ul>
-      <li> <a href="?mod=order&item=main&cid=856" class="">View Approved Orders</a> </li>
+      <li> <a href="__APP__/Order/index/restaurant_id/{$_SESSION['restaurant_id']}/status/3" class="">View Approved Orders</a> </li>
       |
-      <li> <a href="?mod=order&item=approve&cid=856" class="">New Orders</a> </li>
+      <li> <a href="__APP__/Order/index/restaurant_id/{$_SESSION['restaurant_id']}/status/0" class="">New Orders</a> </li>
       |
       <!-- <li> <a href="?mod=order&item=report&cid=856" class="">Restaurant Order Report</a> </li> -->
       <li>
-                <a href="javascript:void(0)" onclick="alert('Refund option not available, contact your reseller to set a refund password');">Refund Orders</a>
+                <a href="__APP__/Order/index/restaurant_id/{$_SESSION['restaurant_id']}/status/6" >Refund Orders</a>
               </li>
     </ul>
   </div>

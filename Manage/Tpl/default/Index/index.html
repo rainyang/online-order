@@ -48,7 +48,9 @@
 		    </div>
 		    <div id="contents_area" style="float:left; margin-left:15px; width:78%;">
 		    	<strong  style="font-size:18px;">&nbsp;<a style="cursor:pointer; text-decoration:none;" href="__APP__/Index">All Resturants</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		    	<a style="cursor:pointer; text-decoration:none;" href="__APP__/Index/index/audit/0">Audit Resturants</a></strong><br />
+		    	<a style="cursor:pointer; text-decoration:none;" href="__APP__/Index/index/audit/0">Audit Resturants</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    	<a style="cursor:pointer; text-decoration:none;" href="__APP__/Index/in_coupons">In Coupons</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    	<a style="cursor:pointer; text-decoration:none;" href="__APP__/Index/in_reviews">In Reviews</a></strong><br />
 		    	<foreach name='list' item='vo'>
 		    	<div class="listbox" onMouseOver="this.style.backgroundColor='#FFC';" onMouseOut="this.style.backgroundColor='';">
 		    		<div id="imagebox" ><img src="{$vo.logo}" border="0" width="80" height="50" /> </div>
@@ -58,6 +60,10 @@
 		    				<a href="__APP__/RestaurantDetails/index/restaurant_id/{$vo.id}">{$vo.nickname}</a>
 		    			</div>
 		    			<br style="clear:both" >
+		    			<div style="margin-top:10px;">
+		    			<div style="float:left;" id="joinCou{$vo.id}"><if condition="$vo['cou']">In Coupons<else/><a href="javascript:;" class="coupon" data-id="{$vo.id}">Join Coupons</a></if></div>
+		    			<div style="float:left;margin-left:50px;" id="joinRev{$vo.id}"><if condition="$vo['rev']">In Reviews<else/><a href="javascript:;" class="review" data-id="{$vo.id}">Join Reviews</a></if></div>
+		    			</div>
 		    			<!-- <div id="Site_URL">
 		    				Site URL:&nbsp;<a href="http://www.easywayordering.com/woow_sushi_algonquin/" target="_blank">http://wwww.easywayordering.com/ woow_sushi_algonquin/</a>
 		                </div>
@@ -104,4 +110,31 @@
     </div><!--End header Div-->
 </div><!--End maincontainer Div-->
 </body>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//点击加入优惠卷业务
+		$(".coupon").click(function(){
+			var id = $(this).attr("data-id");
+			//alert(id);
+			$.post('__APP__/Index/join_coupons',{id:id},function(data){
+				if(data){
+					$("#joinCou"+data).html("In Coupons");
+				}
+			})
+		});
+		//点击加入评论业务
+		$(".review").click(function(){
+			var id = $(this).attr("data-id");
+			//alert(id);
+			$.post('__APP__/Index/join_reviews',{id:id},function(data){
+				if(data){
+					$("#joinRev"+data).html("In Reviews");
+				}
+			})
+		});
+	});
+</script>
 </html>
+
+
+

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>restocordobaordering</title>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/Togle.js"></script>
+<link href="__PUBLIC__/css/adminMain.css" rel="stylesheet" type="text/css" />
+<
+</head>
+
+<include file="Public:bg_header" />
+
+
+
+<div id="contents">  
+
+
+
+<link href="css/facebox.css" media="screen" rel="stylesheet" type="text/css"/>
+
+ <div style="padding-bottom:10px;text-align:center">
+      <img style="width:1085px; height:90px;" src="__PUBLIC__/Images/img_856_cat_header.jpg" border="0" />
+  </div>
+   	
+   <div id="navigation_links">
+   <div id="navigation">
+    
+    
+    <div class="links "><a href="__APP__/Website/index" class="">base</a></div>
+    <div class="links "><a href="__APP__/Website/slide" class="">slide</a></div>
+    <!-- <div class="links "><a href="?mod=coupon" class="">Coupons</a></div>
+    <!-- <div class="links "><a href="__APP__/Menus/index/restaurant_id/{$_SESSION['restaurant_id']}"class="">Menus</a></div>
+    <!-- <div class="links "><a href="?mod=mailing_list"class="">Mailing List</a></div>
+    <div class="links "><a href="analytics.html"class="">Analytics</a></div>--> 
+    <br style="clear:both" />
+  </div> 
+</div>
+
+
+<div id="main_heading">
+    <span>Edit Website</span>
+</div>
+ 
+<div id="AdminLeftConlum">
+    <form name="frmedit" id="frmedit"  action="" method="post" enctype="multipart/form-data"   >
+        <table width="100%" border="0" cellpadding="4" cellspacing="0">
+            
+ 
+            <tr align="left" valign="top"> 
+                <td width="76"></td>
+                <td><strong>Website Name:</strong><br />
+                    <input name="webname" type="text" size="40" value="{$info.name}" id="webname" /> </td>
+            </tr>
+          
+            <tr align="left" valign="top"> 
+                <td width="76"></td>
+                <td><strong>Email:</strong><br />
+                    <input name="email" type="text" size="40" value="{$info.email}" id="email" /> </td>
+            </tr>
+            <tr align="left" valign="top"> 
+                <td width="76"></td>
+                <td><strong>Tel:</strong><br />
+                    <input name="tel" type="text" size="40" value="{$info.tel}" id="tel" /> </td>
+            </tr>
+
+
+
+ 
+   
+            <tr align="left" valign="top">
+                <td>&nbsp;</td>
+                <td><strong> Logo</strong><br> <font color="#666666"><!--(system will resize to 
+                    500x500)--></font>
+                    <input name="image" type="file" id="image">
+                    <input type="hidden" name="logo" value="{$info.logo}">
+             
+
+             <tr align="left" valign="top">
+                <td></td>
+                <td><strong>Logo Show:</strong><br />
+                    <img src="{$info.logo}" width="150";>            </td>
+            </tr>
+            <tr align="left" valign="top" id="delivery_radius" > 
+                <td></td>
+                <td><strong>Delivery Max Radius:</strong><br />
+                    <input name="delivery_radius" type="text" size="40" id="delivery_radius" value="{$info.delivery_radius}">&nbsp;(miles)            <br />
+			<strong>Delivery Min Radius:</strong><br />
+                    <input name="min_delivery" type="text" size="40" id="min_delivery" value="{$info.min_delivery}">&nbsp;(miles)            <br />
+			<strong>Option Miles:</strong><br />
+                    <input name="option_miles" type="text" size="40" id="option_miles" value="{$info.option_miles}">&nbsp;(miles)            <br />
+			<strong>Option Dollar:</strong><br />
+                    <input name="option_dollar" type="text" size="40" id="option_dollar" value="{$info.option_dollar}">&nbsp;($/mile)            </td>
+            </tr>
+            <tr align="left" valign="top" id="delivery_radius" > 
+                <td></td>
+                <td><strong>Payment:</strong><br />
+                    <input name="pay_type" type="radio" id="pay1" value="1" <if condition="$info['pay_type'] eq 1">checked="checked"</if>>authorize
+                    <input name="pay_type" type="radio" id="pay2" value="2" <if condition="$info['pay_type'] eq 2">checked="checked"</if>>smart payement</td>
+            </tr>
+           
+             <tr align="left" valign="top" style="display:none;" id="paytype1"> 
+                <td width="76"></td>
+                <td><strong>api_login_id:</strong><br />
+                    <input name="api_login_id" type="text" size="40" value="{$info.api_login_id}" id="api_login_id" /><br />
+                    <strong>transaction_key:</strong><br />
+                    <input name="transaction_key" type="text" size="40" value="{$info.transaction_key}" id="transaction_key" /><br />
+                    <strong>md5_setting:</strong><br />
+                    <input name="md5_setting" type="text" size="40" value="{$info.md5_setting}" id="md5_setting" /><br />
+                    <strong>host:</strong><br />
+                    <input name="host" type="text" size="40" value="{$info.host}" id="host" /><br />
+                    <strong>testMode:</strong><br />
+                    <input name="testMode" type="text" size="40" value="{$info.testMode}" id="testMode" /> </td>
+            </tr>
+            <tr align="left" valign="top" style="display:none;" id="paytype2"> 
+                <td width="76"></td>
+                <td><strong>username:</strong><br />
+                    <input name="username" type="text" size="40" value="{$info.username}" id="username" /><br />
+                    <strong>password:</strong><br />
+                    <input name="password" type="text" size="40" value="{$info.password}" id="password" /><br />
+                    <strong>url:</strong><br />
+                    <input name="url" type="text" size="40" value="{$info.url}" id="url" /><br />
+                  
+                     </td>
+            </tr>
+            
+		
+
+            
+            
+            <tr align="left" valign="top">
+                <td>&nbsp;</td>
+                <td>
+                	<input type="hidden" name="siteid" value="{$info.id}"  />
+                    <input type="submit" name="btnSave" value="Save"  />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>  
+
+<br class="clearfloat" />
+</div>
+<!--End body Div-->	
+         </div>   
+            
+        </div><!--End text_holder Div-->	
+        <div id="footer">
+            <div id="bottom">
+                <div id="bottom_left"></div>
+                <div id="bottom_right"></div>
+            </div><!--End bottom Div--><br style="clear:both" />
+        </div><!--End footer Div-->
+    </div><!--End header Div-->
+</div><!--End maincontainer Div-->
+</body>
+<script  type="text/javascript">
+	$(document).ready(function(){
+		$("#pay1").click(function(){
+			$("#paytype1").show();
+			$("#paytype2").hide();
+		});
+		$("#pay2").click(function(){
+			$("#paytype2").show();
+			$("#paytype1").hide();
+		});
+		if($("#pay1").attr("checked") == "checked"){
+			$("#paytype1").show();
+		}
+		if($("#pay2").attr("checked") == "checked"){
+			$("#paytype2").show();
+		}
+	})
+</script>
+</html>
+
+
+
